@@ -15,10 +15,11 @@ const pool = new Pool({
 });
 
 express()
+    .use(express.json())
+    .use(express.urlencoded({ extended: false }))
     .use(express.static(path.join(__dirname, 'public')))
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs')
-    .get('/', (req, res) => res.render('pages/index'))
     .get('/db', async (req, res) => {
         try {
             const client = await pool.connect();
@@ -31,10 +32,9 @@ express()
             res.send("Error " + err);
         }
     })
-    // http://localhost:3000/
     .get('/', function (request, response) {
         // Render login template
-        response.sendFile(path.join(__dirname + '/login.html'));
+        response.sendFile(path.join(__dirname + '/public/login.html'));
     })
     .post('/auth', async (req, res) => {
         // Capture the input fields
