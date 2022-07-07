@@ -49,6 +49,7 @@ express()
             connection.query(`SELECT * FROM accounts WHERE username = '${ username }' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 //console.log(error, results, fields);
+                
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
@@ -60,12 +61,14 @@ express()
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
+                client.release();
                 res.end();
             });
         } else {
             res.send('Please enter Username and Password!');
             res.end();
         }
+
     })
 // http://localhost:3000/home
     .get('/home', function (request, response) {
