@@ -52,8 +52,8 @@ express()
                 // If the account exists
                 if (results.rows.length > 0) {
                     // Authenticate the user
-                    //req.session.loggedin = true;
-                    //req.session.username = username;
+                    req.session.loggedin = true;
+                    req.session.username = username;
                     // Redirect to home page
                     res.redirect('/home');
                 } else {
