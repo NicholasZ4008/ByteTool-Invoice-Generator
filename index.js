@@ -2,6 +2,10 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
+//const express = require('express');
+
+//const path = require('path');
+
 const { Pool } = require('pg');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -27,4 +31,10 @@ express()
             res.send("Error " + err);
         }
     })
+    // http://localhost:3000/
+    .get('/', function (request, response) {
+    // Render login template
+    response.sendFile(path.join(__dirname + '/login.html'));
+    })
+
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
