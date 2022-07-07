@@ -3,7 +3,8 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const session = require('express-session');
 //const express = require('express');
-
+var loggedin = false;
+var sendUsername = "";
 //const path = require('path');
 
 const { Pool } = require('pg');
@@ -52,8 +53,8 @@ express()
                 // If the account exists
                 if (results.rows.length > 0) {
                     // Authenticate the user
-                    req.session.loggedin = true;
-                    req.session.username = username;
+                    loggedin = true;
+                    sendUsername = username;
                     // Redirect to home page
                     res.redirect('/home');
                 } else {
@@ -69,9 +70,9 @@ express()
 // http://localhost:3000/home
     .get('/home', function (request, response) {
         // If the user is loggedin
-        if (request.session.loggedin) {
+        if (loggedin) {
             // Output username
-            response.send('Welcome back, ' + request.session.username + '!');
+            response.send('Welcome back, ' + username + '!');
         } else {
             // Not logged in
             response.send('Please login to view this page!');
