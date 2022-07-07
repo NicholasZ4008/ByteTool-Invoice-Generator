@@ -40,6 +40,7 @@ express()
         // Capture the input fields
         let username = request.body.username;
         let password = request.body.password;
+        const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
         if (username && password) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
