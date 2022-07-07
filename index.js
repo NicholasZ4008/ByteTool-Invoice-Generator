@@ -36,32 +36,32 @@ express()
         // Render login template
         response.sendFile(path.join(__dirname + '/login.html'));
     })
-    .post('/auth', async (request, response) => {
+    .post('/auth', async (req, res) => {
         // Capture the input fields
-        let username = request.body.username;
-        let password = request.body.password;
+        var username = req.body.username;
+        var password = req.body.password;
         const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
         if (username && password) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
-            connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
+            connection.query(`SELECT * FROM accounts WHERE username = '${ username }' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 if (error) throw error;
                 // If the account exists
                 if (results.length > 0) {
                     // Authenticate the user
-                    request.session.loggedin = true;
-                    request.session.username = username;
+                    req.session.loggedin = true;
+                    req.session.username = username;
                     // Redirect to home page
-                    response.redirect('/home');
+                    res.redirect('/home');
                 } else {
-                    response.send('Incorrect Username and/or Password!');
+                    res.send('Incorrect Username and/or Password!');
                 }
-                response.end();
+                res.end();
             });
         } else {
-            response.send('Please enter Username and Password!');
-            response.end();
+            res.send('Please enter Username and Password!');
+            res.end();
         }
     })
 
