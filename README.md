@@ -9,7 +9,7 @@ This application supports the [Getting Started on Heroku with Node.js](https://d
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
+$ git clone https://github.com/nza34/CMPT-276-Project.git # or clone your own fork
 $ cd node-js-getting-started
 $ npm install
 $ npm start
@@ -17,7 +17,7 @@ $ npm start
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-## Deploying to Heroku
+## Deploying to Heroku @ https://guarded-springs-56328.herokuapp.com/
 
 ```
 $ heroku create
