@@ -36,7 +36,7 @@ express()
         // Render login template
         response.sendFile(path.join(__dirname + '/login.html'));
     })
-    .post('/auth', function (request, response) {
+    .post('/auth', async (request, response) {
         // Capture the input fields
         let username = request.body.username;
         let password = request.body.password;
