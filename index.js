@@ -72,7 +72,7 @@ express()
         // If the user is loggedin
         if (loggedin) {
             // Output username
-            response.send('Welcome back, ' + username + '!');
+            response.send('Welcome back, ' + sendUsername + '!');
         } else {
             // Not logged in
             response.send('Please login to view this page!');
