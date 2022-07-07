@@ -61,7 +61,7 @@ express()
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
-                client.release();
+                connection.release();
                 res.end();
             });
         } else {
