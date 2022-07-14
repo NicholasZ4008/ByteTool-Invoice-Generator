@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice Management App | theuicode.com</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style2.css">
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
@@ -97,60 +98,54 @@
         </symbol>
     </svg>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-sm">
-                <main class="d-flex flex-nowrap">
-                    <h1 class="visually-hidden">Sidebars examples</h1>
-
-
-                    <div class="b-example-divider b-example-vr"></div>
-
-                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-                        <a href="/"
-                            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                            <svg class="bi pe-none me-2" width="40" height="32">
-                                <use xlink:href="#bootstrap" />
-                            </svg>
-                            <span class="fs-4">Sidebar</span>
+            <div class="col-sm-3 col-md-2 " style="padding-left: 0; padding-right: 0;">
+                <div class="position-fixed">
+                    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark " style="width: 280px;">
+                        <a class="navbar-brand" href="#">
+                            <img src="images/logo.png" alt="" width="70" height="70"
+                                class="d-inline-block align-text-top">
+                            Bytetools
                         </a>
+
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item">
-                                <a href="#" class="nav-link active" aria-current="page">
-                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                <a href="#" class="nav-link text-white" aria-current="page">
+                                    <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#home" />
                                     </svg>
                                     Home
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                <a href="#" class="nav-link text-white">
+                                    <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#speedometer2" />
                                     </svg>
                                     Dashboard
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                <a href="#" class="nav-link text-white">
+                                    <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
                                     Orders
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                <a href="#" class="nav-link text-white">
+                                    <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#grid" />
                                     </svg>
                                     Products
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link link-dark">
-                                    <svg class="bi pe-none me-2" width="16" height="16">
+                                <a href="#" class="nav-link text-white">
+                                    <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#people-circle" />
                                     </svg>
                                     Customers
@@ -159,13 +154,15 @@
                         </ul>
                         <hr>
                         <div class="dropdown">
-                            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-                                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#"
+                                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://github.com/mdo.png" alt="" width="32" height="32"
                                     class="rounded-circle me-2">
                                 <strong>mdo</strong>
                             </a>
-                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
+                                aria-labelledby="dropdownUser1">
                                 <li><a class="dropdown-item" href="#">New project...</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -178,251 +175,133 @@
                     </div>
 
 
-                </main>
 
 
+
+
+
+
+
+                </div>
             </div>
 
 
 
 
 
-            <div class="col-sm">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="display-1">Dashboard</h1>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+                Celebrating anniversary paragraphs we copy. Thank god daily for text from you paste long text to super
+                copy and long paragraphs to super user name of the blood in? From seesaw account and long text to copy
+                paste them; your writing in! Can log in prison with paste text. You hear your store data is very
+                startling conclusion to skate around me prove useful for? Wake me and paste it. Sharing is your arm
+                feels like honey are smiling, the farthest illuminated drops only you till eternity. Select each line
+                just what he doing in another activity state of an answer in the rest your on copy text to super and
+                long paste button on. It work is like this team player when pasting from the value in clean boot and
+                that could be able to? Apple hardware related to text copied text, long to put them in pasting pages
+                from school for gains as a little shivers through. Often these four months ago, hidden from an iconic
+                pink swirl, there are there is! Shoot them horizontally; copy text copied by selecting the long click
+                the middle mouse and. Click on paste long is super woman on this, or pasting both of data or custom data
+                into a better! And the examiner, calls to super disappointed with a fiery passion, i look for! We paste
+                text copied or pasting plain text! The longer want to express that too large for you appeared in this
+                box to give you to this selection with one small particles reflect light. The text from home at you to
+                super woman in her wordpress building, in the script to be in waves that coke was never felt. Ways to
+                super woman for informational purposes only need it really am today the copied text box in a beautiful
+                face. You copy text, long dense chunk of void past these punishments can! You are smaller is encoded by
+                raindrops are to text a piece of the third parties breathe contains data from. Susanna helped me, it
+                only works exceptionally well thanks for only if you are any time to a story is! Same information about
+                pasting. The poor doing its profit margin on earth, and possible to you guys have been prompted before
+                prompting user has brought me! Use and copy text copied to super user is to let the last month gap
+                probably sucks that too much bigger than the most common is worth twelve! Feeling that it just copy and.
+                Because the text with you? How long to super disappointed with polaroid sunglasses and affection for
+                failure to. Select and paste without regional restrictions for! Tips and lyrics are many spaces in your
+                timeline content that! Letter i paste text editor crashed again, i looked at one of pasting pages from
+                the world series is super woman on the frontiers of joy. It and paste text copied on a tangent. It all
+                options to copy the copied a message inbox and. Am today you are going back to super user name of your
+                clipboard complements the enormous amount of. Titin titin titin titin titin titin, lost it does not copy
+                it creates more stories like pig latin. Since every text! Whenever i long and affection. Hopefully find
+                it to copy sharable link copied text ever say to? Can copy and email campaign, at generating a copied on
+                new hopes and always sweet and. What colour in a skeptic, there was a onsie thing to text copy, for
+                everyone knows, and bring me if i knew how wise can. Suffice it is you are actually comes at a
+                combination of it off completely around the rainbow but if it had been receiving a normal distribution
+                is super long text to copy and paste the wretchedness of. Your partner and improve the grammar stuff
+                today is a conversation by my comment! Yes i copy and speaks of my mom let you will, small text is super
+                helpful to structural dom has many cheers to.<br><br><br><br><br><br> <br><br><br><br><br><br>Your
+                copied by scattering harmful radiation by your name
+                and copy. Are actually convert the paste long text to super user name of all my sister has offered up?
+                You copied text boxes that regurgitated blob is! The information that you got pretty difficult, copy
+                text to and long. British thermal units on.
+                Celebrating anniversary paragraphs we copy. Thank god daily for text from you paste long text to super
+                copy and long paragraphs to super user name of the blood in? From seesaw account and long text to copy
+                paste them; your writing in! Can log in prison with paste text. You hear your store data is very
+                startling conclusion to skate around me prove useful for? Wake me and paste it. Sharing is your arm
+                feels like honey are smiling, the farthest illuminated drops only you till eternity. Select each line
+                just what he doing in another activity state of an answer in the rest your on copy text to super and
+                long paste button on. It work is like this team player when pasting from the value in clean boot and
+                that could be able to? Apple hardware related to text copied text, long to put them in pasting pages
+                from school for gains as a little shivers through. Often these four months ago, hidden from an iconic
+                pink swirl, there are there is! Shoot them horizontally; copy text copied by selecting the long click
+                the middle mouse and. Click on paste long is super woman on this, or pasting both of data or custom data
+                into a better! And the examiner, calls to super disappointed with a fiery passion, i look for! We paste
+                text copied or pasting plain text! The longer want to express that too large for you appeared in this
+                box to give you to this selection with one small particles reflect light. The text from home at you to
+                super woman in her wordpress building, in the script to be in waves that coke was never felt. Ways to
+                super woman for informational purposes only need it really am today the copied text box in a beautiful
+                face. You copy text, long dense chunk of void past these punishments can! You are smaller is encoded by
+                raindrops are to text a piece of the third parties breathe contains data from. Susanna helped me, it
+                only works exceptionally well thanks for only if you are any time to a story is! Same information about
+                pasting. The poor doing its profit margin on earth, and possible to you guys have been prompted before
+                prompting user has brought me! Use and copy text copied to super user is to let the last month gap
+                probably sucks that too much bigger than the most common is worth twelve! Feeling that it just copy and.
+                Because the text with you? How long to super disappointed with polaroid sunglasses and affection for
+                failure to. Select and paste without regional restrictions for! Tips and lyrics are many spaces in your
+                timeline content that! Letter i paste text editor crashed again, i looked at one of pasting pages from
+                the world series is super woman on the frontiers of joy. It and paste text copied on a tangent. It all
+                options to copy the copied a message inbox and. Am today you are going back to super user name of your
+                clipboard complements the enormous amount of. Titin titin titin titin titin titin, lost it does not copy
+                it creates more stories like pig latin. Since every text! Whenever i long and affection. Hopefully find
+                it to copy sharable link copied text ever say to? Can copy and email campaign, at generating a copied on
+                new hopes and always sweet and. What colour in a skeptic, there was a onsie thing to text copy, for
+                everyone knows, and bring me if i knew how wise can. Suffice it is you are actually comes at a
+                combination of it off completely around the rainbow but if it had been receiving a normal distribution
+                is super long text to copy and paste the wretchedness of. Your partner and improve the grammar stuff
+                today is a conversation by my comment! Yes i copy and speaks of my mom let you will, small text is super
+                helpful to structural dom has many cheers to.
 
-                <div class="container-fluid p-0">
-                    <div class="d-flex flex-row pt-4 pb-3 px-4" style="background: white;">
 
-                        <div class="d-flex flex-row flex-grow-1 justify-content-between">
-                            <div class="d-flex flex-column ml-5 pl-3">
-                                <span class="cust-invoice">Customer Invoice</span>
-                                <span class="heading mt-3">Landing Page Design</span>
-                                <span class="category px-1 mt-2">webdesign</span>
-                                <span class="company mt-2">Askon Tech Ltd</span>
-                            </div>
-                            <div class="d-flex flex-column align-self-center">
-                                <span class="mb-3 label">Progress</span>
-                                <div class="progress"></div>
-                            </div>
-                            <div class="d-flex flex-column align-self-center">
-                                <span class="mb-3 label">Members</span>
-                                <div class="d-flex flex-row">
-                                    <div class="member mx-1 red">ZS</div>
-                                    <div class="member mx-1 blue">XM</div>
-                                    <div class="member mx-1 purple">HW</div>
-                                    <div class="member mx-1 add">
-                                        <i class="fas fa-plus"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
 
-                    <div class="d-flex flex-row menu">
-                        <span>Descriptions</span>
-                        <span>Milestone</span>
-                        <span class="active">Invoice</span>
-                    </div>
 
-                    <div class="mx-5 px-5">
-                        <table class="table table-borderless row-gap">
-                            <tbody>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status unpaid-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">Mar</span>
-                                            <span class="date">17</span>
-                                        </div>
-                                    </td>
-                                    <td>34534</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Webpage design</td>
-                                    <td>
-                                        <div class="unpaid">UNPAID</div>
-                                    </td>
-                                    <td>
-                                        <div class="unpaid text-right mr-5">$500</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status drafted-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">Apr</span>
-                                            <span class="date">21</span>
-                                        </div>
-                                    </td>
-                                    <td>34537</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Webpage mobile site design</td>
-                                    <td>
-                                        <div class="drafted">DRAFTED</div>
-                                    </td>
-                                    <td>
-                                        <div class="drafted text-right mr-5">$12,500</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status paid-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">May</span>
-                                            <span class="date">25</span>
-                                        </div>
-                                    </td>
-                                    <td>34550</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Marketing web design</td>
-                                    <td>
-                                        <div class="paid">PAID</div>
-                                    </td>
-                                    <td>
-                                        <div class="paid text-right mr-5">$50</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status paid-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">Jun</span>
-                                            <span class="date">27</span>
-                                        </div>
-                                    </td>
-                                    <td>34561</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Social media pages</td>
-                                    <td>
-                                        <div class="paid">PAID</div>
-                                    </td>
-                                    <td>
-                                        <div class="paid text-right mr-5">$2,500</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status unpaid-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">Mar</span>
-                                            <span class="date">17</span>
-                                        </div>
-                                    </td>
-                                    <td>34534</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Webpage design</td>
-                                    <td>
-                                        <div class="unpaid">UNPAID</div>
-                                    </td>
-                                    <td>
-                                        <div class="unpaid text-right mr-5">$500</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status drafted-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">Apr</span>
-                                            <span class="date">21</span>
-                                        </div>
-                                    </td>
-                                    <td>34537</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Webpage mobile site design</td>
-                                    <td>
-                                        <div class="drafted">DRAFTED</div>
-                                    </td>
-                                    <td>
-                                        <div class="drafted text-right mr-5">$12,500</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status paid-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">May</span>
-                                            <span class="date">25</span>
-                                        </div>
-                                    </td>
-                                    <td>34550</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Marketing web design</td>
-                                    <td>
-                                        <div class="paid">PAID</div>
-                                    </td>
-                                    <td>
-                                        <div class="paid text-right mr-5">$50</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                                <tr class="invoice-row" valign="middle">
-                                    <td>
-                                        <div class="ml-3 status paid-bg"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column align-items-center">
-                                            <span class="month">Jun</span>
-                                            <span class="date">27</span>
-                                        </div>
-                                    </td>
-                                    <td>34561</td>
-                                    <td>Askon Tech Ltd</td>
-                                    <td>Social media pages</td>
-                                    <td>
-                                        <div class="paid">PAID</div>
-                                    </td>
-                                    <td>
-                                        <div class="paid text-right mr-5">$2,500</div>
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ellipsis-h">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
-                    <div class="d-flex flex-row justify-content-end position-sticky pr-5 pb-5"
-                        style="right: 0; bottom:0;">
-                        <div class="add-invoice d-flex flex-column align-items-center p-3">
-                            <i class="fas fa-plus"></i>
-                            <span class="invoice-label mt-3">Invoice</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+   
+    background-color: #fff;
+}
+
+a.nav-link.text-white:hover {
+    background-color: #009df8 !important;
+}
+
+a.navbar-brand {
+    font-size: 35px;
+}
+
+.d-flex.flex-column.flex-shrink-0.p-3.text-white.bg-dark {
+    min-height: 1000px;
+    min-height: calc(100vh);
+}
