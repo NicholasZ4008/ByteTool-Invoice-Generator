@@ -4,18 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Management App | theuicode.com</title>
+    <title>Clients</title>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/sidebars.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/home.css">
-
-    <script src="js/main.js"></script>
+    <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../public/css/sidebars.css" rel="stylesheet">
+    <link href="../../public/css/home.css" rel="stylesheet">
 
 </head>
 
@@ -110,14 +108,21 @@
                 <div class="position-fixed">
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark " style="width: 280px;">
                         <a class="navbar-brand" href="#">
-                            <img src="images/logo.png" alt="" width="70" height="70"
+                            <img src="../../public/images/logo.png" alt="" width="70" height="70"
                                 class="d-inline-block align-text-top">
                             Bytetools
                         </a>
 
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-
+                            <li class="nav-item">
+                                <a href="#" class="nav-link text-white" aria-current="page">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#home" />
+                                    </svg>
+                                    Home
+                                </a>
+                            </li>
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
@@ -126,20 +131,12 @@
                                     Dashboard
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link text-white" aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#people-circle" />
-                                    </svg>
-                                    Clients
-                                </a>
-                            </li>
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
-                                    Invoices
+                                    Orders
                                 </a>
                             </li>
                             <li>
@@ -153,9 +150,9 @@
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#collection" />
+                                        <use xlink:href="#people-circle" />
                                     </svg>
-                                    Payments
+                                    Customers
                                 </a>
                             </li>
                         </ul>
@@ -195,33 +192,9 @@
 
 
 
-            <!-- Main contecnt section, will be different for all the pages -->
-            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
+            <!-- Main content section, will be different for all the pages -->
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
                 <h1 class="display-1">Clients</h1>
-
-
-
-
-
-
-                <div class="input-group">
-                    <!-- Button for new Clients -->
-                    <button id="new-button" type="button" class="btn btn-secondary">New</button>
-
-
-                    <!-- Search Button -->
-                    <div class="form-outline">
-                        <input id="search-input" type="search" placeholder="Search" id="form1" class="form-control" />
-
-                    </div>
-                    <button id="search-button" type="button" class="btn btn-secondary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-
-
-
-
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -343,3 +316,5 @@
     </div>
 
 </body>
+
+</html>
