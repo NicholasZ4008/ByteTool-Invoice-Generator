@@ -8,7 +8,7 @@
 
 body {
    
-    background-color: #D2F5FF;
+    background-color: #ffffff;
 }
 
 a.nav-link.text-white:hover {
@@ -41,7 +41,7 @@ a.navbar-brand {
     margin: 20px 0px;
 }
 
-.col-md-10, .col-sm-10
+.main
 {
     margin-left: 300px;
 }
