@@ -8,7 +8,7 @@
 
 body {
    
-    background-color: #fff;
+    background-color: #ffffff;
 }
 
 a.nav-link.text-white:hover {
@@ -22,4 +22,26 @@ a.navbar-brand {
 .d-flex.flex-column.flex-shrink-0.p-3.text-white.bg-dark {
     min-height: 1000px;
     min-height: calc(100vh);
+}
+
+#new-button
+{
+    border-radius: .375rem;
+    margin-right: 30px;
+}
+
+.form-control
+{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.input-group
+{
+    margin: 20px 0px;
+}
+
+.main
+{
+    margin-left: 300px;
 }
