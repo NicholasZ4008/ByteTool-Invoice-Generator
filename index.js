@@ -115,7 +115,7 @@ express()
 
     })
     // http://localhost:3000/home
-    .get('/home', async (request, response) {
+    .get('/home', async (request, response) => {
         // If the user is loggedin
         const connection = await pool.connect();
         try {
