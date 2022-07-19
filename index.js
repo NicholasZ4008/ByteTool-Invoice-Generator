@@ -75,7 +75,7 @@ express()
         // If the user is loggedin
         if (loggedin) {
             // Output username
-            response.redirect('/public/loggedin.html');
+            response.redirect('/loggedin.html');
         } else {
             // Not logged in
             response.send('Please login to view this page!');
