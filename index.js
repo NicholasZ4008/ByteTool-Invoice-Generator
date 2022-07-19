@@ -150,7 +150,7 @@ express()
             connection.query(`UPDATE accounts SET loggedin = 'false' WHERE username = '${username}' AND password = '${password}';`)
         }
         connection.release();
-        res.redirect('pages/login');
+        res.redirect('/login');
         res.end();
     })
     //.get('/loggedin.html', function (request, response) {
