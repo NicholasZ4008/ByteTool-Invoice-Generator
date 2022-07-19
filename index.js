@@ -102,7 +102,7 @@ express()
                     loggedin = true;
                     sendUsername = username;
                     // Redirect to home page
-                    res.redirect('/loggedin.html');
+                    res.render('pages/loggedin', results);
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
@@ -116,7 +116,7 @@ express()
 
     })
     // http://localhost:3000/home
-    .get('/home', async (request, response) => {
+    .get('/loggedin', async (request, response) => {
         // If the user is loggedin
         const connection = await pool.connect();
         try {
