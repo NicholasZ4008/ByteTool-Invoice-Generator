@@ -122,18 +122,19 @@ express()
         try {
             const dbQuery = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'true';`);
             const results = { 'results': (dbQuery) ? dbQuery.rows : null };
+            if (results.rows.length > 0) {
+                // Output username
+                response.redirect('/loggedin.html');
+            } else {
+                // Not logged in
+                response.send('Please login to view this page!');
+            }
         } catch (err) {
             console.error(err);
             response.send("Error " + err);
         }
         
-        if (results.rows.length > 0) {
-            // Output username
-            response.redirect('/loggedin.html');
-        } else {
-            // Not logged in
-            response.send('Please login to view this page!');
-        }
+
         connection.release();
         response.end();
     })
