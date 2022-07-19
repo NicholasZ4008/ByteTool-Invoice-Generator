@@ -47,10 +47,10 @@ express()
         // Ensure the input fields exists and are not empty
         if (username && password) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
-            connection.query(`SELECT * FROM accounts WHERE username = '${ username }' AND password = '${password}';`, function (error, results, fields) {
+            connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 //console.log(error, results, fields);
-                
+
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
@@ -71,7 +71,7 @@ express()
         }
 
     })
-// http://localhost:3000/home
+    // http://localhost:3000/home
     .get('/home', function (request, response) {
         // If the user is loggedin
         if (loggedin) {
@@ -100,4 +100,28 @@ express()
         response.end();
     })
 
-    .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+    .get('/newClient.hmtl', function (request, response) {
+
+
+        /* // If the user is loggedin
+        if (loggedin) {
+            // Output username
+            response.redirect('/loggedin.html');
+        } else {
+            // Not logged in
+            response.send('Please login to view this page!');
+        }
+        response.end(); */
+
+        response.redirect('/newClient.html');
+        response.end();
+
+
+
+
+
+    })
+
+
+    .listen(PORT, () => console.log(`Listening on ${PORT}`))
