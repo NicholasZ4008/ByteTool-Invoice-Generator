@@ -8,6 +8,7 @@ var sendUsername = "";
 //const path = require('path');
 
 const { Pool } = require('pg');
+const { response } = require('express');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -75,7 +76,23 @@ express()
         // If the user is loggedin
         if (loggedin) {
             // Output username
-            response.send('Welcome back, ' + sendUsername + '!');
+            response.redirect('/loggedin.html');
+        } else {
+            // Not logged in
+            response.send('Please login to view this page!');
+        }
+        response.end();
+    })
+    .post('/logout', async (req, res) => {
+        loggedin = false;
+        res.redirect('/login.html');
+        res.end();
+    })
+    .get('/loggedin.html', function (request, response) {
+        // If the user is loggedin
+        if (loggedin) {
+            // Output username
+            response.redirect('/loggedin.html');
         } else {
             // Not logged in
             response.send('Please login to view this page!');
