@@ -120,7 +120,8 @@ express()
         // If the user is loggedin
         const connection = await pool.connect();
         try {
-            const results = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'true';`);
+            const dbQuery = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'true';`);
+            const results = { 'results': (dbQuery) ? dbQuery.rows : null };
         } catch (err) {
             console.error(err);
             response.send("Error " + err);
