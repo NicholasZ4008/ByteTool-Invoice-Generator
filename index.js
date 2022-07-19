@@ -122,7 +122,7 @@ express()
         try {
             const dbQuery = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'true';`);
             const results = { 'results': (dbQuery) ? dbQuery.rows : null };
-            if (results.rows.length > 0) {
+            if (dbQuery.rowCount > 0) {
                 // Output username
                 response.redirect('/loggedin.html');
             } else {
