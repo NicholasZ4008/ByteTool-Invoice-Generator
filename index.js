@@ -48,6 +48,7 @@ main().catch(console.error);
 
 const { Pool } = require('pg');
 const { response } = require('express');
+const { connect } = require('http2');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -91,7 +92,7 @@ express()
             connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 //console.log(error, results, fields);
-
+                connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
@@ -99,7 +100,7 @@ express()
                     loggedin = true;
                     sendUsername = username;
                     // Redirect to home page
-                    res.redirect('/home');
+                    res.redirect('/home', res);
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
@@ -126,24 +127,26 @@ express()
     })
     .post('/logout', async (req, res) => {
         loggedin = false;
+        var username = req.body.username;
+        var password = req.body.password;
+        const connection = await pool.connect();
+        if (username && password) {
+            connection.query(`UPDATE accounts SET loggedin = 'false' WHERE username = '${username}' AND password = '${password}';`)
+        }
         res.redirect('/login.html');
+        connection.release();
         res.end();
     })
     .get('/loggedin.html', function (request, response) {
-        const authenticateForm = document.getElementById("authenticate_form");
-
-        authenticateForm.addEventListener("click", (e) => {
-            //console.log(loggedin);
-            if (loggedin) {
-                // Output username
-                response.redirect('/loggedin.html');
-            } else {
-                // Not logged in
-                response.send('Please login to view this page!');
-            }
-        });
         // If the user is loggedin
-
+        console.log(loggedin);
+        if (loggedin) {
+            // Output username
+            response.redirect('/loggedin.html');
+        } else {
+            // Not logged in
+            response.send('Please login to view this page!');
+        }
         response.end();
     })
 
