@@ -79,7 +79,7 @@ express()
     })
     .get('/', function (request, response) {
         // Render login template
-        response.sendFile(path.join(__dirname + '/public/login.html'));
+        response.sendFile(path.join(__dirname + '/pages/login'));
     })
     .post('/auth', async (req, res) => {
         // Capture the input fields
@@ -139,6 +139,10 @@ express()
         connection.release();
         response.end();
     })
+    .get('/login', async (req, res) => {
+        res.render('pages/login');
+        res.end();
+    })
     .post('/logout', async (req, res) => {
         loggedin = false;
         const connection = await pool.connect();
@@ -146,7 +150,7 @@ express()
             connection.query(`UPDATE accounts SET loggedin = 'false' WHERE username = '${username}' AND password = '${password}';`)
         }
         connection.release();
-        res.redirect('/login.html');
+        res.redirect('pages/login');
         res.end();
     })
     //.get('/loggedin.html', function (request, response) {
