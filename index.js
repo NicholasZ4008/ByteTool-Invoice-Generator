@@ -56,7 +56,8 @@ const pool = new Pool({
     }
 });
 
-
+var username = "";
+var password = "";
 
 express()
     .use(express.json())
@@ -82,8 +83,8 @@ express()
     })
     .post('/auth', async (req, res) => {
         // Capture the input fields
-        var username = req.body.username;
-        var password = req.body.password;
+        username = req.body.username;
+        password = req.body.password;
         //console.log(username, password);
         const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
