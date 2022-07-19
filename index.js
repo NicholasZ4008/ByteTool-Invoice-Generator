@@ -149,18 +149,18 @@ express()
         res.redirect('/login.html');
         res.end();
     })
-    .get('/loggedin.html', function (request, response) {
-        // If the user is loggedin
-        console.log(loggedin);
-        if (loggedin) {
-            // Output username
-            response.redirect('/loggedin.html');
-        } else {
-            // Not logged in
-            response.send('Please login to view this page!');
-        }
-        response.end();
-    })
+    //.get('/loggedin.html', function (request, response) {
+    //    // If the user is loggedin
+    //    console.log(loggedin);
+    //    if (loggedin) {
+    //        // Output username
+    //        response.redirect('/loggedin.html');
+    //    } else {
+    //        // Not logged in
+    //        response.send('Please login to view this page!');
+    //    }
+    //    response.end();
+    //})
 
 
     .get('/newClient.hmtl', function (request, response) {
