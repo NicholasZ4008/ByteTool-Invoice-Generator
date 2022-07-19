@@ -129,6 +129,7 @@ express()
     })
     .get('/loggedin.html', function (request, response) {
         // If the user is loggedin
+        console.log(loggedin);
         if (loggedin) {
             // Output username
             response.redirect('/loggedin.html');
