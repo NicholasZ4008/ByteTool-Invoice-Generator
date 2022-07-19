@@ -92,11 +92,12 @@ express()
             connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 //console.log(error, results, fields);
-                connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
+        
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
                     // Authenticate the user
+                    connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
                     loggedin = true;
                     sendUsername = username;
                     // Redirect to home page
@@ -114,15 +115,24 @@ express()
 
     })
     // http://localhost:3000/home
-    .get('/home', function (request, response) {
+    .get('/home', async (request, response) {
         // If the user is loggedin
-        if (loggedin) {
+        const connection = await pool.connect();
+        try {
+            const results = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'true';`);
+        } catch (err) {
+            console.error(err);
+            response.send("Error " + err);
+        }
+        
+        if (results.rows.length > 0) {
             // Output username
             response.redirect('/loggedin.html');
         } else {
             // Not logged in
             response.send('Please login to view this page!');
         }
+        connection.release();
         response.end();
     })
     .post('/logout', async (req, res) => {
@@ -131,8 +141,8 @@ express()
         if (username && password) {
             connection.query(`UPDATE accounts SET loggedin = 'false' WHERE username = '${username}' AND password = '${password}';`)
         }
-        res.redirect('/login.html');
         connection.release();
+        res.redirect('/login.html');
         res.end();
     })
     .get('/loggedin.html', function (request, response) {
