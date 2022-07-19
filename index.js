@@ -100,7 +100,7 @@ express()
                     loggedin = true;
                     sendUsername = username;
                     // Redirect to home page
-                    res.redirect('/home', res);
+                    res.redirect('/home');
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
@@ -127,8 +127,6 @@ express()
     })
     .post('/logout', async (req, res) => {
         loggedin = false;
-        var username = req.body.username;
-        var password = req.body.password;
         const connection = await pool.connect();
         if (username && password) {
             connection.query(`UPDATE accounts SET loggedin = 'false' WHERE username = '${username}' AND password = '${password}';`)
