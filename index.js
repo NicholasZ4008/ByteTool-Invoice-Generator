@@ -125,7 +125,7 @@ express()
             console.log(results.loggedin);
             if (results.length > 0) {
                 // Output username
-                response.redirect('/loggedin.html');
+                response.redirect('pages/loggedin');
             } else {
                 // Not logged in
                 response.send('Please login to view this page!');
