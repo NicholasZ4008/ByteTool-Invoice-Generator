@@ -75,12 +75,16 @@ express()
         // If the user is loggedin
         if (loggedin) {
             // Output username
-            response.redirect('/loggedin.html');
+            response.render('/loggedin.html');
         } else {
             // Not logged in
             response.send('Please login to view this page!');
         }
         response.end();
+    })
+    .post('/logout', async (req, res) => {
+        loggedin = false;
+        res.redirect('/login.html');
     })
 
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
