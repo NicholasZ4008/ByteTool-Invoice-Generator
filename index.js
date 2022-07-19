@@ -102,7 +102,7 @@ express()
                     loggedin = true;
                     sendUsername = username;
                     // Redirect to home page
-                    res.redirect('/home');
+                    res.redirect('/loggedin.html');
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
