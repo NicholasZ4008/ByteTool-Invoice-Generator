@@ -1,4 +1,11 @@
 .formcontainer
 {
-    width:1000px
+    width:1000px;
+    padding: 10px;
+    
+}
+
+#addClient
+{   
+    width: 30%;
 }

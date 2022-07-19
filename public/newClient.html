@@ -207,6 +207,9 @@
                                 <h2>Client Information</h2>
                                 <label for="inputClientName" class="form-label">Client Name (i.e. Company)</label>
                                 <input type="text" class="form-control" id="inputClientName">
+                                <br>
+                                <label for="inputClientID" class="form-label">Client ID</label>
+                                <input type="text" class="form-control" id="inputClientID">
 
 
                             </div>
@@ -214,62 +217,65 @@
                                 <h2>Contact Information</h2>
                                 <label for="inputContactName" class="form-label">Contact Name</label>
                                 <input type="text" class="form-control" id="inputContactName">
+                                <br>
+                                <label for="inputEmail" class="form-label">Email-Address</label>
+                                <input type="email" class="form-control" id="inputEmail" placeholder="xyz@gmail.com">
+                                <br>
+                                <div class="row g-3 gx-5">
+                                    <div class="col-4">
+                                        <label for="inputAreaCode" class="form-label">Area Code</label>
+                                        <input type="text" class="form-control" id="inputAreaCode">
+                                    </div>
+                                    <div class="col-8">
+                                        <label for="inputPhoneNumber" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="inputPhoneNumber"
+                                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="888 888 8888">
+                                    </div>
+                                </div>
+                                <br>
+                                <label for="inlineRadioOptions" class="form-label">Preffered Contact</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio1" value="Email">
+                                    <label class="form-check-label" for="inlineRadio1">Email</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio2" value="Phone">
+                                    <label class="form-check-label" for="inlineRadio2">Phone</label>
+                                </div>
+
+
+
                             </div>
-                            <div class="col-6">
-                                <label for="inputClientID" class="form-label">Client ID</label>
-                                <input type="text" class="form-control" id="inputClientID" placeholder="1234 Main St">
+                            <div class="col-12" style="text-align: center;">
+                                <button id="addClient" type="submit" class="btn btn-secondary">Add Client</button>
                             </div>
-                            <div class="col-6">
-                                <label for="inputEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail">
-                            </div>
+
+
                         </div>
-                        <br>
-                        <div class="row g-3 gx-5 justify-content-end">
-                            <div class="col-6">
-                                <label for="inputState" class="form-label">State</label>
-                                <select id="inputState" class="form-select">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="inputZip" class="form-label">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                        </div>
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                        </div>
+
+                    </form>
                 </div>
-                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
-    </div>
     </div>
 
 </body>
