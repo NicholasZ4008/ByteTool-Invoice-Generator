@@ -79,7 +79,7 @@ express()
     })
     .get('/', function (request, response) {
         // Render login template
-        response.sendFile(path.join(__dirname + '/public/views/pages/login'));
+        response.sendFile(path.join(__dirname + '/views/pages/login'));
     })
     .post('/auth', async (req, res) => {
         // Capture the input fields
