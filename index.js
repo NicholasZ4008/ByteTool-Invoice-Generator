@@ -126,7 +126,7 @@ express()
             if (results.length > 0) {
                 // Output username
                 response.redirect('pages/loggedin');
-                const dbQuery = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'false';`);
+                const dbQuery1 = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'false';`);
             } else {
                 // Not logged in
                 response.send('Please login to view this page!');
