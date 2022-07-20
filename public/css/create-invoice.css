@@ -1,0 +1,60 @@
+h1{
+    padding:1rem;
+    margin-left:20rem;
+}
+
+#invoiceinfo{
+    padding:1rem;
+    margin-left:20rem;
+    border:1px solid black;
+    width:25rem;
+}
+
+#addressfield{
+    width:23rem;
+}
+
+#clientinfo{
+    padding:1rem;
+    margin-left:50rem;
+    border:1px solid black;
+    width:25rem;
+    position:relative;
+    top:-12rem;
+}
+
+#productdesc{
+    float:right;
+    position:relative;
+    top:-10rem;
+    padding:0.5rem;
+}
+
+#productdesc table tr th{
+    border-bottom:1px black solid;
+    border-top:1px black solid;
+}
+
+#productdesc table tr td input{
+    padding-top:1rem;
+    padding-bottom:1rem;
+}
+
+#productdesc table{
+    border:1px black solid;
+}
+
+#money{
+    margin-left:45rem;
+    position:relative;
+    top:-10rem;
+    padding:1rem;
+}
+
+#additionalbtn
+{
+    position:fixed;
+    bottom:0;
+    right:0;
+    padding:1rem;
+}

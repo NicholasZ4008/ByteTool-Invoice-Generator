@@ -1,0 +1,96 @@
+#invoiceinfotable{
+    float: right;
+    margin-right:1rem;
+
+}
+
+#invoiceinfotable tr th{
+    padding:0.6rem;
+    border: 1px solid black;
+}
+
+#new-invoice{
+   margin-left:20rem;
+   padding:1rem;
+}
+
+#invoiceinfotable tr td{
+    padding:0.6rem;
+    border:1px solid black;
+}
+
+.arrowbtn{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding:2rem;
+}
+
+.arrowbtn a 
+{
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+.arrowbtn a:hover {
+    background-color: yellowgreen;
+    color: black;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.next {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+.search{
+    width:10rem;
+    height:2rem;
+}
+
+.dropbtn {
+    background-color: #04AA6D;
+    color: green;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown-content {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: red;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
