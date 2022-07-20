@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,8 @@
     <title>Invoice Main Page</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-    crossorigin="anonymous" />
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
@@ -108,14 +109,7 @@
                         </a>
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link text-white" aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#home" />
-                                    </svg>
-                                    Home
-                                </a>
-                            </li>
+
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
@@ -124,12 +118,20 @@
                                     Dashboard
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link text-white" aria-current="page">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#people-circle" />
+                                    </svg>
+                                    Clients
+                                </a>
+                            </li>
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
-                                    Orders
+                                    Invoices
                                 </a>
                             </li>
                             <li>
@@ -143,50 +145,37 @@
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#people-circle" />
+                                        <use xlink:href="#collection" />
                                     </svg>
-                                    Customers
+                                    Payments
                                 </a>
                             </li>
+
                         </ul>
                         <hr>
-                        <div class="dropdown">
-                            <a href="#"
-                                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32"
-                                    class="rounded-circle me-2">
-                                <strong>mdo</strong>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
-                                aria-labelledby="dropdownUser1">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Sign out</a></li>
-                            </ul>
-                        </div>
+                        <form action="/logout" method="post">
+                            <button id="logout" class="btn btn-secondary" name="foo" value="Sign Out">Signout</button>
+                            <!-- <input type="submit" value="LOGOUT"> -->
+                        </form>
+
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 
-    <form id="new-invoice" >
+    <form id="new-invoice">
         <table>
             <tr>
                 <td>
                     <button> New </button>
-                    <input class = "search" placeholder="Search Inside..."></input>
-                    <button class = "dropbtn"> Filter by status...</button>
-        
-                    <div class = "dropdown-content">
-                        <a href = "#">Link 1</a>
-                        <a href = "#">Link 2</a>
-                        <a href = "#">Link 3</a>
+                    <input class="search" placeholder="Search Inside..."></input>
+                    <button class="dropbtn"> Filter by status...</button>
+
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
                     </div>
                 </td>
             </tr>
@@ -194,7 +183,7 @@
     </form>
 
     <div>
-        <table id = "invoiceinfotable">
+        <table id="invoiceinfotable">
             <tr>
                 <th>Invoice Number</th>
                 <th>Status</th>
@@ -227,13 +216,14 @@
             </tr>
         </table>
 
-        <div class = "arrowbtn">
+        <div class="arrowbtn">
             <a href="#" class="previous round">&#8249;</a>
             <a href="#" class="next round">&#8250;</a>
         </div>
-        
+
     </div>
 
 
 </body>
+
 </html>
