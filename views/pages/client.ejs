@@ -168,7 +168,7 @@
                             </li>
                         </ul>
                         <hr>
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <a href="#"
                                 class="d-flex align-items-center text-white text-decoration-none dropdown-toggle "
                                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -186,7 +186,13 @@
                                 </li>
                                 <li><a class="dropdown-item" href="#">Sign out</a></li>
                             </ul>
-                        </div>
+                        </div> -->
+
+                        <form action="/logout" method="post">
+                            <button id="logout" class="btn btn-secondary" name="foo" value="Sign Out">Signout</button>
+                            <!-- <input type="submit" value="LOGOUT"> -->
+                        </form>
+                        
                     </div>
 
 
@@ -274,7 +280,6 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
