@@ -183,7 +183,7 @@ express()
         })
     })
 
-    .get('/newClient.hmtl', function (request, response) {
+    .get('/newClient.html', function (request, response) {
 
 
         /* // If the user is loggedin
