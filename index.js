@@ -185,7 +185,6 @@ express()
 
     .get('/newClient.html', function (request, response) {
 
-
         /* // If the user is loggedin
         if (loggedin) {
             // Output username
@@ -195,7 +194,6 @@ express()
             response.send('Please login to view this page!');
         }
         response.end(); */
-
         response.redirect('/newClient.html');
         response.end();
     })
@@ -232,5 +230,8 @@ express()
         }
     })
 
+    .get('/viewinvoice', (req,res)=>{
+        res.redirect('pages/viewinvoice');
+    })
 
-    .listen(PORT, () => console.log(`Listening on ${PORT}`))
+.listen(PORT, () => console.log(`Listening on ${PORT}`))
