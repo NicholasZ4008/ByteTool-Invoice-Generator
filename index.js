@@ -231,7 +231,15 @@ express()
     })
 
     .get('/invoicepage', (req,res)=>{
-        res.redirect('pages/invoicepage');
+        res.render('pages/invoicepage');
+    })
+
+    .get('/productspage', (req,res) => {
+        res.render('pages/productspage')
+    })
+
+    .get('/paymentspage',(req,res)=>{
+        res.render('pages/paymentspage')
     })
 
 .listen(PORT, () => console.log(`Listening on ${PORT}`))
