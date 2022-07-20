@@ -80,7 +80,7 @@ express()
 
     .get('/', function (request, response) {
         // Render login template
-        response.sendFile(path.join(__dirname + '/views/pages/login'));
+        response.render('pages/login');
     })
 
     .post('/auth', async (req, res) => {
@@ -95,7 +95,7 @@ express()
             connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 //console.log(error, results, fields);
-        
+                
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
@@ -146,6 +146,12 @@ express()
 
     .get('/login', async (req, res) => {
         res.render('pages/login');
+        if (document.getElementById('myButton').onclick != null) {
+            console.log('test1');
+        }
+        else {
+            console.log('test2');
+        }
         res.end();
     })
 
