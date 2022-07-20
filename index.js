@@ -230,8 +230,8 @@ express()
         }
     })
 
-    .get('/viewinvoice', (req,res)=>{
-        res.redirect('pages/viewinvoice');
+    .get('/invoicepage', (req,res)=>{
+        res.render('pages/invoicepage');
     })
 
 .listen(PORT, () => console.log(`Listening on ${PORT}`))
