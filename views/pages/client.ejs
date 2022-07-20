@@ -90,7 +90,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <!-- Left sidebar menu, will be same of rall the pages -->
+            <!-- Left sidebar menu, will be same for all the pages -->
             <div class="col-sm-3 col-md-2 " style="padding-left: 0; padding-right: 0;">
                 <div class="position-fixed">
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark " style="width: 280px;">
@@ -102,14 +102,14 @@
 
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link text-white" aria-current="page">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#home" />
                                     </svg>
                                     Home
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
@@ -118,12 +118,28 @@
                                     Dashboard
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
                                     Orders
+                                </a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="#" class="nav-link text-white" aria-current="page">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#people-circle" />
+                                    </svg>
+                                    Clients
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#table" />
+                                    </svg>
+                                    Invoices
                                 </a>
                             </li>
                             <li>
@@ -134,12 +150,20 @@
                                     Products
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#people-circle" />
                                     </svg>
                                     Customers
+                                </a>
+                            </li> -->
+                            <li>
+                                <a href="#" class="nav-link text-white">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#collection" />
+                                    </svg>
+                                    Payments
                                 </a>
                             </li>
                         </ul>
@@ -182,54 +206,74 @@
             <!-- Main content section, will be different for all the pages -->
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
                 <h1 class="display-1">Clients</h1>
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Client ID</th>
-                            <th scope="col">Client Name</th>
-                            <th scope="col">Pending Invoices</th>
-                            <th scope="col">Balance Remaining</th>
-                            <th scope="col">Contact Name</th>
-                            <th scope="col">Contact Email</th>
-                            <th scope="col">Contact Phone</th>
-                            <th scope="col">Actions</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr> -->
+                <div class="input-group">
+                    <!-- Button for new Clients -->
+                    <form action="/newClient.hmtl">
+                        <input id="new-button" class="btn btn-secondary" type="submit" value="New" />
+                    </form>
 
-                        <% rows.forEach(function(r) { %>
+
+                    <!-- Search Button -->
+                    <div class="form-outline">
+                        <input id="search-input" type="search" placeholder="Search" id="form1" class="form-control" />
+
+                    </div>
+                    <button id="search-button" type="button" class="btn btn-secondary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="tablecontainer">
+                    <table class="table">
+                        <thead class="thead-dark">
                             <tr>
-                                <td><%= r.clientid %></td>
-                                <td><%= r.clientname %></td>
-                                <td>&nbsp</td>
-                                <td>0</td>
-                                <td><%= r.contactname %></td>
-                                <td><%= r.email %></td>
-                                <td><%= r.phone %></td>
-                                <td>View End Statements</td>
+                                <th scope="col">Client ID</th>
+                                <th scope="col">Client Name</th>
+                                <th scope="col">Pending Invoices</th>
+                                <th scope="col">Balance Remaining</th>
+                                <th scope="col">Contact Name</th>
+                                <th scope="col">Contact Email</th>
+                                <th scope="col">Contact Phone</th>
+                                <th scope="col">Actions</th>
+
                             </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <!-- <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr> -->
+
+                            <% rows.forEach(function(r) { %>
+                                <tr>
+                                    <td><%= r.clientid %></td>
+                                    <td><%= r.clientname %></td>
+                                    <td>&nbsp</td>
+                                    <td>0</td>
+                                    <td><%= r.contactname %></td>
+                                    <td><%= r.email %></td>
+                                    <td><%= r.phone %></td>
+                                    <td>View End Statements</td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </div>
