@@ -118,46 +118,59 @@
 
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
+                            <li>
+                                <form method = "POST">
+                                    <a href= "/auth" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#speedometer2" />
+                                        </svg>
+                                        Dashboard
+                                    </a>
+                                </form>
+                            </li>
+
+                            <li class="nav-item">
+                                <form method = "GET">
+                                    <a href="/clients" class="nav-link text-white" aria-current="page">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#people-circle" />
+                                        </svg>
+                                        Clients
+                                    </a>
+                                </form>
+                            </li>
 
                             <li>
-                                <a href="#" class="nav-link text-white">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#speedometer2" />
-                                    </svg>
-                                    Dashboard
-                                </a>
+                                <form method = "GET">
+                                    <a href="/invoicepage" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#table" />
+                                        </svg>
+                                        Invoices
+                                    </a>
+                                </form>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link text-white" aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#people-circle" />
-                                    </svg>
-                                    Clients
-                                </a>
+
+                            <li>
+                                <form method = "GET">
+                                    <a href="/productspage" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#grid" />
+                                        </svg>
+                                        Products
+                                    </a>
+                                </form>
+                                
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-white">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
-                                    </svg>
-                                    Invoices
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-white">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#grid" />
-                                    </svg>
-                                    Products
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-white">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#collection" />
-                                    </svg>
-                                    Payments
-                                </a>
+                                <form method ="GET">
+                                    <a href="/paymentspage" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#collection" />
+                                        </svg>
+                                        Payments
+                                    </a>
+                                </form>
                             </li>
                         </ul>
                         <hr>
