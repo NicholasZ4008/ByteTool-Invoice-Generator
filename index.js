@@ -77,10 +77,12 @@ express()
             res.send("Error " + err);
         }
     })
+
     .get('/', function (request, response) {
         // Render login template
         response.sendFile(path.join(__dirname + '/views/pages/login'));
     })
+
     .post('/auth', async (req, res) => {
         // Capture the input fields
         username = req.body.username;
@@ -115,6 +117,7 @@ express()
         }
 
     })
+
     // http://localhost:3000/home
     .get('/loggedin', async (request, response) => {
         // If the user is loggedin
@@ -140,10 +143,12 @@ express()
         connection.release();
         response.end();
     })
+
     .get('/login', async (req, res) => {
         res.render('pages/login');
         res.end();
     })
+
     .post('/logout', async (req, res) => {
         loggedin = false;
         const connection = await pool.connect();
@@ -154,6 +159,7 @@ express()
         res.redirect('/login');
         res.end();
     })
+
     //.get('/loggedin.html', function (request, response) {
     //    // If the user is loggedin
     //    console.log(loggedin);
@@ -167,8 +173,17 @@ express()
     //    response.end();
     //})
 
+    // Update by Nabila (7/20/2022): View All Clients Page (Table format)
+    .get('/clients', (req,res) => {
+        var getQuery = "SELECT * FROM clients ORDER BY clientid";
+        pool.query(getQuery, (error, result) => {
+            if(error) res.end(error);
+            var results = {'rows':result.rows};
+            res.render('pages/client', results);
+        })
+    })
 
-    .get('/newClient.hmtl', function (request, response) {
+    .get('/newClient.html', function (request, response) {
 
 
         /* // If the user is loggedin
@@ -188,6 +203,38 @@ express()
 
 
 
+    })
+
+    // Update by Nabila (7/20/2022): Create a new Client Page
+    .post('/newClient', async(req,res) => {
+
+        var uCID = req.body.inputClientID;
+        var uCName = req.body.inputClientName;
+        var uConName = req.body.inputContactName;
+        var uEmail = req.body.inputEmail;
+        var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
+        var uConMethod = "EMAIL"; // temporary
+        var uAddr = "123 Howe St Delta, BC V3W 1N4"; // temporary
+      
+        var checkQuery = `SELECT * FROM clients WHERE clientid=${uCID}`;
+        const resultCheck = await pool.query(checkQuery);
+      
+        if(resultCheck.rowCount==0) {
+      
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
+      
+          try {
+            const result = await pool.query(getUInputQuery);
+            // window.alert('Successfully added Client.');
+            res.redirect(`/clients`);
+          }
+          catch (error) {
+            res.end(error);
+          }  
+        } else {
+          // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
+          res.redirect(`/clients`);
+        }
     })
 
 
