@@ -198,11 +198,6 @@ express()
 
         response.redirect('/newClient.html');
         response.end();
-
-
-
-
-
     })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
