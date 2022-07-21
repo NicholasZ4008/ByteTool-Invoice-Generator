@@ -196,7 +196,6 @@ express()
 
     .get('/newClient.html', function (request, response) {
 
-
         /* // If the user is loggedin
         if (loggedin) {
             // Output username
@@ -206,14 +205,12 @@ express()
             response.send('Please login to view this page!');
         }
         response.end(); */
-
         response.redirect('/newClient.html');
         response.end();
+    })
 
-
-
-
-
+    .get('/newClient',(req,res)=>{
+        res.render('pages/newClient')
     })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
@@ -248,5 +245,16 @@ express()
         }
     })
 
+    .get('/invoicepage', (req,res)=>{
+        res.render('pages/invoicepage');
+    })
 
-    .listen(PORT, () => console.log(`Listening on ${PORT}`))
+    .get('/productspage', (req,res) => {
+        res.render('pages/productspage')
+    })
+
+    .get('/paymentspage',(req,res)=>{
+        res.render('pages/paymentspage')
+    })
+
+.listen(PORT, () => console.log(`Listening on ${PORT}`))

@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>create-invoice</title>
+    <title>Invoice Management App | theuicode.com</title>
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
@@ -14,11 +14,13 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/create-invoice.css">
+
+
 
 </head>
 
 <body>
+    <!-- For the icons used in the files -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
             <title>Bootstrap</title>
@@ -98,8 +100,11 @@
         </symbol>
     </svg>
 
+    <!-- Main container for dividing everything up into two columns -->
     <div class="container-fluid">
         <div class="row">
+
+            <!-- Left sidebar menu, will be same of rall the pages -->
             <div class="col-sm-3 col-md-2 " style="padding-left: 0; padding-right: 0;">
                 <div class="position-fixed">
                     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark " style="width: 280px;">
@@ -108,6 +113,7 @@
                                 class="d-inline-block align-text-top">
                             Bytetools
                         </a>
+
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
 
@@ -119,22 +125,29 @@
                                     Dashboard
                                 </a>
                             </li>
+
                             <li class="nav-item">
-                                <a href="#" class="nav-link text-white" aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#people-circle" />
-                                    </svg>
-                                    Clients
-                                </a>
+                                <form method = "GET">
+                                    <a href="/clients" class="nav-link text-white" aria-current="page">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#people-circle" />
+                                        </svg>
+                                        Clients
+                                    </a>
+                                </form>
                             </li>
+
                             <li>
-                                <a href="#" class="nav-link text-white">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
-                                    </svg>
-                                    Invoices
-                                </a>
+                                <form method = "GET">
+                                    <a href="/invoicepage" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#table" />
+                                        </svg>
+                                        Invoices
+                                    </a>
+                                </form>
                             </li>
+
                             <li>
                                 <a href="#" class="nav-link text-white">
                                     <svg class="bi me-2" width="16" height="16">
@@ -159,120 +172,21 @@
                             <!-- <input type="submit" value="LOGOUT"> -->
                         </form>
                     </div>
+
                 </div>
+            </div>
+
+            <!-- Main contecnt section, will be different for all the pages -->
+            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
+                <h1 class="display-1">Payments</h1>
+                <br>
+                <br>
+                <h2 class="display-5">(<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                        fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16">
+                        <path
+                            d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z" />
+                    </svg></i> In progress</h2>
             </div>
         </div>
     </div>
-
-    <h1>Invoice/Create</h1>
-
-    <fieldset id="invoiceinfo">
-
-        <table>
-            <tr>
-                <td>Invoice Number:</td>
-                <td><input></input></td>
-            </tr>
-
-            <tr>
-                <td>Invoice Data: </td>
-                <td><input></input></td>
-            </tr>
-
-            <tr>
-                <td> Payment Deadline: </td>
-                <td><input></input></td>
-            </tr>
-        </table>
-
-        <p>Address: <input id="addressfield"></input> </p>
-
-    </fieldset>
-
-    <fieldset id="clientinfo">
-        <table>
-            <tr>
-                <td>Select Client</td>
-                <td><input type="checkbox"></td>
-
-                <td>New Client</td>
-                <td><input type="checkbox"></td>
-            </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td>Contact Information:</td>
-            </tr>
-            <tr>
-                <td>Contact Name:</td>
-                <td><input type="textbox"></td>
-            </tr>
-
-            <tr>
-                <td>Email Address:</td>
-                <td><input type="textbox"></td>
-            </tr>
-
-            <tr>
-                <td>Phone Number:</td>
-                <td><input type="textbox"></td>
-            </tr>
-        </table>
-    </fieldset>
-
-    <fieldset id="productdesc">
-        <table>
-            <tr>
-                <th>Products</th>
-                <th>Description</th>
-                <th class="discount">Discount</th>
-                <th class="price">Price($)</th>
-                <th>Quantity</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-                <td><input type="textbox"></td>
-                <td><input type="textbox"></td>
-                <td class="discount"><input type="textbox"></td>
-                <td class="price"><input type="textbox"></td>
-                <td><input type="textbox"></td>
-                <td><input type="textbox"></td>
-            </tr>
-
-            <tr>
-                <td><input type="textbox"></td>
-                <td><input type="textbox"></td>
-                <td class="discount"><input type="textbox"></td>
-                <td class="price"><input type="textbox"></td>
-                <td><input type="textbox"></td>
-                <td><input type="textbox"></td>
-            </tr>
-
-        </table>
-    </fieldset>
-
-    <form id="money">
-        <p>Subtotal</p>
-        <input type="textbox">
-        <p>Total Discount</p>
-        <input type="textbox">
-        <p>Tax:</p>
-        <input type="textbox">
-        <p>Paid to Date</p>
-        <input type="textbox">
-        <p>Amount:</p>
-        <input type="textbox">
-    </form>
-
-    <form id="additionalbtn">
-        <p>
-            <button>Save</button>
-            <button>Submit & Email</button>
-            <button>Submit & Print</button>
-            <button>Cancel</button>
-        </p>
-    </form>
 </body>
-
-</html>
