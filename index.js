@@ -251,9 +251,9 @@ express()
         response.end();
     })
 
-    .get('/newClient', (req, res) => {
-        res.render('pages/newClient')
-    })
+    // .get('/newClient', (req, res) => {
+    //     res.render('pages/newClient')
+    // })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
     .post('/newClient', async (req, res) => {
