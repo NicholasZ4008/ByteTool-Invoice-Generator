@@ -146,12 +146,6 @@ express()
 
     .get('/login', async (req, res) => {
         res.render('pages/login');
-        if (document.getElementById('myButton').onclick != null) {
-            console.log('test1');
-        }
-        else {
-            console.log('test2');
-        }
         res.end();
     })
 
