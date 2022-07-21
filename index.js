@@ -369,7 +369,7 @@ express()
         // var uConMethod = NaN; // temporary
         var uAddr = req.body.billingAddress; // temporary
       
-        var checkQuery = `SELECT * FROM clients WHERE clientid=${uCID}`;
+        var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
         console.log(uPhone);
       
