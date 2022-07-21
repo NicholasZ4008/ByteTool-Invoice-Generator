@@ -221,15 +221,15 @@ express()
         var uConName = req.body.inputContactName;
         var uEmail = req.body.inputEmail;
         var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
-        var uConMethod = "EMAIL"; // temporary
-        var uAddr = "123 Howe St Delta, BC V3W 1N4"; // temporary
+        // var uConMethod = NaN; // temporary
+        var uAddr = req.body.billingAdress; // temporary
       
         var checkQuery = `SELECT * FROM clients WHERE clientid=${uCID}`;
         const resultCheck = await pool.query(checkQuery);
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', 'EMAIL', '${uAddr}')`;
       
           try {
             const result = await pool.query(getUInputQuery);
