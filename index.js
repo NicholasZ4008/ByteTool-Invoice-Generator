@@ -459,7 +459,7 @@ express()
         var uConName = req.body.inputContactName;
         var uEmail = req.body.inputEmail;
         var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
-        var uConMethod = NaN; // temporary; need to figure out how to get answer from radio buttons
+        var uConMethod = "BOTH"; // temporary; need to figure out how to get answer from radio buttons
         var uAddr = req.body.billingAddress;
 
         // If uPhone is null dont add plus
