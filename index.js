@@ -197,7 +197,8 @@ express()
         //console.log(username, password);
         const connection = await pool.connect();
         try {
-            existUsername = connection.query(`SELECT * from accounts WHERE username = '${username}';`);
+            dbQueryForUsername = await connection.query(`SELECT * from accounts WHERE username = '${username}';`);
+            existUsername = { 'results': (existUsername) ? dbQueryForUsername.rows : null };
         }
         catch (err) {
             throw err;
