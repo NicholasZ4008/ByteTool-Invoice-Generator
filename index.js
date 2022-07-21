@@ -211,10 +211,10 @@ express()
         catch (err) {
             throw err;
         }
-        console.log(existUsername['results']);
+        console.log(existUsername['results'].length);
         console.log(existEmail['results']);
         // Ensure the input fields exists and are not empty
-        if (!existUsername['results'] || !existEmail['results']) {
+        if (existUsername['results'].length == 0 && existEmail['results'].length == 0) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
