@@ -119,8 +119,8 @@
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li>
-                                <form method = "POST">
-                                    <a href= "/auth" class="nav-link text-white">
+                                <form method="POST">
+                                    <a href="/auth" class="nav-link text-white">
                                         <svg class="bi me-2" width="16" height="16">
                                             <use xlink:href="#speedometer2" />
                                         </svg>
@@ -130,7 +130,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <form method = "GET">
+                                <form method="GET">
                                     <a href="/clients" class="nav-link text-white" aria-current="page">
                                         <svg class="bi me-2" width="16" height="16">
                                             <use xlink:href="#people-circle" />
@@ -141,7 +141,7 @@
                             </li>
 
                             <li>
-                                <form method = "GET">
+                                <form method="GET">
                                     <a href="/invoicepage" class="nav-link text-white">
                                         <svg class="bi me-2" width="16" height="16">
                                             <use xlink:href="#table" />
@@ -152,7 +152,7 @@
                             </li>
 
                             <li>
-                                <form method = "GET">
+                                <form method="GET">
                                     <a href="/productspage" class="nav-link text-white">
                                         <svg class="bi me-2" width="16" height="16">
                                             <use xlink:href="#grid" />
@@ -160,10 +160,10 @@
                                         Products
                                     </a>
                                 </form>
-                                
+
                             </li>
                             <li>
-                                <form method ="GET">
+                                <form method="GET">
                                     <a href="/paymentspage" class="nav-link text-white">
                                         <svg class="bi me-2" width="16" height="16">
                                             <use xlink:href="#collection" />
@@ -218,8 +218,8 @@
                                     </div>
                                     <div class="col-8">
                                         <label for="inputPhoneNumber" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="inputPhoneNumber"
-                                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="888 888 8888">
+                                        <input type="tel" class="form-control" id="inputPhoneNumber">
+
                                     </div>
                                 </div>
                                 <br>
@@ -250,12 +250,12 @@
 
                             </div>
 
-                            <form method = "POST" action = "/newClient">
+                            <form method="POST" action="/newClient">
                                 <div class="col-12" style="text-align: center;">
                                     <button id="addClient" type="submit" class="btn btn-secondary">Add Client</button>
                                 </div>
                             </form>
-                            
+
                         </div>
 
                     </form>
