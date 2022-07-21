@@ -95,7 +95,7 @@ express()
             connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 //console.log(error, results, fields);
-                
+
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
@@ -138,7 +138,7 @@ express()
             console.error(err);
             response.send("Error " + err);
         }
-        
+
 
         connection.release();
         response.end();
@@ -180,11 +180,11 @@ express()
     //})
 
     // Update by Nabila (7/20/2022): View All Clients Page (Table format)
-    .get('/clients', (req,res) => {
+    .get('/clients', (req, res) => {
         var getQuery = "SELECT * FROM clients ORDER BY clientid";
         pool.query(getQuery, (error, result) => {
-            if(error) res.end(error);
-            var results = {'rows':result.rows};
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
             res.render('pages/client', results);
         })
     })
@@ -209,12 +209,12 @@ express()
         response.end();
     })
 
-    .get('/newClient',(req,res)=>{
+    .get('/newClient', (req, res) => {
         res.render('pages/newClient')
     })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
-    .post('/newClient', async(req,res) => {
+    .post('/newClient', async (req, res) => {
 
         var uCID = req.body.inputClientID;
         var uCName = req.body.inputClientName;
@@ -223,38 +223,44 @@ express()
         var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
         var uConMethod = "EMAIL"; // temporary
         var uAddr = "123 Howe St Delta, BC V3W 1N4"; // temporary
-      
+
         var checkQuery = `SELECT * FROM clients WHERE clientid=${uCID}`;
         const resultCheck = await pool.query(checkQuery);
-      
-        if(resultCheck.rowCount==0) {
-      
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
-      
-          try {
-            const result = await pool.query(getUInputQuery);
-            // window.alert('Successfully added Client.');
-            res.redirect(`/clients`);
-          }
-          catch (error) {
-            res.end(error);
-          }  
+
+        if (resultCheck.rowCount == 0) {
+
+            var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
+
+            try {
+                const result = await pool.query(getUInputQuery);
+                // window.alert('Successfully added Client.');
+                res.redirect(`/clients`);
+            }
+            catch (error) {
+                res.end(error);
+            }
         } else {
-          // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
-          res.redirect(`/clients`);
+            // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
+            res.redirect(`/clients`);
         }
     })
 
-    .get('/invoicepage', (req,res)=>{
+    .get('/invoicepage', (req, res) => {
         res.render('pages/invoicepage');
     })
 
-    .get('/productspage', (req,res) => {
+    .get('/productspage', (req, res) => {
         res.render('pages/productspage')
     })
 
-    .get('/paymentspage',(req,res)=>{
+    .get('/paymentspage', (req, res) => {
         res.render('pages/paymentspage')
     })
 
-.listen(PORT, () => console.log(`Listening on ${PORT}`))
+    .get('/dashboard', (req, res) => {
+        res.render('pages/loggedin')
+    })
+
+
+
+    .listen(PORT, () => console.log(`Listening on ${PORT}`))
