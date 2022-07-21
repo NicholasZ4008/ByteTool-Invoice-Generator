@@ -194,21 +194,27 @@ express()
         password = req.body.password;
         email = req.body.email;
         var existUsername = null;
+        var existEmail = null;
         //console.log(username, password);
         const connection = await pool.connect();
         console.log('registration~~~~~~~~~~')
         try {
             const dbQueryForUsername = await connection.query(`SELECT * from accounts WHERE username = '${username}';`);
             existUsername = { 'results': (dbQueryForUsername) ? dbQueryForUsername.rows : null };
+            const dbQUeryForEmail = await connection.query(`SELECT * from accounts WHERE email = '${email}';`);
+            existEmail = { 'results': (dbQUeryForEmail) ? dbQUeryForEmail.rows : null };
             console.log(dbQueryForUsername);
             console.log('----');
+            console.log(dbQUeryForEmail);
+            console.log('@@@@@@');
         }
         catch (err) {
             throw err;
         }
-        console.log(dbQueryForUsername.rowCount);
+        console.log(existUsername['results'].length);
+        console.log(existEmail['results']);
         // Ensure the input fields exists and are not empty
-        if (dbQueryForUsername.rowCount==0) {
+        if (existUsername['results'].length == 0 && existEmail['results'].length == 0) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
@@ -230,7 +236,12 @@ express()
                 res.end();
             });
         } else {
-            res.send('Username is taken. Please press back and enter a different username.');
+            if (existUsername['results'].length == 0) {
+                res.send('Email is taken. Please press back and enter a different email.');
+            } else {
+                res.send('Username is taken. Please press back and enter a different username.');
+            }
+            
             res.end();
         }
 
@@ -256,7 +267,7 @@ express()
     })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
-    .post('/newClient', async (req, res) => {
+    .post('/newClient/Added', async (req, res) => {
 
         var uCID = req.body.inputClientID;
         var uCName = req.body.inputClientName;
@@ -264,10 +275,11 @@ express()
         var uEmail = req.body.inputEmail;
         var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
         // var uConMethod = NaN; // temporary
-        var uAddr = req.body.billingAdress; // temporary
+        var uAddr = req.body.billingAddress; // temporary
       
         var checkQuery = `SELECT * FROM clients WHERE clientid=${uCID}`;
         const resultCheck = await pool.query(checkQuery);
+        console.log(uPhone);
       
         if(resultCheck.rowCount==0) {
       
