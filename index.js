@@ -192,12 +192,13 @@ express()
         // Capture the input fields
         username = req.body.username;
         password = req.body.password;
+        email = req.body.email;
         //console.log(username, password);
         const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
         if (username && password) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
-            connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
+            connection.query(`INSERT INTO accounts (username,password) VALUES ('${username}', '${password}');`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
                 //console.log(error, results, fields);
 
