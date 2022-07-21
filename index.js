@@ -211,11 +211,7 @@ express()
         }
         console.log(existUsername.rowCount);
         // Ensure the input fields exists and are not empty
-<<<<<<< HEAD
         if (!existUsername || !existEmail) {
-=======
-        if (existUsername.rowCount==0) {
->>>>>>> 71fce1b472e785ad2635d7deb34274e9ef7118f8
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
@@ -263,7 +259,7 @@ express()
     })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
-    .post('/newClient/Added', async (req, res) => {
+    .post('/newClient', async (req, res) => {
 
         var uCID = req.body.inputClientID;
         var uCName = req.body.inputClientName;
