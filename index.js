@@ -220,7 +220,7 @@ express()
         var uCName = req.body.inputClientName;
         var uConName = req.body.inputContactName;
         var uEmail = req.body.inputEmail;
-        var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
+        var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
         var uConMethod = "EMAIL"; // temporary
         var uAddr = "123 Howe St Delta, BC V3W 1N4"; // temporary
       
