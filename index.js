@@ -459,7 +459,7 @@ express()
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('0003', 'tempC', 'ClA', 'sam@gmail.com', '+19993339999', 'EMAIL', '123 Street')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', 'tempC', 'ClA', 'sam@gmail.com', '+19993339999', 'EMAIL', '123 Street')`;
           console.log(getUInputQuery);
       
           try {
