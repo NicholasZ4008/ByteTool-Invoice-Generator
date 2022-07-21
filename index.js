@@ -196,9 +196,13 @@ express()
         var existUsername = null;
         //console.log(username, password);
         const connection = await pool.connect();
+        console.log('registration~~~~~~~~~~')
         try {
-            dbQueryForUsername = await connection.query(`SELECT * from accounts WHERE username = '${username}';`);
+            const dbQueryForUsername = await connection.query(`SELECT * from accounts WHERE username = '${username}';`);
             existUsername = { 'results': (existUsername) ? dbQueryForUsername.rows : null };
+            console.log(dbQueryForUsername);
+            console.log('----');
+            console.log(existUsername.rows);
         }
         catch (err) {
             throw err;
