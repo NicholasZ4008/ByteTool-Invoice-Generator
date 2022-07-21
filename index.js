@@ -434,8 +434,8 @@ express()
     // Update by Nabila (7/20/2022): Create a new Client Page
     .post('/newClient/Added', async (req, res) => {
 
-        var uCID = req.body.inputClientID;
-        var uCName = req.body.inputClientName;
+        var uCID = req.body.inClID;
+        var uCName = req.body.inClName;
         var uConName = req.body.inputContactName;
         var uEmail = req.body.inputEmail;
         // var uPhone = '+' + req.body.inputAreaCode + req.body.inputPhoneNumber;
