@@ -7,166 +7,166 @@ var loggedin = false;
 var sendUsername = "";
 //const path = require('path');
 
-//google api
-const fs = require('fs');
-const readline = require('readline');
-const { google } = require('googleapis');
+////google api
+//const fs = require('fs');
+//const readline = require('readline');
+//const { google } = require('googleapis');
 
-// If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
-// The file token.json stores the user's access and refresh tokens, and is
-// created automatically when the authorization flow completes for the first
-// time.
-const TOKEN_PATH = 'token.json';
+//// If modifying these scopes, delete token.json.
+//const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
+//// The file token.json stores the user's access and refresh tokens, and is
+//// created automatically when the authorization flow completes for the first
+//// time.
+//const TOKEN_PATH = 'token.json';
 
-// Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
-    if (err) return console.log('Error loading client secret file:', err);
-    // Authorize a client with credentials, then call the Gmail API.
-    authorize(JSON.parse(content), listLabels);
-});
+//// Load client secrets from a local file.
+//fs.readFile('credentials.json', (err, content) => {
+//    if (err) return console.log('Error loading client secret file:', err);
+//    // Authorize a client with credentials, then call the Gmail API.
+//    authorize(JSON.parse(content), listLabels);
+//});
 
-/**
- * Create an OAuth2 client with the given credentials, and then execute the
- * given callback function.
- * @param {Object} credentials The authorization client credentials.
- * @param {function} callback The callback to call with the authorized client.
- */
-function authorize(credentials, callback) {
-    const { client_secret, client_id, redirect_uris } = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(
-        client_id, client_secret, redirect_uris[0]);
+///**
+// * Create an OAuth2 client with the given credentials, and then execute the
+// * given callback function.
+// * @param {Object} credentials The authorization client credentials.
+// * @param {function} callback The callback to call with the authorized client.
+// */
+//function authorize(credentials, callback) {
+//    const { client_secret, client_id, redirect_uris } = credentials.installed;
+//    const oAuth2Client = new google.auth.OAuth2(
+//        client_id, client_secret, redirect_uris[0]);
 
-    // Check if we have previously stored a token.
-    fs.readFile(TOKEN_PATH, (err, token) => {
-        if (err) return getNewToken(oAuth2Client, callback);
-        oAuth2Client.setCredentials(JSON.parse(token));
-        callback(oAuth2Client);
-    });
-}
+//    // Check if we have previously stored a token.
+//    fs.readFile(TOKEN_PATH, (err, token) => {
+//        if (err) return getNewToken(oAuth2Client, callback);
+//        oAuth2Client.setCredentials(JSON.parse(token));
+//        callback(oAuth2Client);
+//    });
+//}
 
-/**
- * Get and store new token after prompting for user authorization, and then
- * execute the given callback with the authorized OAuth2 client.
- * @param {google.auth.OAuth2} oAuth2Client The OAuth2 client to get token for.
- * @param {getEventsCallback} callback The callback for the authorized client.
- */
-function getNewToken(oAuth2Client, callback) {
-    const authUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: SCOPES,
-    });
-    console.log('Authorize this app by visiting this url:', authUrl);
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
-    rl.question('Enter the code from that page here: ', (code) => {
-        rl.close();
-        oAuth2Client.getToken(code, (err, token) => {
-            if (err) return console.error('Error retrieving access token', err);
-            oAuth2Client.setCredentials(token);
-            // Store the token to disk for later program executions
-            fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-                if (err) return console.error(err);
-                console.log('Token stored to', TOKEN_PATH);
-            });
-            callback(oAuth2Client);
-        });
-    });
-}
+///**
+// * Get and store new token after prompting for user authorization, and then
+// * execute the given callback with the authorized OAuth2 client.
+// * @param {google.auth.OAuth2} oAuth2Client The OAuth2 client to get token for.
+// * @param {getEventsCallback} callback The callback for the authorized client.
+// */
+//function getNewToken(oAuth2Client, callback) {
+//    const authUrl = oAuth2Client.generateAuthUrl({
+//        access_type: 'offline',
+//        scope: SCOPES,
+//    });
+//    console.log('Authorize this app by visiting this url:', authUrl);
+//    const rl = readline.createInterface({
+//        input: process.stdin,
+//        output: process.stdout,
+//    });
+//    rl.question('Enter the code from that page here: ', (code) => {
+//        rl.close();
+//        oAuth2Client.getToken(code, (err, token) => {
+//            if (err) return console.error('Error retrieving access token', err);
+//            oAuth2Client.setCredentials(token);
+//            // Store the token to disk for later program executions
+//            fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+//                if (err) return console.error(err);
+//                console.log('Token stored to', TOKEN_PATH);
+//            });
+//            callback(oAuth2Client);
+//        });
+//    });
+//}
 
-/**
- * Lists the labels in the user's account.
- *
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
-function listLabels(auth) {
-    const gmail = google.gmail({ version: 'v1', auth });
-    gmail.users.labels.list({
-        userId: 'me',
-    }, (err, res) => {
-        if (err) return console.log('The API returned an error: ' + err);
-        const labels = res.data.labels;
-        if (labels.length) {
-            console.log('Labels:');
-            labels.forEach((label) => {
-                console.log(`- ${label.name}`);
-            });
-        } else {
-            console.log('No labels found.');
-        }
-    });
-}
+///**
+// * Lists the labels in the user's account.
+// *
+// * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+// */
+//function listLabels(auth) {
+//    const gmail = google.gmail({ version: 'v1', auth });
+//    gmail.users.labels.list({
+//        userId: 'me',
+//    }, (err, res) => {
+//        if (err) return console.log('The API returned an error: ' + err);
+//        const labels = res.data.labels;
+//        if (labels.length) {
+//            console.log('Labels:');
+//            labels.forEach((label) => {
+//                console.log(`- ${label.name}`);
+//            });
+//        } else {
+//            console.log('No labels found.');
+//        }
+//    });
+//}
 
-"use strict";
-const nodemailer = require("nodemailer");
+//"use strict";
+//const nodemailer = require("nodemailer");
 
-/*POST /token HTTP/1.1
-Host: oauth2.googleapis.com
-Content-length: 261
-content-type: application/x-www-form-urlencoded
-user-agent: google-oauth-playground
-code=4%2F0AdQt8qiYICAKu6TgFAyEsgXgirtlKETzneSMMAxMK5p6flGvvkETJrgxYvtQFs6VgIsqvA&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&client_secret=************&scope=&grant_type=authorization_code
-HTTP/1.1 200 OK
-Content-length: 462
-X-xss-protection: 0
-X-content-type-options: nosniff
-Transfer-encoding: chunked
-Expires: Mon, 01 Jan 1990 00:00:00 GMT
-Vary: Origin, X-Origin, Referer
-Server: scaffolding on HTTPServer2
--content-encoding: gzip
-Pragma: no-cache
-Cache-control: no-cache, no-store, max-age=0, must-revalidate
-Date: Thu, 21 Jul 2022 03:48:31 GMT
-X-frame-options: SAMEORIGIN
-Alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
-Content-type: application/json; charset=utf-8
-{
-  "access_token": "ya29.A0AVA9y1sKOMbgim_d5aCDUQ7UGiCCufulm3ANguLIFur5lvh8W7kzw7IZcQu9O_qRrunOd2ZxcPVkDmY9zy3EVd8KAEw_nXYtJrcjUMyDnE1y87gP27hI75jWv9KIyMHEVxUihwryDqgoVHHh-Fpr7YTICzbNYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4b20zNnNmVmV3dGdoRzBPSTZjNW0yQQ0163", 
-  "scope": "https://mail.google.com/", 
-  "token_type": "Bearer", 
-  "expires_in": 3599, 
-  "refresh_token": "1//04_r2eH8SHB1jCgYIARAAGAQSNwF-L9IrlrxoYWm-YkvrWvHNSPe5Ku7quqcYR5dX9AIzqql3gpi1TEk4rZFzxv3d8nax-_GWzqQ"
-}*/
+///*POST /token HTTP/1.1
+//Host: oauth2.googleapis.com
+//Content-length: 261
+//content-type: application/x-www-form-urlencoded
+//user-agent: google-oauth-playground
+//code=4%2F0AdQt8qiYICAKu6TgFAyEsgXgirtlKETzneSMMAxMK5p6flGvvkETJrgxYvtQFs6VgIsqvA&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&client_secret=************&scope=&grant_type=authorization_code
+//HTTP/1.1 200 OK
+//Content-length: 462
+//X-xss-protection: 0
+//X-content-type-options: nosniff
+//Transfer-encoding: chunked
+//Expires: Mon, 01 Jan 1990 00:00:00 GMT
+//Vary: Origin, X-Origin, Referer
+//Server: scaffolding on HTTPServer2
+//-content-encoding: gzip
+//Pragma: no-cache
+//Cache-control: no-cache, no-store, max-age=0, must-revalidate
+//Date: Thu, 21 Jul 2022 03:48:31 GMT
+//X-frame-options: SAMEORIGIN
+//Alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+//Content-type: application/json; charset=utf-8
+//{
+//  "access_token": "ya29.A0AVA9y1sKOMbgim_d5aCDUQ7UGiCCufulm3ANguLIFur5lvh8W7kzw7IZcQu9O_qRrunOd2ZxcPVkDmY9zy3EVd8KAEw_nXYtJrcjUMyDnE1y87gP27hI75jWv9KIyMHEVxUihwryDqgoVHHh-Fpr7YTICzbNYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4b20zNnNmVmV3dGdoRzBPSTZjNW0yQQ0163", 
+//  "scope": "https://mail.google.com/", 
+//  "token_type": "Bearer", 
+//  "expires_in": 3599, 
+//  "refresh_token": "1//04_r2eH8SHB1jCgYIARAAGAQSNwF-L9IrlrxoYWm-YkvrWvHNSPe5Ku7quqcYR5dX9AIzqql3gpi1TEk4rZFzxv3d8nax-_GWzqQ"
+//}*/
 
 
-// async..await is not allowed in global scope, must use a wrapper
-async function main() {
-    // Generate test SMTP service account from ethereal.email
-    // Only needed if you don't have a real mail account for testing
-    let testAccount = await nodemailer.createTestAccount();
+//// async..await is not allowed in global scope, must use a wrapper
+//async function main() {
+//    // Generate test SMTP service account from ethereal.email
+//    // Only needed if you don't have a real mail account for testing
+//    let testAccount = await nodemailer.createTestAccount();
 
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: 'bytetoolsinvoicing@gmail.com', // generated ethereal user
-            pass: 'Waheguru1', // generated ethereal password
-        },
-    });
+//    // create reusable transporter object using the default SMTP transport
+//    let transporter = nodemailer.createTransport({
+//        host: "smtp.gmail.com",
+//        port: 587,
+//        secure: false, // true for 465, false for other ports
+//        auth: {
+//            user: 'bytetoolsinvoicing@gmail.com', // generated ethereal user
+//            pass: 'Waheguru1', // generated ethereal password
+//        },
+//    });
 
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-        from: '"ByteTools Invoicing 👻" <bytetoolsinvoicing@gmail.com>', // sender address
-        to: "SPW9, spw9@sfu.ca", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>", // html body
-    });
+//    // send mail with defined transport object
+//    let info = await transporter.sendMail({
+//        from: '"ByteTools Invoicing 👻" <bytetoolsinvoicing@gmail.com>', // sender address
+//        to: "SPW9, spw9@sfu.ca", // list of receivers
+//        subject: "Hello ✔", // Subject line
+//        text: "Hello world?", // plain text body
+//        html: "<b>Hello world?</b>", // html body
+//    });
 
-    console.log("Message sent: %s", info.messageId);
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+//    console.log("Message sent: %s", info.messageId);
+//    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-    // Preview only available when sending through an Ethereal account
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-}
+//    // Preview only available when sending through an Ethereal account
+//    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+//    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+//}
 
-main().catch(console.error);
+//main().catch(console.error);
 
 const { Pool } = require('pg');
 const { response } = require('express');
