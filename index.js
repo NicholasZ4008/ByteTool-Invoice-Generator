@@ -236,7 +236,12 @@ express()
                 res.end();
             });
         } else {
-            res.send('Username is taken. Please press back and enter a different username.');
+            if (existUsername['results'].length == 0) {
+                res.send('Email is taken. Please press back and enter a different email.');
+            } else {
+                res.send('Username is taken. Please press back and enter a different username.');
+            }
+            
             res.end();
         }
 
