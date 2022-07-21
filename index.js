@@ -199,7 +199,7 @@ express()
         console.log('registration~~~~~~~~~~')
         try {
             const dbQueryForUsername = await connection.query(`SELECT * from accounts WHERE username = '${username}';`);
-            existUsername = { 'results': (existUsername) ? dbQueryForUsername.rows : null };
+            existUsername = { 'results': (dbQueryForUsername) ? dbQueryForUsername.rows : null };
             console.log(dbQueryForUsername);
             console.log('----');
             console.log(existUsername);
