@@ -270,7 +270,7 @@ express()
         var uEmail = req.body.inputEmail;
         var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
         // var uConMethod = NaN; // temporary
-        var uAddr = req.body.billingAdress; // temporary
+        var uAddr = req.body.billingAddress; // temporary
       
         var checkQuery = `SELECT * FROM clients WHERE clientid=${uCID}`;
         const resultCheck = await pool.query(checkQuery);
