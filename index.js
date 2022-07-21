@@ -208,7 +208,7 @@ express()
         }
         console.log(existUsername.rowCount);
         // Ensure the input fields exists and are not empty
-        if (existUsername) {
+        if (existUsername.rowCount==0) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
@@ -251,12 +251,12 @@ express()
         response.end();
     })
 
-    // .get('/newClient', (req, res) => {
-    //     res.render('pages/newClient')
-    // })
+    .get('/newClient', (req, res) => {
+        res.render('pages/newClient')
+    })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
-    .post('/newClient', async (req, res) => {
+    .post('/newClient/Added', async (req, res) => {
 
         var uCID = req.body.inputClientID;
         var uCName = req.body.inputClientName;
