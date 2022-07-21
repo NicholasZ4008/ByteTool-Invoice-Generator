@@ -188,6 +188,41 @@ express()
         res.end();
     })
 
+    .post('/register', async (req, res) => {
+        // Capture the input fields
+        username = req.body.username;
+        password = req.body.password;
+        //console.log(username, password);
+        const connection = await pool.connect();
+        // Ensure the input fields exists and are not empty
+        if (username && password) {
+            // Execute SQL query that'll select the account from the database based on the specified username and password
+            connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
+                // If there is an issue with the query, output the error
+                //console.log(error, results, fields);
+
+                if (error) throw error;
+                // If the account exists
+                if (results.rows.length > 0) {
+                    // Authenticate the user
+                    connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
+                    loggedin = true;
+                    sendUsername = username;
+                    // Redirect to home page
+                    res.render('pages/loggedin', results);
+                } else {
+                    res.send('Incorrect Username and/or Password!');
+                }
+                connection.release();
+                res.end();
+            });
+        } else {
+            res.send('Please enter Username and Password!');
+            res.end();
+        }
+
+    })
+
     .get('/newClient.html', function (request, response) {
 
         /* // If the user is loggedin
