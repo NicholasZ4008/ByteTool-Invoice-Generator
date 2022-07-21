@@ -273,6 +273,7 @@ express()
         if(resultCheck.rowCount==0) {
       
           var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', 'EMAIL', '${uAddr}')`;
+          console.log(getUInputQuery);
       
           try {
             const result = await pool.query(getUInputQuery);
