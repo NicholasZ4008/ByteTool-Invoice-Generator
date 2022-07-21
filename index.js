@@ -194,12 +194,15 @@ express()
         password = req.body.password;
         email = req.body.email;
         var existUsername = null;
+        var existEmail = null;
         //console.log(username, password);
         const connection = await pool.connect();
         console.log('registration~~~~~~~~~~')
         try {
             const dbQueryForUsername = await connection.query(`SELECT * from accounts WHERE username = '${username}';`);
             existUsername = { 'results': (dbQueryForUsername) ? dbQueryForUsername.rows : null };
+            const dbQUeryForEmail = await connection.query(`SELECT * from accounts WHERE email = '${email}';`);
+            existEmail = { 'results': (dbQUeryForEmail) ? dbQUeryForEmail.rows : null };
             console.log(dbQueryForUsername);
             console.log('----');
         }
@@ -208,7 +211,7 @@ express()
         }
         console.log(existUsername.rowCount);
         // Ensure the input fields exists and are not empty
-        if (existUsername.rowCount==0) {
+        if (!existUsername || !existEmail) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
@@ -256,7 +259,7 @@ express()
     })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
-    .post('/newClient/Added', async (req, res) => {
+    .post('/newClient', async (req, res) => {
 
         var uCID = req.body.inputClientID;
         var uCName = req.body.inputClientName;
