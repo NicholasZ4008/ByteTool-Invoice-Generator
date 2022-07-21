@@ -192,6 +192,7 @@ express()
         // Capture the input fields
         username = req.body.username;
         password = req.body.password;
+        email = req.body.email;
         //console.log(username, password);
         const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
