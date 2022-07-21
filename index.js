@@ -201,6 +201,7 @@ express()
         catch (err) {
             throw err;
         }
+        console.log(existUsername);
         // Ensure the input fields exists and are not empty
         if (existUsername.rows.length == 0) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
