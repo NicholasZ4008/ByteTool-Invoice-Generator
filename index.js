@@ -443,7 +443,7 @@ express()
         var uPhone = req.body.inputPhoneNumber;
         // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
         // var uAddr = req.body.billingAddress;
-        console.log(uCID);
+        // console.log(uCID);
 
         // // If uPhone is null dont add plus
         // if(!(uPhone.length!=0)) {
@@ -459,7 +459,7 @@ express()
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', 'EMAIL', '123 Street')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('0003', 'tempC', 'ClA', 'sam@gmail.com', '+19993339999', 'EMAIL', '123 Street')`;
           console.log(getUInputQuery);
       
           try {
