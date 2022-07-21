@@ -446,7 +446,7 @@ express()
         // If uPhone is null dont add plus
         if(uPhone.length==0) {
             // var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
-            uPhone = "";
+            // uPhone = "";
             console.log(uPhone);
         }
       
