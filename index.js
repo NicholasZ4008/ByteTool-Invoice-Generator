@@ -193,10 +193,11 @@ express()
         username = req.body.username;
         password = req.body.password;
         email = req.body.email;
+        var existUsername = null;
         //console.log(username, password);
         const connection = await pool.connect();
         try {
-            const existUsername = connection.query(`SELECT * from accounts WHERE username = '${username}';`);
+            existUsername = connection.query(`SELECT * from accounts WHERE username = '${username}';`);
         }
         catch (err) {
             throw err;
