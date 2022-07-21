@@ -439,12 +439,14 @@ express()
         var uConName = req.body.inputContactName;
         var uEmail = req.body.inputEmail;
         var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
-        var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
+        // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
         var uAddr = req.body.billingAddress;
+        console.log(uCID);
 
         // If uPhone is null dont add plus
         if(uPhone.length>0) {
             uPhone = "+" + uPhone;
+            console.log(uPhone);
         }
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
@@ -453,8 +455,8 @@ express()
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
-        //   console.log(getUInputQuery);
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', 'BOTH', '${uAddr}')`;
+          console.log(getUInputQuery);
       
           try {
             const result = await pool.query(getUInputQuery);
