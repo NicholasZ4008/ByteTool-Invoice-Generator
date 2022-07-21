@@ -161,10 +161,70 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <form id="new-invoice">
+            <!-- Main content section, will be different for all the pages -->
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
+                <h1 class="display-1">Invoices</h1>
+
+                <div class="input-group">
+                    <!-- Button for new Clients -->
+                    <!-- <form action="/newClient.html"> -->
+                    <form action="">
+                        <input id="new-button" class="btn btn-secondary" type="submit" value="New" />
+                    </form>
+
+
+                    <!-- Search Button -->
+                    <div class="form-outline">
+                        <input id="search-input" type="search" placeholder="Search" id="form1" class="form-control" />
+
+                    </div>
+                    <button id="search-button" type="button" class="btn btn-secondary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="tablecontainer">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Invoice Number</th>
+                                <th>Status</th>
+                                <th>Client Name</th>
+                                <th>Amount</th>
+                                <th>Balance Remaining</th>
+                                <th>Invoice Data (DD-MM-YYYY)</th>
+                                <th>Payment Deadline (DD-MM-YYYY</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>008</td>
+                                <td>Draft</td>
+                                <td>Maya Baker</td>
+                                <td>$80.00</td>
+                                <td>$80.00</td>
+                                <td>16-07-2022</td>
+                                <td>15-08-2022</td>
+                                <td><a>view</a> <a>edit</a></td>
+                            </tr>
+                            <tr>
+                                <td>008</td>
+                                <td>Draft</td>
+                                <td>Maya Baker</td>
+                                <td>$80.00</td>
+                                <td>$80.00</td>
+                                <td>16-07-2022</td>
+                                <td>15-08-2022</td>
+                                <td><a>view</a> <a>edit</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                    <!-- <form id="new-invoice">
         <table>
             <tr>
                 <td>
@@ -180,9 +240,9 @@
                 </td>
             </tr>
         </table>
-    </form>
+     </form> -->
 
-    <div>
+                    <!-- <div>
         <table id="invoiceinfotable">
             <tr>
                 <th>Invoice Number</th>
@@ -221,6 +281,10 @@
             <a href="#" class="next round">&#8250;</a>
         </div>
 
+     </div> -->
+                </div>
+            </div>
+        </div>
     </div>
 
 
