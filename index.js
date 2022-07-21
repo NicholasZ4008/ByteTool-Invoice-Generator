@@ -211,8 +211,8 @@ express()
         catch (err) {
             throw err;
         }
-        console.log(existUsername);
-        console.log(existEmail);
+        console.log(existUsername['results']);
+        console.log(existEmail['results']);
         // Ensure the input fields exists and are not empty
         if (!existUsername['results'] || !existEmail['results']) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
