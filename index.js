@@ -205,11 +205,14 @@ express()
             existEmail = { 'results': (dbQUeryForEmail) ? dbQUeryForEmail.rows : null };
             console.log(dbQueryForUsername);
             console.log('----');
+            console.log(dbQUeryForEmail);
+            console.log('@@@@@@');
         }
         catch (err) {
             throw err;
         }
-        console.log(existUsername.rowCount);
+        console.log(existUsername);
+        console.log(existEmail);
         // Ensure the input fields exists and are not empty
         if (!existUsername || !existEmail) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
