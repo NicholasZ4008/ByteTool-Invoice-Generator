@@ -195,8 +195,14 @@ express()
         email = req.body.email;
         //console.log(username, password);
         const connection = await pool.connect();
+        try {
+            const existUsername = connection.query(`SELECT * from accounts WHERE username = '${username}';`);
+        }
+        catch (err) {
+            throw err;
+        }
         // Ensure the input fields exists and are not empty
-        if (username && password) {
+        if (existUsername.rows.length == 0) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
@@ -204,7 +210,7 @@ express()
 
                 if (error) throw error;
                 // If the account exists
-                if (results.rows.length > 0) {
+                if (results.rows.length > 0 && false) {
                     // Authenticate the user
                     connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
                     loggedin = true;
@@ -212,13 +218,13 @@ express()
                     // Redirect to home page
                     res.render('pages/loggedin', results);
                 } else {
-                    res.send('Incorrect Username and/or Password!');
+                    res.render('pages/login');
                 }
                 connection.release();
                 res.end();
             });
         } else {
-            res.send('Please enter Username and Password!');
+            res.send('Username is taken. Please press back and enter a different username.');
             res.end();
         }
 
