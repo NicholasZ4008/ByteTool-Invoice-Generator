@@ -438,14 +438,15 @@ express()
         var uCName = req.body.inputClientName;
         var uConName = req.body.inputContactName;
         var uEmail = req.body.inputEmail;
-        var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
+        var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
         // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
         var uAddr = req.body.billingAddress;
         console.log(uCID);
 
         // If uPhone is null dont add plus
-        if(uPhone.length>0) {
-            uPhone = "+" + uPhone;
+        if(uPhone.length==1) {
+            // var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
+            uPhone = "";
             console.log(uPhone);
         }
       
