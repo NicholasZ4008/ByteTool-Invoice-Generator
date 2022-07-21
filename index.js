@@ -124,10 +124,10 @@ var sendUsername = "";
 //Alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
 //Content-type: application/json; charset=utf-8
 //{
-//  "access_token": "ya29.A0AVA9y1sKOMbgim_d5aCDUQ7UGiCCufulm3ANguLIFur5lvh8W7kzw7IZcQu9O_qRrunOd2ZxcPVkDmY9zy3EVd8KAEw_nXYtJrcjUMyDnE1y87gP27hI75jWv9KIyMHEVxUihwryDqgoVHHh-Fpr7YTICzbNYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4b20zNnNmVmV3dGdoRzBPSTZjNW0yQQ0163", 
-//  "scope": "https://mail.google.com/", 
-//  "token_type": "Bearer", 
-//  "expires_in": 3599, 
+//  "access_token": "ya29.A0AVA9y1sKOMbgim_d5aCDUQ7UGiCCufulm3ANguLIFur5lvh8W7kzw7IZcQu9O_qRrunOd2ZxcPVkDmY9zy3EVd8KAEw_nXYtJrcjUMyDnE1y87gP27hI75jWv9KIyMHEVxUihwryDqgoVHHh-Fpr7YTICzbNYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4b20zNnNmVmV3dGdoRzBPSTZjNW0yQQ0163",
+//  "scope": "https://mail.google.com/",
+//  "token_type": "Bearer",
+//  "expires_in": 3599,
 //  "refresh_token": "1//04_r2eH8SHB1jCgYIARAAGAQSNwF-L9IrlrxoYWm-YkvrWvHNSPe5Ku7quqcYR5dX9AIzqql3gpi1TEk4rZFzxv3d8nax-_GWzqQ"
 //}*/
 
@@ -168,6 +168,69 @@ var sendUsername = "";
 
 //main().catch(console.error);
 
+
+//google api integration with nodemailer
+require("dotenv").config();
+
+const auth = {
+    type: "OAuth2",
+    user: "sid.cd.varma@gmail.com",
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    refreshToken: process.env.REFRESH_TOKEN,
+};
+
+const mailoptions = {
+    from: "Siddhant &lt;sid.cd.varma@gmail.com>",
+    to: "sid.cd.varma@gmail.com",
+    subject: "Gmail API NodeJS",
+};
+
+module.exports = {
+    auth,
+    mailoptions,
+};
+
+//adding routes
+const express = require('express');
+const controllers = require('./controllers');
+const router = express.Router();
+
+router.get('/mail/user/:email', controllers.getUser)
+router.get('/mail/send', controllers.sendMail);
+router.get('/mail/drafts/:email', controllers.getDrafts);
+router.get('/mail/read/:messageId', controllers.readMail);
+
+module.exports = router;
+
+
+//adding nodemailer
+async function sendMail(req, res) {
+    try {
+        const accessToken = await oAuth2Client.getAccessToken();
+        const transport = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                ...CONSTANTS.auth,
+                accessToken: accessToken,
+            },
+        });
+
+        const mailOptions = {
+            ...CONSTANTS.mailoptions,
+            text: "The Gmail API with NodeJS works",
+        };
+
+        const result = await transport.sendMail(mailOptions);
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+    }
+}
+
+
+//app start
 const { Pool } = require('pg');
 const { response } = require('express');
 const { connect } = require('http2');
