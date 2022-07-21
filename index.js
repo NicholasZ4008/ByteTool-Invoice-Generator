@@ -189,6 +189,11 @@ express()
         })
     })
 
+    .get('/register', (req, res) => {
+        res.render('pages/register');
+        res.end();
+    })
+
     .get('/newClient.html', function (request, response) {
 
 
