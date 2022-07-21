@@ -214,7 +214,7 @@ express()
         console.log(existUsername);
         console.log(existEmail);
         // Ensure the input fields exists and are not empty
-        if (!existUsername || !existEmail) {
+        if (!existUsername['results'] || !existEmail['results']) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
