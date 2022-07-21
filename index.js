@@ -22,14 +22,14 @@ async function main() {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: testAccount.user, // generated ethereal user
-            pass: testAccount.pass, // generated ethereal password
+            user: 'kiana.leuschke76@ethereal.email', // generated ethereal user
+            pass: 'MUdJtnkzwu2paDtgHA', // generated ethereal password
         },
     });
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        from: '"Kiana Leuschke 👻" <kiana.leuschke76@ethereal.email>', // sender address
         to: "SPW9, spw9@sfu.ca", // list of receivers
         subject: "Hello ✔", // Subject line
         text: "Hello world?", // plain text body
