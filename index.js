@@ -436,13 +436,13 @@ express()
 
         var uCID = req.body.inClID;
         var uCName = req.body.inClName;
-        var uConName = req.body.inputContactName;
-        var uEmail = req.body.inputEmail;
+        var uConName = req.body.inConName;
+        var uEmail = req.body.inEmail;
         // var uPhone = '+' + req.body.inputAreaCode + req.body.inputPhoneNumber;
-        // var uAreaCode = req.body.inputAreaCode;
-        var uPhone = req.body.inputPhoneNumber;
+        var uAreaCode = req.body.inAreaCode;
+        var uPhone = req.body.inPhnNum;
         // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
-        // var uAddr = req.body.billingAddress;
+        var uAddr = req.body.inAddr;
         // console.log(uCID);
 
         // // If uPhone is null dont add plus
@@ -459,7 +459,7 @@ express()
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', 'tempC', 'ClA', 'sam@gmail.com', '+19993339999', 'EMAIL', '123 Street')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', 'EMAIL', '${inAddr}')`;
           console.log(getUInputQuery);
       
           try {
