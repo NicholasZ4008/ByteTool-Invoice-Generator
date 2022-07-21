@@ -434,33 +434,30 @@ express()
     // Update by Nabila (7/20/2022): Create a new Client Page
     .post('/newClient/Added', async (req, res) => {
 
+        // Use 'name' from input to get the req.body
         var uCID = req.body.inClID;
         var uCName = req.body.inClName;
         var uConName = req.body.inConName;
         var uEmail = req.body.inEmail;
-        // var uPhone = '+' + req.body.inputAreaCode + req.body.inputPhoneNumber;
         var uAreaCode = req.body.inAreaCode;
         var uPhone = req.body.inPhnNum;
         // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
-        var uAddr = req.body.inAddr;
-        // console.log(uCID);
+        // var uAddr = req.body.inAddr; // not being used atm; iteration 3
 
         // If uPhone is null dont add plus
         if(uPhone.length!=0) {
-            // var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
-            // uPhone = "";
             var uPhnNum = '+' + uAreaCode + uPhone;
             console.log(uPhnNum);
+        } else {
+            var uPhnNum = "";
         }
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
-        // console.log(uPhone);
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhnNum}', 'EMAIL', '909 street')`;
-          console.log(getUInputQuery);
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhnNum}', 'EMAIL', 'temp street')`;
       
           try {
             const result = await pool.query(getUInputQuery);
