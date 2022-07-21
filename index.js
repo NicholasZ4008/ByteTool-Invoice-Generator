@@ -267,7 +267,7 @@ express()
     })
 
     // Update by Nabila (7/20/2022): Create a new Client Page
-    .post('/newClient', async (req, res) => {
+    .post('/newClient/Added', async (req, res) => {
 
         var uCID = req.body.inputClientID;
         var uCName = req.body.inputClientName;
@@ -279,6 +279,7 @@ express()
       
         var checkQuery = `SELECT * FROM clients WHERE clientid=${uCID}`;
         const resultCheck = await pool.query(checkQuery);
+        console.log(uPhone);
       
         if(resultCheck.rowCount==0) {
       
