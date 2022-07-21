@@ -445,13 +445,13 @@ express()
         var uAddr = req.body.inAddr;
         // console.log(uCID);
 
-        // // If uPhone is null dont add plus
-        // if(!(uPhone.length!=0)) {
-        //     // var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
-        //     // uPhone = "";
-        //     var uPhnNum = '+' + uAreaCode + uPhone;
-        //     console.log(uPhnNum);
-        // }
+        // If uPhone is null dont add plus
+        if(!(uPhone.length!=0)) {
+            // var uPhone = "+" + req.body.inputAreaCode + req.body.inputPhoneNumber;
+            // uPhone = "";
+            var uPhnNum = '+' + uAreaCode + uPhone;
+            console.log(uPhnNum);
+        }
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
@@ -459,7 +459,7 @@ express()
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '+19990001111', 'EMAIL', '909 street')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhnNum}', 'EMAIL', '909 street')`;
           console.log(getUInputQuery);
       
           try {
