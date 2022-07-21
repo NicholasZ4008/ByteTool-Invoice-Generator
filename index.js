@@ -202,14 +202,13 @@ express()
             existUsername = { 'results': (dbQueryForUsername) ? dbQueryForUsername.rows : null };
             console.log(dbQueryForUsername);
             console.log('----');
-            console.log(existUsername);
         }
         catch (err) {
             throw err;
         }
-        console.log(existUsername);
+        console.log(dbQueryForUsername.rowCount);
         // Ensure the input fields exists and are not empty
-        if (existUsername['results'] == null) {
+        if (dbQueryForUsername.rowCount==0) {
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
