@@ -46,9 +46,9 @@ async function readMail(req, res) {
 }
 
 module.exports = {
-    getUser,
+    //getUser,
     sendMail,
-    getDrafts,
-    searchMail,
-    readMail,
+    //getDrafts,
+    //searchMail,
+    //readMail,
 };
