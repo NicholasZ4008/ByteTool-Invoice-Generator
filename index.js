@@ -102,6 +102,36 @@ function listLabels(auth) {
 "use strict";
 const nodemailer = require("nodemailer");
 
+/*POST /token HTTP/1.1
+Host: oauth2.googleapis.com
+Content-length: 261
+content-type: application/x-www-form-urlencoded
+user-agent: google-oauth-playground
+code=4%2F0AdQt8qiYICAKu6TgFAyEsgXgirtlKETzneSMMAxMK5p6flGvvkETJrgxYvtQFs6VgIsqvA&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=407408718192.apps.googleusercontent.com&client_secret=************&scope=&grant_type=authorization_code
+HTTP/1.1 200 OK
+Content-length: 462
+X-xss-protection: 0
+X-content-type-options: nosniff
+Transfer-encoding: chunked
+Expires: Mon, 01 Jan 1990 00:00:00 GMT
+Vary: Origin, X-Origin, Referer
+Server: scaffolding on HTTPServer2
+-content-encoding: gzip
+Pragma: no-cache
+Cache-control: no-cache, no-store, max-age=0, must-revalidate
+Date: Thu, 21 Jul 2022 03:48:31 GMT
+X-frame-options: SAMEORIGIN
+Alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+Content-type: application/json; charset=utf-8
+{
+  "access_token": "ya29.A0AVA9y1sKOMbgim_d5aCDUQ7UGiCCufulm3ANguLIFur5lvh8W7kzw7IZcQu9O_qRrunOd2ZxcPVkDmY9zy3EVd8KAEw_nXYtJrcjUMyDnE1y87gP27hI75jWv9KIyMHEVxUihwryDqgoVHHh-Fpr7YTICzbNYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4b20zNnNmVmV3dGdoRzBPSTZjNW0yQQ0163", 
+  "scope": "https://mail.google.com/", 
+  "token_type": "Bearer", 
+  "expires_in": 3599, 
+  "refresh_token": "1//04_r2eH8SHB1jCgYIARAAGAQSNwF-L9IrlrxoYWm-YkvrWvHNSPe5Ku7quqcYR5dX9AIzqql3gpi1TEk4rZFzxv3d8nax-_GWzqQ"
+}*/
+
+
 // async..await is not allowed in global scope, must use a wrapper
 async function main() {
     // Generate test SMTP service account from ethereal.email
