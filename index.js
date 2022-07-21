@@ -366,17 +366,22 @@ express()
         var uConName = req.body.inputContactName;
         var uEmail = req.body.inputEmail;
         var uPhone = req.body.inputAreaCode + req.body.inputPhoneNumber;
-        // var uConMethod = NaN; // temporary
-        var uAddr = req.body.billingAddress; // temporary
+        var uConMethod = NaN; // temporary; need to figure out how to get answer from radio buttons
+        var uAddr = req.body.billingAddress;
+
+        // If uPhone is null dont add plus
+        if(uPhone.length>0) {
+            uPhone = "+" + uPhone;
+        }
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
-        console.log(uPhone);
+        // console.log(uPhone);
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('0003', 'Temporary Client A', 'Client A', 'clientA@gmail.com', '+17785558888', 'EMAIL', '123 my street')`;
-          console.log(getUInputQuery);
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
+        //   console.log(getUInputQuery);
       
           try {
             const result = await pool.query(getUInputQuery);
