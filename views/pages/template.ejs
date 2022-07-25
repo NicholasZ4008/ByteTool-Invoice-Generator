@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template</title>
+    <link rel="stylesheet" href="css/template.css">
+</head>
+
+
+
+
+<body>
+    <div class = "main-page">
+
+        <header>  
+            <table>
+                <tr>
+                    <td><img src = "images/logo.png" id = "logo"></td>
+                    <td> <h1>ByteTools</h1> </td>
+                    <td> <h1>Invoice</h1> </td>
+                </tr>
+            </table>
+        </header> 
+        <% rows.forEach(function(r) { %>
+                
+            <table id = "client-box">
+                    <td>
+                        <form id = "client">
+                            <h2>Bill to:</h2>
+                            <h3>Client: <%= r.clientname %></h3>
+                            <p><%= r.phone %></p>
+                            <p><%= r.email %></p>
+                        </form>
+                    </td>
+                    <td>
+                        <form id = "invoiceinfo">
+                            <p> invoice id: <%= r.clientid %></p>
+                            <p> invoice date: 11/11/11</p>
+                            <p> invoice due: 12/12/12</p>
+                        </form>
+                    </td>
+        
+                </tr>
+            </table>
+        <% }); %>
+
+        <table id = "pricetable">
+            <tr>
+                <th>Service Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td> Some Image </td>
+                <td> $100 </td>
+                <td> 2 </td>
+                <td> $200</td>
+            </tr>
+        </table>
+    
+        <table id = "subtable">
+            <tr>
+                <td>
+                    <form id = "note">
+                        <p>Thanks for Business</p>
+                    </form>
+                </td>
+                <td>
+                    <form id = "pricing">
+                        <h4>Subtotal: $200</h4>
+                        <h4>Taxes: 5%</h4>
+                        <h4>Discount: 10%</h4>
+                        <h3>Total: ???</h3>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        
+        <form id = "signature">
+            <p>Tait's Signature?</p>
+            <h5> Director Signature </h5>
+        </form>
+    
+        <table id = "footer">
+            <tr>
+                <td><img src = "images/phone.png" id = "phone"> </td>
+                <td><p> 123 456 7890</p></td>
+                <td><img src = "images/mail.png" id = "mail"></td>
+                <td><p>taithoyem@hotmail.com</p></td>
+                <td><img src = "images/linkedin.png" id = "linkedin"></td>
+                <td><p>taithoyemlinkedin</p></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

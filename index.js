@@ -477,6 +477,15 @@ express()
         res.render('pages/invoicepage');
     })
 
+    .get('/template', (req,res) => {
+        var getQuery = "SELECT * FROM clients ORDER BY clientid";
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/template', results);
+        })
+    })
+
     .get('/productspage', (req, res) => {
         res.render('pages/productspage')
     })
