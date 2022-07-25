@@ -477,11 +477,14 @@ express()
         res.render('pages/invoicepage');
     })
 
-    .get('/template', (req,res) => {
-        var getQuery = "SELECT * FROM clients ORDER BY clientid";
-        pool.query(getQuery, (error, result) => {
-            if (error) res.end(error);
+    .get('/template/:clientid', (req,res) => {
+        let clientID = req.params.clientid;
+        var getIDQuery = `SELECT * FROM clients where clientid=${clientid}`;
+        pool.query(getIDQuery, (error, result) => {
+            if (error)res.end(error);
+
             var results = { 'rows': result.rows };
+
             res.render('pages/template', results);
         })
     })
