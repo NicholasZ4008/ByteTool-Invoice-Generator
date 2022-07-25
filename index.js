@@ -479,11 +479,11 @@ express()
 
     .get('/template/:clientid', (req,res) => {
         let clientID = req.params.clientid;
-        var getIDQuery = `SELECT * FROM clients where clientid=${clientid}`;
+        var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;
         pool.query(getIDQuery, (error, result) => {
-            if (error)res.end(error);
+            if(error)res.end(error);
 
-            var results = { 'rows': result.rows };
+            var results = { 'rows':result.rows };
 
             res.render('pages/template', results);
         })
