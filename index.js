@@ -491,7 +491,7 @@ express()
     
     .post('/deleteClient/:clientID', (req, res) =>{
         pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientID}'`);
-        res.redirect('/pages/client');
+        res.redirect('/clients');
       })
 
     .get('/productspage', (req, res) => {
