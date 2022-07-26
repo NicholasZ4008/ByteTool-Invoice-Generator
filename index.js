@@ -478,6 +478,7 @@ express()
     })
 
     //buggy viewclient code
+    // Fixed by Nabila: Forgot quotes around ${clientID} in line 484
     .get('/viewclient/:clientid', (req,res) => {
         let clientID = req.params.clientid;
         var getIDQuery = `SELECT * FROM clients where clientid='${clientID}'`;
@@ -506,7 +507,7 @@ express()
     /*buggy template code
     .get('/template/:clientid', (req,res) => {
         let clientID = req.body.clientid;
-        var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;
+        var getIDQuery = `SELECT * FROM clients where clientid='${clientID}'`;
         pool.query(getIDQuery, (error, result) =>{
             if(error)
                 res.end(error);

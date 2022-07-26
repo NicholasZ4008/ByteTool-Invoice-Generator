@@ -296,6 +296,7 @@
                             </tr> -->
 
                             <% rows.forEach(function(r) { %>
+                                <%= r %>
                                 <tr>
                                     <td>
                                         <%= r.clientid %>
@@ -324,7 +325,7 @@
                                     </td>
                                     <td>
                                         <a href="/viewclient/<%= r.clientid%>" class = "btn btn-secondary">
-                                            view client
+                                            View Client
                                         </a>
                                     </td>
                                     
