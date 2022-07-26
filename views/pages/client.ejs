@@ -315,7 +315,11 @@
                                     </td>
                                     <td>
                                         <input class="btn btn-secondary" type="submit" value="Send Email">
-                                    
+                                    </td>
+                                    <td>
+                                        <form method = "POST" action = "/deleteClient/:clientID">
+                                            <button class = "btn btn-secondary">Delete Client</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <% }); %>
