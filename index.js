@@ -477,7 +477,7 @@ express()
         res.render('pages/invoicepage');
     })
 
-    //buggy template code
+    //buggy viewclient code
     .get('/viewclient/:clientid', (req,res) => {
         let clientID = req.params.clientid;
         var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;

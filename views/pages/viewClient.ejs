@@ -207,10 +207,12 @@
                                     <div class="col-md-6">
                                         <h2>Contact Information</h2>
                                         <label for="inputContactName" class="form-label">Contact Name</label>
-                                        <input type="text" class="form-control" id="inputContactName" name="inConName">
+                                        <input type="text" class="form-control" id="inputContactName" name="inConName" 
+                                        placeholder = "<%= r.clientName%>">
                                         <br>
                                         <label for="inputEmail" class="form-label">Email-Address</label>
-                                        <input type="email" class="form-control" id="inputEmail" name="inEmail" placeholder="xyz@gmail.com">
+                                        <input type="email" class="form-control" id="inputEmail" name="inEmail" 
+                                        placeholder="<%= r.email%>">
                                         <br>
                                         <div class="row g-3 gx-5">
                                             <div class="col-4">
@@ -219,7 +221,8 @@
                                             </div>
                                             <div class="col-8">
                                                 <label for="inputPhoneNumber" class="form-label">Phone Number</label>
-                                                <input type="tel" class="form-control" id="inputPhoneNumber" name="inPhnNum">
+                                                <input type="tel" class="form-control" id="inputPhoneNumber" name="inPhnNum"
+                                                placeholder="<%= r.phone%> ">
 
                                             </div>
                                         </div>
@@ -228,7 +231,7 @@
                                         <br>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio1" value="Email">
+                                                id="inlineRadio1" placeholder="Email">
                                             <label class="form-check-label" for="inlineRadio1">Email</label>
                                         </div>
                                         <div class="form-check form-check-inline">
@@ -245,7 +248,7 @@
                                         <div class="col-md-12">
                                             <h2>Billing Address</h2>
                                             <textarea class="form-control" id="billingAddress" name="inAddr" classname="Text1" cols="40"
-                                                rows="5"></textarea>
+                                                rows="5" placeholder="<%= r.address%>"></textarea>
                                             <br>
                                         </div>
 
