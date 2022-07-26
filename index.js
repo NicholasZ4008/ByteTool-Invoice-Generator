@@ -478,6 +478,18 @@ express()
     })
 
     //buggy template code
+    .get('/viewclient/:clientid', (req,res) => {
+        let clientID = req.body.clientid;
+        var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;
+        pool.query(getIDQuery, (error, result) =>{
+            if(error)
+                res.end(error);
+            var results = {'rows':result.rows};
+            res.render('pages/viewClient', results);
+        })
+    })
+
+    //buggy template code
     .get('/template/:clientid', (req,res) => {
         let clientID = req.body.clientid;
         var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;
