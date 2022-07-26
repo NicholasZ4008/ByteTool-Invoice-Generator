@@ -479,7 +479,7 @@ express()
 
     //buggy template code
     .get('/viewclient/:clientid', (req,res) => {
-        let clientID = req.body.clientid;
+        let clientID = req.params.clientid;
         var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;
         pool.query(getIDQuery, (error, result) =>{
             if(error)
