@@ -315,17 +315,19 @@
                                         <%= r.phone %>
                                     </td>
                                     <td>
-                                        <form method="GET">
-                                            <a href="/template/<%= r.clientid%>">View End Statements</a>
-                                        </form>
+                                     
+                                        <a href="/template/<%= r.clientid%>">View End Statements</a>
+                                       
                                     </td>
                                     <td>
                                         <input class="btn btn-secondary" type="submit" value="Send Email">
                                     </td>
                                     <td>
-                                        <form method="GET">
-                                            <input href="/viewclient/<%= r.clientid%>" class="btn btn-secondary" type="submit" value="view client">
-                                        </form>
+                        
+                                        <a href="/viewclient/<%= r.clientid%>" class = "btn btn-secondary">
+                                            view client
+                                        </a>
+                                        
                                     </td>
                                     
                                 </tr>
