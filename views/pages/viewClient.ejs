@@ -257,7 +257,10 @@
                                     <!-- <form method="POST" action="/newClient/Added"> -->
                                     <div class="col-12" style="text-align: center;">
                                         <!-- <form method="POST" action="/newClient/Added"> -->
-                                            <button id="addClient" type="submit" class="btn btn-secondary">Edit Client</button>
+                                            <form method = "GET" action = "/editClient/:clientID">
+                                                <button id="addClient" type="submit" class="btn btn-secondary">Edit Client</button>
+                                            </form>
+                                            
                                             <form method="post" action ='/deleteclient/<%= r.clientid%>'>
                                                 <button class ="btn btn-secondary">Delete Client</button>
                                             </form>
