@@ -480,12 +480,26 @@ express()
     //buggy viewclient code
     .get('/viewclient/:clientid', (req,res) => {
         let clientID = req.params.clientid;
-        var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;
+        var getIDQuery = `SELECT * FROM clients where clientid='${clientID}'`;
         pool.query(getIDQuery, (error, result) =>{
             if(error)
                 res.end(error);
             var results = {'rows':result.rows};
             res.render('pages/viewClient', results);
+        })
+    })
+
+    //change the student info
+    .get('/editClient/:clientID', (req,res) =>{
+        let id = req.params.studentID;
+        var getIDQuery = `SELECT * FROM clients where clientid='${id}'`;
+        
+        pool.query(getIDQuery, (error, result) =>{
+        if(error){res.end(error);}
+    
+        var results = {'rows':result.rows}
+        
+        res.render('pages/editClient', results);
         })
     })
 
