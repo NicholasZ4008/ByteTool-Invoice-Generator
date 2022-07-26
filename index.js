@@ -478,6 +478,7 @@ express()
     })
 
     //buggy viewclient code
+    // Fixed by Nabila: Forgot quotes around ${clientID} in line 484
     .get('/viewclient/:clientid', (req,res) => {
         let clientID = req.params.clientid;
         var getIDQuery = `SELECT * FROM clients where clientid='${clientID}'`;
