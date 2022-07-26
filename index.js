@@ -502,7 +502,7 @@ express()
     })
     */
 
-    .post('/deleteClient/:clientid', (req, res) =>{
+    .post('/deleteclient/:clientID', (req, res) =>{
         pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientID}'`);
         res.redirect('/clients');
     })
