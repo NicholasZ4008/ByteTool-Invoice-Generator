@@ -489,7 +489,7 @@ express()
         })
     })
 
-    //buggy template code
+    /*buggy template code
     .get('/template/:clientid', (req,res) => {
         let clientID = req.body.clientid;
         var getIDQuery = `SELECT * FROM clients where clientid=${clientID}`;
@@ -500,8 +500,9 @@ express()
             res.render('pages/template', results);
         })
     })
-    
-    .post('/deleteClient/:clientID', (req, res) =>{
+    */
+
+    .post('/deleteClient/:clientid', (req, res) =>{
         pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientID}'`);
         res.redirect('/clients');
     })

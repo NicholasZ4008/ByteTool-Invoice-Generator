@@ -316,14 +316,14 @@
                                     </td>
                                     <td>
                                         <form method="GET">
-                                            <a href="/template/:clientid">View End Statements</a>
+                                            <a href="/template/<%= r.clientid%>">View End Statements</a>
                                         </form>
                                     </td>
                                     <td>
                                         <input class="btn btn-secondary" type="submit" value="Send Email">
                                     </td>
                                     <td>
-                                        <form method="GET" action = "/viewclient/:clientid">
+                                        <form method="GET" action = "/viewclient/<%= r.clientid%>">
                                             <input class="btn btn-secondary" type="submit" value="view client">
                                         </form>
                                     </td>
