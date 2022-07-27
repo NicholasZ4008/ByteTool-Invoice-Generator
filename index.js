@@ -481,25 +481,23 @@ express()
     // Fixed by Nabila: Forgot quotes around ${clientID} in line 484
     .get('/viewclient/:clientid', (req,res) => {
         let clientID = req.params.clientid;
-        var getIDQuery = `SELECT * FROM clients where clientid='${clientID}'`;
+        var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
         pool.query(getIDQuery, (error, result) =>{
-            if(error)
-                res.end(error);
+            if(error) res.end(error);
             var results = {'rows':result.rows};
             res.render('pages/viewClient', results);
         })
     })
 
     //change the student info
-    .get('/editClient/:clientID', (req,res) =>{
-        let id = req.params.clientID;
-        var getIDQuery = `SELECT * FROM clients where clientid='${id}'`;
+    .get('/editClient/:clientid', (req,res) =>{
+        let clientID = req.params.clientID;
+        var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
         
         pool.query(getIDQuery, (error, result) =>{
-        if(error){res.end(error);}
+        if(error) res.end(error);
     
-        var results = {'rows':result.rows}
-        
+        var results = {'rows':result.rows}; 
         res.render('pages/editClient', results);
         })
     })
@@ -507,7 +505,7 @@ express()
     /*buggy template code
     .get('/template/:clientid', (req,res) => {
         let clientID = req.body.clientid;
-        var getIDQuery = `SELECT * FROM clients where clientid='${clientID}'`;
+        var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
         pool.query(getIDQuery, (error, result) =>{
             if(error)
                 res.end(error);
