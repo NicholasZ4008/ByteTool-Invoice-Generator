@@ -257,11 +257,9 @@
                                     <!-- <form method="POST" action="/newClient/Added"> -->
                                     <div class="col-12" style="text-align: center;">
                                         <!-- <form method="POST" action="/newClient/Added"> -->
-                                            <form method = "GET" action = "/editClient/<%= r.clientid%>">
-                                                <button id="addClient" type="submit" class="btn btn-secondary">Edit Client</button>
-                                            </form>
+                                           <a href="/editClient/<%= r.clientid%>" class = "btn btn-secondary">View Client</a>
                                             
-                                            <form method="post" action ='/deleteclient/<%= r.clientid%>'>
+                                            <form method="POST" action ='/deleteclient/<%= r.clientid%>'>
                                                 <button class ="btn btn-secondary">Delete Client</button>
                                             </form>
                                         <!-- </form> -->
