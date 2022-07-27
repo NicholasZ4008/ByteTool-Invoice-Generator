@@ -492,7 +492,7 @@ express()
 
     //change the student info
     .get('/editClient/:clientID', (req,res) =>{
-        let id = req.params.studentID;
+        let id = req.params.clientID;
         var getIDQuery = `SELECT * FROM clients where clientid='${id}'`;
         
         pool.query(getIDQuery, (error, result) =>{
