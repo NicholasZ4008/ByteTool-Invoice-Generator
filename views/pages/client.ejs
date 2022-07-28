@@ -308,12 +308,11 @@
                                         <%= r.email %>
                                     </td>
                                     <td>
-                                        <% if (<%= r.cntrycode %> !== null) { %>
+                                        if (<%= r.phone %> !== NULL) {
                                             + <%= r.cntrycode %> <%= r.phone %>
-                                        <% } %>
-                                        <% else { %>
+                                        } else { 
                                             &nbsp
-                                        <% } %>
+                                        }
                                     </td>
                                     <td>
                                      
