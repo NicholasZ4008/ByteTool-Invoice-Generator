@@ -452,15 +452,13 @@ express()
         // } else {
         //     var uPhnNum = "";
         // }
-
-        console.log('values in radio button: ', uConMethod);
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', 'EMAIL', '${uAddr}')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
       
           try {
             const result = await pool.query(getUInputQuery);
