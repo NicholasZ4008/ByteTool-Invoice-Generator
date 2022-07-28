@@ -412,6 +412,7 @@ express()
 
     })
 
+    // Do we still need this?? (***)
     .get('/newClient.html', function (request, response) {
 
         /* // If the user is loggedin
