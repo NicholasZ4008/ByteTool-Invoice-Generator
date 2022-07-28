@@ -491,7 +491,7 @@ express()
 
     //change the student info
     .get('/editClient/:clientid', (req,res) =>{
-        let clientID = req.params.clientID;
+        let clientID = req.params.clientid;
         var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
         
         pool.query(getIDQuery, (error, result) =>{
@@ -515,8 +515,8 @@ express()
     })
     */
 
-    .post('/deleteclient/:clientID', (req, res) =>{
-        pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientID}'`);
+    .post('/deleteclient/:clientid', (req, res) =>{
+        pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientid}'`);
         res.redirect('/clients');
     })
 
