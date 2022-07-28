@@ -308,7 +308,7 @@
                                         <%= r.email %>
                                     </td>
                                     <td>
-                                        <% if (<%= r.phone %> !== NULL) { %>
+                                        <% if (<%= r.phone %> !== "") { %>
                                             + <%= r.cntrycode %> <%= r.phone %>
                                         <% } else { %>
                                             &nbsp
