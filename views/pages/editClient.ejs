@@ -179,98 +179,91 @@
                             <!-- <input type="submit" value="LOGOUT"> -->
                         </form>
                     </div>
-
                 </div>
             </div>
 
 
 
-                <%rows.forEach(function(r) {%>
-                    <!-- Main contecnt section, will be different for all the pages -->
-                    <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
-                        <h1 class="display-1">Edit Clients</h1>
+            <!-- Main content section, will be different for all the pages -->
+            <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
+                <h1 class="display-1">Edit Clients</h1>
 
-                        <div class="formcontainer">
-                            <form action="/newClient/Added" method="post">
-                            <!-- <form action="/newClient/Added" target="_blank" method="post"> -->
-                                <div class="row g-3 gx-5">
-                                    <div class="col-md-6">
-                                        <h2>Client Information</h2>
-                                        <label for="inputClientName" class="form-label">Client Name (i.e. Company)</label>
-                                        <input type="text" class="form-control" id="inputClientName" name="inClName">
-                                        <br>
-                                        <label for="inputClientID" class="form-label">Client ID</label>
-                                        <input type="text" class="form-control" id="inputClientID" name="inClID">
-
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h2>Contact Information</h2>
-                                        <label for="inputContactName" class="form-label">Contact Name</label>
-                                        <input type="text" class="form-control" id="inputContactName" name="inConName" 
-                                        placeholder = "<%= r.clientName%>">
-                                        <br>
-                                        <label for="inputEmail" class="form-label">Email-Address</label>
-                                        <input type="email" class="form-control" id="inputEmail" name="inEmail" 
-                                        placeholder="<%= r.email%>">
-                                        <br>
-                                        <div class="row g-3 gx-5">
-                                            <div class="col-4">
-                                                <label for="inputAreaCode" class="form-label">Area Code</label>
-                                                <input type="text" class="form-control" id="inputAreaCode" name="inAreaCode">
-                                            </div>
-                                            <div class="col-8">
-                                                <label for="inputPhoneNumber" class="form-label">Phone Number</label>
-                                                <input type="tel" class="form-control" id="inputPhoneNumber" name="inPhnNum"
-                                                placeholder="<%= r.phone%> ">
-
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <label for="inlineRadioOptions" class="form-label">Prefered Contact</label>
-                                        <br>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio1" placeholder="Email">
-                                            <label class="form-check-label" for="inlineRadio1">Email</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                id="inlineRadio2" value="Phone">
-                                            <label class="form-check-label" for="inlineRadio2">Phone</label>
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div class="row g-3 gx-5">
-                                        <div class="col-md-12">
-                                            <h2>Billing Address</h2>
-                                            <textarea class="form-control" id="billingAddress" name="inAddr" classname="Text1" cols="40"
-                                                rows="5" placeholder="<%= r.address%>"></textarea>
-                                            <br>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- <form method="POST" action="/newClient/Added"> -->
-                                    <div class="col-12" style="text-align: center;">
-                                            <button href = "/client" id="addClient" type="submit" class="btn btn-secondary">Return to ClientBoard</button>
-
-                                            <form method="POST" action ='/deleteclient/<%= r.clientid%>'>
-                                                <input type="submit" value="Delete Client" class="btn btn-secondary"></input>
-                                            </form>
-                                    </div>
-                                    
-
+                <div class="formcontainer">
+                    <form action="/newClient/Added" method="post">
+                    <!-- <form action="/newClient/Added" target="_blank" method="post"> -->
+                        <%rows.forEach(function(r) {%>
+                            <div class="row g-3 gx-5">
+                                <div class="col-md-6">
+                                    <h2>Client Information</h2>
+                                    <label for="inputClientName" class="form-label">Client Name (i.e. Company)</label>
+                                    <input type="text" class="form-control" id="inputClientName" name="inClName" value="<%= r.clientname %>">
+                                    <br>
+                                    <label for="inputClientID" class="form-label">Client ID</label>
+                                    <input type="text" class="form-control" id="inputClientID" name="inClID" value="<%= r.clientid %>">
                                 </div>
 
-                            </form>
-                        </div>
-                    </div>
-                <% }); %>
+                                <div class="col-md-6">
+                                    <h2>Contact Information</h2>
+                                    <label for="inputContactName" class="form-label">Contact Name</label>
+                                    <input type="text" class="form-control" id="inputContactName" name="inConName" value="<%= r.contactname %>">
+                                    <br>
+                                    <label for="inputEmail" class="form-label">Email-Address</label>
+                                    <input type="email" class="form-control" id="inputEmail" name="inEmail" value="<%= r.email %>">
+                                    <br>
+                                    <div class="row g-3 gx-5">
+                                        <div class="col-4">
+                                            <!-- Area code can only be one digit long; need to show error when user is typing more than 1 digit -->
+                                            <label for="inputAreaCode" class="form-label">Area Code</label>
+                                            <input type="text" class="form-control" id="inputAreaCode" name="inAreaCode" value=<%= r.phone.slice(1,2) %>>
+                                        </div>
+                                        <div class="col-8">
+                                            <label for="inputPhoneNumber" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="inputPhoneNumber" name="inPhnNum" value=<%= r.phone.slice(2) %>>
+
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <label for="inlineRadioOptions" class="form-label">Prefered Contact</label>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" placeholder="Email">
+                                        <label class="form-check-label" for="inlineRadio1">Email</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio2" value="Phone">
+                                        <label class="form-check-label" for="inlineRadio2">Phone</label>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 gx-5">
+                                    <div class="col-md-12">
+                                        <h2>Billing Address</h2>
+                                        <textarea class="form-control" id="billingAddress" name="inAddr" classname="Text1" cols="40"
+                                            rows="5" value="<%= r.address%>"></textarea>
+                                        <br>
+                                    </div>
+                                </div>
+
+                                <!-- <form method="POST" action="/newClient/Added"> -->
+                                <div class="col-12" style="text-align: center;">
+                                    <!-- <form method="POST" action="/newClient/Added"> -->
+                                        <a href="/editClient/<%= r.clientid%>" class="btn btn-secondary">Edit Client</a>
+                                        
+                                        <form method="POST" action ='/deleteclient/<%= r.clientid%>'>
+                                            <input type="submit" value = "Delete Client" class="btn btn-secondary"></input>
+                                        </form>
+                                    <!-- </form> -->
+                                </div>
+                                <!-- </form> -->
+
+                            </div>
+                        <% }); %>
+                    </form>
+                </div>
             </div>
+        </div>
     </div>
 
 </body>
