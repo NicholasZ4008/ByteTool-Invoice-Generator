@@ -308,9 +308,10 @@
                                         <%= r.email %>
                                     </td>
                                     <td>
-                                        <% if (<%= r.cntrycode %>.length > 0 ) { %>
-                                            <%= r.cntrycode %>.length
-                                        <% } else { %>
+                                        <% if (<%= r.cntrycode %> !== null) { %>
+                                            + <%= r.cntrycode %> <%= r.phone %>
+                                        <% } %>
+                                        <% else { %>
                                             &nbsp
                                         <% } %>
                                     </td>
