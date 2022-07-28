@@ -502,6 +502,40 @@ express()
         })
     })
 
+    .post('/updateclient/:clientid', async(req,res) => {
+
+        var uCID = req.body.inClID;
+        var uCName = req.body.inClName;
+        var uConName = req.body.inConName;
+        var uEmail = req.body.inEmail;
+        var uAreaCode = req.body.inAreaCode;
+        var uPhone = req.body.inPhnNum;
+        // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
+        // var uAddr = req.body.inAddr; // not being used atm; iteration 3
+
+        var inOldName = req.body.oldName; // get oldname
+      
+        var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
+        const resultCheck = await pool.query(checkQuery);
+      
+        if(resultCheck.rowCount==0) {
+            var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}' WHERE clientid='${uCID}'`;      
+            // var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
+            try {
+                const result = await pool.query(getUInputQuery);
+                // window.alert('Successfully updated Student.');
+                res.redirect(`/clients`); //redirect to all clients page
+            }
+            catch (error) {
+                res.end(error);
+            }
+            } else {
+                // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
+                res.redirect(`/clients`);
+            }
+      
+    })
+
     /*buggy template code
     .get('/template/:clientid', (req,res) => {
         let clientID = req.body.clientid;
