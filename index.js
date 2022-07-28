@@ -406,7 +406,7 @@ express()
             } else {
                 res.send('Username is taken. Please press back and enter a different username.');
             }
-            
+
             res.end();
         }
 
@@ -442,24 +442,24 @@ express()
         var uEmail = req.body.inEmail;
         var uAreaCode = req.body.inAreaCode;
         var uPhone = req.body.inPhnNum;
-        var uConMethod = req.body.inlineRadioOptions; 
-        var uAddr = req.body.inAddr; 
-      
+        var uConMethod = req.body.inlineRadioOptions;
+        var uAddr = req.body.inAddr;
+
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
-      
-        if(resultCheck.rowCount==0) {
-      
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
-      
-          try {
-            const result = await pool.query(getUInputQuery);
-            // window.alert('Successfully added Client.');
-            res.redirect(`/clients`);
-          }
-          catch (error) {
-            res.end(error);
-          }  
+
+        if (resultCheck.rowCount == 0) {
+
+            var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
+
+            try {
+                const result = await pool.query(getUInputQuery);
+                // window.alert('Successfully added Client.');
+                res.redirect(`/clients`);
+            }
+            catch (error) {
+                res.end(error);
+            }
         } else {
             // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
             res.redirect(`/clients`);
@@ -472,30 +472,36 @@ express()
 
     //buggy viewclient code
     // Fixed by Nabila: Forgot quotes around ${clientID} in line 484
-    .get('/viewclient/:clientid', (req,res) => {
+    .get('/viewclient/:clientid', (req, res) => {
         let clientID = req.params.clientid;
         var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
-        pool.query(getIDQuery, (error, result) =>{
-            if(error) res.end(error);
-            var results = {'rows':result.rows};
+        pool.query(getIDQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
             res.render('pages/viewClient', results);
         })
     })
 
     //change the student info
-    .get('/editClient/:clientid', (req,res) =>{
+    .get('/editClient/:clientid', (req, res) => {
         let clientID = req.params.clientid;
         var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
-        
-        pool.query(getIDQuery, (error, result) =>{
-        if(error) res.end(error);
-    
-        var results = {'rows':result.rows}; 
-        res.render('pages/editClient', results);
+
+        pool.query(getIDQuery, (error, result) => {
+            if (error) res.end(error);
+
+            var results = { 'rows': result.rows };
+            res.render('pages/editClient', results);
         })
     })
 
-    .post('/updateclient/:clientid', async(req,res) => {
+    .get('pages/editClient', (req, res) => {
+        res.redirect('pages/editClient')
+    })
+
+
+
+    .post('/updateclient/:clientid', async (req, res) => {
 
         var uCID = req.body.inClID;
         var uCName = req.body.inClName;
@@ -505,13 +511,13 @@ express()
         var uPhone = req.body.inPhnNum;
         var uConMethod = req.body.inlineRadioOptions;
         var uAddr = req.body.inAddr;
-        
+
         var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
-      
+
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
         const resultCheck = await pool.query(checkQuery);
-      
-        if(resultCheck.rowCount==0) {
+
+        if (resultCheck.rowCount == 0) {
             // var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
             var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
             try {
@@ -522,11 +528,11 @@ express()
             catch (error) {
                 res.end(error);
             }
-            } else {
-                // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
-                res.redirect(`/clients`);
-            }
-      
+        } else {
+            // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
+            res.redirect(`/clients`);
+        }
+
     })
 
     /*buggy template code
@@ -542,7 +548,7 @@ express()
     })
     */
 
-    .post('/deleteclient/:clientid', (req, res) =>{
+    .post('/deleteclient/:clientid', (req, res) => {
         pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientid}'`);
         res.redirect('/clients');
     })
