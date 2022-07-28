@@ -511,16 +511,18 @@ express()
         var uEmail = req.body.inEmail;
         var uAreaCode = req.body.inAreaCode;
         var uPhone = req.body.inPhnNum;
-        // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
-        // var uAddr = req.body.inAddr; // not being used atm; iteration 3
+        var uConMethod = req.body.inlineRadioOptions; // temporary; need to figure out how to get answer from radio buttons
+        var uAddr = req.body.inAddr; // not being used atm; iteration 3
 
+        console.log('values in radio button: ', uConMethod);
+        
         var inOldName = req.body.oldName; // get oldname
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
         const resultCheck = await pool.query(checkQuery);
       
         if(resultCheck.rowCount==0) {
-            var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}' WHERE clientid='${uCID}'`;      
+            var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
             // var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
             try {
                 const result = await pool.query(getUInputQuery);
