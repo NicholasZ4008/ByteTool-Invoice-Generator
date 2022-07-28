@@ -215,12 +215,12 @@
                                             <!-- Area code can only be one digit long; need to show error when user is typing more than 1 digit -->
                                             <label for="inputAreaCode" class="form-label">Area Code</label>
                                             <input type="text" class="form-control" id="inputAreaCode" name="inAreaCode" 
-                                            value="<%= r.phone.slice(1,2) %>">
+                                            value="<%= r.cntrycode %>">
                                         </div>
                                         <div class="col-8">
                                             <label for="inputPhoneNumber" class="form-label">Phone Number</label>
                                             <input type="tel" class="form-control" id="inputPhoneNumber" name="inPhnNum" 
-                                            value="<%= r.phone.slice(2) %>">
+                                            value="<%= r.phone %>">
 
                                         </div>
                                     </div>

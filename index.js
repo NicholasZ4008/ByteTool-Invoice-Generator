@@ -444,20 +444,20 @@ express()
         // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
         // var uAddr = req.body.inAddr; // not being used atm; iteration 3
 
-        // If uPhone is null dont add plus
-        if(uPhone.length!=0) {
-            var uPhnNum = '+' + uAreaCode + uPhone;
-            console.log(uPhnNum);
-        } else {
-            var uPhnNum = "";
-        }
+        // // If uPhone is null dont add plus
+        // if(uPhone.length!=0) {
+        //     var uPhnNum = '+' + uAreaCode + uPhone;
+        //     console.log(uPhnNum);
+        // } else {
+        //     var uPhnNum = "";
+        // }
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uPhnNum}', 'EMAIL', 'temp street')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', 'EMAIL', 'temp street')`;
       
           try {
             const result = await pool.query(getUInputQuery);
