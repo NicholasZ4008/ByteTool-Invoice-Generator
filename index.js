@@ -442,16 +442,8 @@ express()
         var uEmail = req.body.inEmail;
         var uAreaCode = req.body.inAreaCode;
         var uPhone = req.body.inPhnNum;
-        var uConMethod = req.body.inlineRadioOptions; // need to figure out how to get answer from radio buttons
-        var uAddr = req.body.inAddr; // not being used atm; iteration 3
-
-        // // If uPhone is null dont add plus
-        // if(uPhone.length!=0) {
-        //     var uPhnNum = '+' + uAreaCode + uPhone;
-        //     console.log(uPhnNum);
-        // } else {
-        //     var uPhnNum = "";
-        // }
+        var uConMethod = req.body.inlineRadioOptions; 
+        var uAddr = req.body.inAddr; 
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}'`;
         const resultCheck = await pool.query(checkQuery);
@@ -511,19 +503,17 @@ express()
         var uEmail = req.body.inEmail;
         var uAreaCode = req.body.inAreaCode;
         var uPhone = req.body.inPhnNum;
-        // var uConMethod = req.body.inlineRadioOptions; // need to figure out how to get answer from radio buttons
+        var uConMethod = req.body.inlineRadioOptions;
         var uAddr = req.body.inAddr;
-
-        // console.log('values in radio button: ', uConMethod);
         
-        var inOldName = req.body.oldName; // get oldname
+        var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
       
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
         const resultCheck = await pool.query(checkQuery);
       
         if(resultCheck.rowCount==0) {
-            var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
-            // var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
+            // var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
+            var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
             try {
                 const result = await pool.query(getUInputQuery);
                 // window.alert('Successfully updated Student.');
