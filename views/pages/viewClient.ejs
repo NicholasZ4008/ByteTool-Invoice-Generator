@@ -189,38 +189,41 @@
                 <h1 class="display-1">View Clients</h1>
 
                 <div class="formcontainer">
-                    <form action="/newClient/Added" method="post">
+                    <!-- <form action="/newClient/Added" method="post"> -->
                     <!-- <form action="/newClient/Added" target="_blank" method="post"> -->
                         <%rows.forEach(function(r) {%>
                             <div class="row g-3 gx-5">
                                 <div class="col-md-6">
                                     <h2>Client Information</h2>
                                     <label for="inputClientName" class="form-label">Client Name (i.e. Company)</label>
-                                    <input type="text" class="form-control" id="inputClientName" name="inClName">
+                                    <input type="text" class="form-control" id="inputClientName" name="inClName" 
+                                    value="<%= r.clientname %>" readonly="readonly">
                                     <br>
                                     <label for="inputClientID" class="form-label">Client ID</label>
-                                    <input type="text" class="form-control" id="inputClientID" name="inClID">
+                                    <input type="text" class="form-control" id="inputClientID" name="inClID"
+                                    value="<%= r.clientid %>"  readonly="readonly">
                                 </div>
 
                                 <div class="col-md-6">
                                     <h2>Contact Information</h2>
                                     <label for="inputContactName" class="form-label">Contact Name</label>
                                     <input type="text" class="form-control" id="inputContactName" name="inConName" 
-                                    placeholder = "<%= r.clientName%>">
+                                    value="<%= r.contactname %>" readonly="readonly">
                                     <br>
                                     <label for="inputEmail" class="form-label">Email-Address</label>
                                     <input type="email" class="form-control" id="inputEmail" name="inEmail" 
-                                    placeholder="<%= r.email%>">
+                                    value="<%= r.email %>" readonly="readonly">
                                     <br>
                                     <div class="row g-3 gx-5">
                                         <div class="col-4">
                                             <label for="inputAreaCode" class="form-label">Area Code</label>
-                                            <input type="text" class="form-control" id="inputAreaCode" name="inAreaCode">
+                                            <input type="text" class="form-control" id="inputAreaCode" name="inAreaCode"
+                                            value="<%= r.phone.slice(1,2) %>" readonly="readonly">
                                         </div>
                                         <div class="col-8">
                                             <label for="inputPhoneNumber" class="form-label">Phone Number</label>
                                             <input type="tel" class="form-control" id="inputPhoneNumber" name="inPhnNum"
-                                            placeholder="<%= r.phone%> ">
+                                            value="<%= r.phone.slice(2) %>" readonly="readonly">
 
                                         </div>
                                     </div>
@@ -262,7 +265,7 @@
 
                             </div>
                         <% }); %>
-                    </form>
+                    <!-- </form> -->
                 </div>
             </div>  
         </div>
