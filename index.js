@@ -443,7 +443,7 @@ express()
         var uAreaCode = req.body.inAreaCode;
         var uPhone = req.body.inPhnNum;
         // var uConMethod = 'BOTH'; // temporary; need to figure out how to get answer from radio buttons
-        // var uAddr = req.body.inAddr; // not being used atm; iteration 3
+        var uAddr = req.body.inAddr; // not being used atm; iteration 3
 
         // // If uPhone is null dont add plus
         // if(uPhone.length!=0) {
@@ -458,7 +458,7 @@ express()
       
         if(resultCheck.rowCount==0) {
       
-          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', 'EMAIL', 'temp street')`;
+          var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', 'EMAIL', '${uAddr}')`;
       
           try {
             const result = await pool.query(getUInputQuery);
