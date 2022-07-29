@@ -554,7 +554,7 @@ express()
         pool.query(getInvoiceQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
-            res.render('pages/client', results);
+            res.render('pages/invoicepage', results);
         })
     })
 
@@ -572,7 +572,13 @@ express()
     })
 
     .get('/paymentspage', (req, res) => {
-        res.render('pages/paymentspage')
+        var getInvoiceQuery = "SELECT * FROM  payments ORDER BY paymentid";
+        pool.query(getInvoiceQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/paymentspage', results);
+        })
+
     })
 
     .get('/dashboard', (req, res) => {

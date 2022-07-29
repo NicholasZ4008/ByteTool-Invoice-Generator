@@ -197,31 +197,38 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                <% rows.forEach(function(r) { %>
-                    <div class="tablecontainer">
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Invoice Number</th>
-                                    <th>Status</th>
-                                    <th>Client Name</th>
-                                    <th>Amount</th>
-                                    <th>Balance Remaining</th>
-                                    <th>Invoice Data (DD-MM-YYYY)</th>
-                                    <th>Payment Deadline (DD-MM-YYYY</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+
+                <div class="tablecontainer">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Invoice Number</th>
+                                <th>Status</th>
+                                <th>Invoice Date(DD-MM-YYYY)</th>
+                                <th>Payment Deadline</th>
+                                <th>Total Amount</th>
+                                <th>Balance</th>
+                                <th>Client Name</th>
+                                <th>Client ID</th>
+                                <th>Order #</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% rows.forEach(function(r) { %>
                                 <tr>
                                     <td>
-                                        <%= r.invoiceID %>
+                                        <%= r.invoiceid %>
                                     </td>
                                     <td>
                                         <%= r.status %>
                                     </td>
                                     <td>
-                                        <%= r.clientName%>
+                                        <%= r.invoicedate%>
+                                    </td>
+                                    <td>
+                                        <%= r.paymentdeadline %>
                                     </td>
                                     <td>
                                         <%= r.totalamount %>
@@ -230,10 +237,13 @@
                                         <%= r.balance %>
                                     </td>
                                     <td>
-                                        <%= r.invoiceDate %>
+                                        <%= r.clientname%>
                                     </td>
                                     <td>
-                                        <%= r.paymentdeadline %>
+                                        <%= r.clientid%>
+                                    </td>
+                                    <td>
+                                        <%= r.ordernum%>
                                     </td>
                                     <td>
                                         <a href="/viewinvoice/<%= r.clientid%>" class="btn btn-secondary">
@@ -246,13 +256,14 @@
                                         </a>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <% }); %>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
 
 
-                        <!-- <form id="new-invoice">
+
+                <!-- <form id="new-invoice">
             <table>
                 <tr>
                     <td>
@@ -270,7 +281,7 @@
             </table>
         </form> -->
 
-                        <!-- <div>
+                <!-- <div>
             <table id="invoiceinfotable">
                 <tr>
                     <th>Invoice Number</th>

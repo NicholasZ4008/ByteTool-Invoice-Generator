@@ -188,11 +188,78 @@
                 <h1 class="display-1">Payments</h1>
                 <br>
                 <br>
-                <h2 class="display-5"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-cone-striped" viewBox="0 0 16 16">
-                        <path
-                            d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z" />
-                    </svg></i> In progress for future</h2>
+                <div class="input-group">
+                    <!-- Button for new Clients -->
+                    <!-- <form action="/newClient.html"> -->
+                    <form method="GET" action="/addInvoice">
+                        <input id="new-button" class="btn btn-secondary" type="submit" value="New" />
+                    </form>
+
+
+                    <!-- Search Button -->
+                    <div class="form-outline">
+                        <input id="search-input" type="search" placeholder="Search" id="form1" class="form-control" />
+
+                    </div>
+                    <button id="search-button" type="button" class="btn btn-secondary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="tablecontainer">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Payment ID</th>
+                                <th>Status</th>
+                                <th>Payment Date(DD-MM-YYYY)</th>
+                                <th>Total Amount</th>
+                                <th>Invoice ID</th>
+                                <th>Method</th>
+                                <th>Notes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% rows.forEach(function(r) { %>
+                                <tr>
+                                    <td>
+                                        <%= r.paymentid %>
+                                    </td>
+                                    <td>
+                                        <%= r.paymentstatus %>
+                                    </td>
+                                    <td>
+                                        <%= r.paymentdate%>
+                                    </td>
+                                    <td>
+                                        <%= r.amount %>
+                                    </td>
+                                    <td>
+                                        <%= r.invoiceid %>
+                                    </td>
+                                    <td>
+                                        <%= r.method %>
+                                    </td>
+                                    <td>
+                                        <%= r.notes%>
+                                    </td>
+
+                                    <td>
+                                        <a href="/viewPayment/<%= r.clientid%>" class="btn btn-secondary">
+                                            View Payments
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/editPayment/<%= r.clientid%>" class="btn btn-secondary">
+                                            Edit Payments
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
