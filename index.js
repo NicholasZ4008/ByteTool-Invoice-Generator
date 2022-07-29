@@ -408,7 +408,7 @@ express()
 
     })
 
-    // Update by Nabila (2022/28/07): modified query to provide number of pending invoices and remaining balance
+    // Update by Nabila (2022/28/07): modified getQuery to provide number of pending invoices and remaining balance
     .get('/clients', (req, res) => {
         // var getQuery = "SELECT * FROM clients ORDER BY clientid";
         var getQuery = `
