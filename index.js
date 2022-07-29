@@ -568,7 +568,19 @@ express()
     })
 
     .get('/productspage', (req, res) => {
-        res.render('pages/productspage')
+        var getQuery = `
+        SELECT Product.productid, productname, modelseries, description, price, totalquantity 
+        FROM Product 
+        LEFT JOIN (SELECT productid, SUM(quantity) AS totalquantity FROM OrderByLine GROUP BY productid) AS q 
+        ON Product.productid = q.productid 
+        ORDER BY Product.productid;
+        `;
+
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/productspage', results);
+        })
     })
 
     .get('/paymentspage', (req, res) => {
