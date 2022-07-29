@@ -339,14 +339,7 @@ express()
     //})
 
     // Update by Nabila (7/20/2022): View All Clients Page (Table format)
-    .get('/clients', (req, res) => {
-        var getQuery = "SELECT * FROM clients ORDER BY clientid";
-        pool.query(getQuery, (error, result) => {
-            if (error) res.end(error);
-            var results = { 'rows': result.rows };
-            res.render('pages/client', results);
-        })
-    })
+
 
     .get('/register', (req, res) => {
         res.render('pages/register');
@@ -412,6 +405,15 @@ express()
 
     })
 
+    .get('/clients', (req, res) => {
+        var getQuery = "SELECT * FROM clients ORDER BY clientid";
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/client', results);
+        })
+    })
+
     // Do we still need this?? (***)
     .get('/newClient.html', function (request, response) {
 
@@ -466,10 +468,6 @@ express()
         }
     })
 
-    .get('/invoicepage', (req, res) => {
-        res.render('pages/invoicepage');
-    })
-
     //buggy viewclient code
     // Fixed by Nabila: Forgot quotes around ${clientID} in line 484
     .get('/viewclient/:clientid', (req, res) => {
@@ -498,7 +496,6 @@ express()
     .get('pages/editClient', (req, res) => {
         res.redirect('pages/editClient')
     })
-
 
 
     .post('/updateclient/:clientid', async (req, res) => {
@@ -547,6 +544,19 @@ express()
         })
     })
     */
+
+    .get('/invoicepage', (req, res) => {
+        var getInvoiceQuery = "SELECT * FROM invoices ORDER BY invoiceid";
+        pool.query(getInvoiceQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/client', results);
+        })
+    })
+
+    .get("/addInvoice", (req,res) =>{
+        res.render("/pages/createinvoice")
+    })
 
     .post('/deleteclient/:clientid', (req, res) => {
         pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientid}'`);

@@ -183,7 +183,7 @@
                 <div class="input-group">
                     <!-- Button for new Clients -->
                     <!-- <form action="/newClient.html"> -->
-                    <form action="">
+                    <form method = "GET" action ="/addInvoice">
                         <input id="new-button" class="btn btn-secondary" type="submit" value="New" />
                     </form>
 
@@ -197,106 +197,96 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-
-                <div class="tablecontainer">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Invoice Number</th>
-                                <th>Status</th>
-                                <th>Client Name</th>
-                                <th>Amount</th>
-                                <th>Balance Remaining</th>
-                                <th>Invoice Data (DD-MM-YYYY)</th>
-                                <th>Payment Deadline (DD-MM-YYYY</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>008</td>
-                                <td>Draft</td>
-                                <td>Maya Baker</td>
-                                <td>$80.00</td>
-                                <td>$80.00</td>
-                                <td>16-07-2022</td>
-                                <td>15-08-2022</td>
-                                <td><a>view</a> <a>edit</a></td>
-                            </tr>
-                            <tr>
-                                <td>008</td>
-                                <td>Draft</td>
-                                <td>Maya Baker</td>
-                                <td>$80.00</td>
-                                <td>$80.00</td>
-                                <td>16-07-2022</td>
-                                <td>15-08-2022</td>
-                                <td><a>view</a> <a>edit</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-
-                    <!-- <form id="new-invoice">
-        <table>
-            <tr>
-                <td>
-                    <button> New </button>
-                    <input class="search" placeholder="Search Inside..."></input>
-                    <button class="dropbtn"> Filter by status...</button>
-
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                <% rows.forEach(function(r) { %>
+                    <div class="tablecontainer">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Invoice Number</th>
+                                    <th>Status</th>
+                                    <th>Client Name</th>
+                                    <th>Amount</th>
+                                    <th>Balance Remaining</th>
+                                    <th>Invoice Data (DD-MM-YYYY)</th>
+                                    <th>Payment Deadline (DD-MM-YYYY</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><%= r.invoiceID %></td>
+                                    <td><%= r.status %></td>
+                                    <td><%= r.clientName%></td>
+                                    <td><%= r.totalamount %></td>
+                                    <td><%= r.balance %></td>
+                                    <td><%= r.invoiceDate %></td>
+                                    <td><%= r.paymentdeadline %></td>
+                                    <td><a href="/viewinvoice/<%= r.invoiceid %>">view</a> <a href="/editinvoice/<%= r.invoiceid %>">edit</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </td>
-            </tr>
-        </table>
-     </form> -->
+                <% }); %>
 
-                    <!-- <div>
-        <table id="invoiceinfotable">
-            <tr>
-                <th>Invoice Number</th>
-                <th>Status</th>
-                <th>Client Name</th>
-                <th>Amount</th>
-                <th>Balance Remaining</th>
-                <th>Invoice Data (DD-MM-YYYY)</th>
-                <th>Payment Deadline (DD-MM-YYYY</th>
-                <th>Actions</th>
-            </tr>
-            <tr>
-                <td>008</td>
-                <td>Draft</td>
-                <td>Maya Baker</td>
-                <td>$80.00</td>
-                <td>$80.00</td>
-                <td>16-07-2022</td>
-                <td>15-08-2022</td>
-                <td><a>view</a> <a>edit</a></td>
-            </tr>
-            <tr>
-                <td>008</td>
-                <td>Draft</td>
-                <td>Maya Baker</td>
-                <td>$80.00</td>
-                <td>$80.00</td>
-                <td>16-07-2022</td>
-                <td>15-08-2022</td>
-                <td><a>view</a> <a>edit</a></td>
-            </tr>
-        </table>
 
-        <div class="arrowbtn">
-            <a href="#" class="previous round">&#8249;</a>
-            <a href="#" class="next round">&#8250;</a>
-        </div>
+            <!-- <form id="new-invoice">
+            <table>
+                <tr>
+                    <td>
+                        <button> New </button>
+                        <input class="search" placeholder="Search Inside..."></input>
+                        <button class="dropbtn"> Filter by status...</button>
 
-     </div> -->
-                </div>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form> -->
+
+                        <!-- <div>
+            <table id="invoiceinfotable">
+                <tr>
+                    <th>Invoice Number</th>
+                    <th>Status</th>
+                    <th>Client Name</th>
+                    <th>Amount</th>
+                    <th>Balance Remaining</th>
+                    <th>Invoice Data (DD-MM-YYYY)</th>
+                    <th>Payment Deadline (DD-MM-YYYY</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>008</td>
+                    <td>Draft</td>
+                    <td>Maya Baker</td>
+                    <td>$80.00</td>
+                    <td>$80.00</td>
+                    <td>16-07-2022</td>
+                    <td>15-08-2022</td>
+                    <td><a>view</a> <a>edit</a></td>
+                </tr>
+                <tr>
+                    <td>008</td>
+                    <td>Draft</td>
+                    <td>Maya Baker</td>
+                    <td>$80.00</td>
+                    <td>$80.00</td>
+                    <td>16-07-2022</td>
+                    <td>15-08-2022</td>
+                    <td><a>view</a> <a>edit</a></td>
+                </tr>
+            </table>
+
+            <div class="arrowbtn">
+                <a href="#" class="previous round">&#8249;</a>
+                <a href="#" class="next round">&#8250;</a>
+            </div>
+
+        </div> -->
             </div>
         </div>
     </div>
