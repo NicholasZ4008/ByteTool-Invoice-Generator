@@ -213,12 +213,15 @@ async function sendMail(req, res) {
 //app start
 const { Pool } = require('pg');
 const { response } = require('express');
-const { connect } = require('http2');
+//const { connect } = require('http2');
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+
+    connectionString: 'postgres://postgres:root77@localhost/my22'
+
+    /* connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
-    }
+    } */
 });
 
 var username = "";
@@ -411,6 +414,7 @@ express()
             if (error) res.end(error);
             var results = { 'rows': result.rows };
             res.render('pages/client', results);
+            res.end();
         })
     })
 
@@ -554,7 +558,7 @@ express()
         })
     })
 
-    .get("/addInvoice", (req,res) =>{
+    .get("/addInvoice", (req, res) => {
         res.render("/pages/createinvoice")
     })
 

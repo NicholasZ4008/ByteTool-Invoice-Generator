@@ -183,7 +183,7 @@
                 <div class="input-group">
                     <!-- Button for new Clients -->
                     <!-- <form action="/newClient.html"> -->
-                    <form method = "GET" action ="/addInvoice">
+                    <form method="GET" action="/addInvoice">
                         <input id="new-button" class="btn btn-secondary" type="submit" value="New" />
                     </form>
 
@@ -214,22 +214,45 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><%= r.invoiceID %></td>
-                                    <td><%= r.status %></td>
-                                    <td><%= r.clientName%></td>
-                                    <td><%= r.totalamount %></td>
-                                    <td><%= r.balance %></td>
-                                    <td><%= r.invoiceDate %></td>
-                                    <td><%= r.paymentdeadline %></td>
-                                    <td><a href="/viewinvoice/<%= r.invoiceid %>">view</a> <a href="/editinvoice/<%= r.invoiceid %>">edit</a></td>
+                                    <td>
+                                        <%= r.invoiceID %>
+                                    </td>
+                                    <td>
+                                        <%= r.status %>
+                                    </td>
+                                    <td>
+                                        <%= r.clientName%>
+                                    </td>
+                                    <td>
+                                        <%= r.totalamount %>
+                                    </td>
+                                    <td>
+                                        <%= r.balance %>
+                                    </td>
+                                    <td>
+                                        <%= r.invoiceDate %>
+                                    </td>
+                                    <td>
+                                        <%= r.paymentdeadline %>
+                                    </td>
+                                    <td>
+                                        <a href="/viewinvoice/<%= r.clientid%>" class="btn btn-secondary">
+                                            View Invoice
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/editinvoice/<%= r.clientid%>" class="btn btn-secondary">
+                                            Edit Invoice
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                <% }); %>
+                    <% }); %>
 
 
-            <!-- <form id="new-invoice">
+                        <!-- <form id="new-invoice">
             <table>
                 <tr>
                     <td>
