@@ -415,7 +415,7 @@ express()
         SELECT Clients.clientid, Clients.clientname, contactname, email, cntrycode, phone, pendingInvoices, remBalance
         FROM Clients
         LEFT JOIN (SELECT clientid, COUNT(*) AS pendingInvoices, SUM(balance) AS remBalance
-        FROM invoices WHERE status IN ('PAID', 'PENDING', 'PARTIALLY PAID') 
+        FROM invoices WHERE status IN ('OVERDUE', 'PENDING', 'PARTIALLY PAID') 
         GROUP BY clientid) AS q
         ON Clients.clientid = q.clientid
         ORDER BY Clients.clientid;
