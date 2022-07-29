@@ -408,8 +408,19 @@ express()
 
     })
 
+    // Update by Nabila (2022/28/07): modified query to provide number of pending invoices and remaining balance
     .get('/clients', (req, res) => {
-        var getQuery = "SELECT * FROM clients ORDER BY clientid";
+        // var getQuery = "SELECT * FROM clients ORDER BY clientid";
+        var getQuery = `
+        SELECT Clients.clientid, Clients.clientname, contactname, email, cntrycode, phone, pendingInvoices, remBalance
+        FROM Clients
+        LEFT JOIN (SELECT clientid, COUNT(*) AS pendingInvoices, SUM(balance) AS remBalance
+        FROM invoices WHERE status IN ('PAID', 'PENDING', 'PARTIALLY PAID') 
+        GROUP BY clientid) AS q
+        ON Clients.clientid = q.clientid
+        ORDER BY Clients.clientid;
+        `;
+
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
