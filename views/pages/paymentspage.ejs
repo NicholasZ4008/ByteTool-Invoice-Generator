@@ -210,14 +210,15 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Payment ID</th>
-                                <th>Status</th>
-                                <th>Payment Date(DD-MM-YYYY)</th>
-                                <th>Total Amount</th>
-                                <th>Invoice ID</th>
-                                <th>Method</th>
-                                <th>Notes</th>
-                                <th>Actions</th>
+                                <th scope="col">Payment ID</th>
+                                <th scope="col">Transaction Status</th>
+                                <th scope="col">Client Name</th>
+                                <th scope="col">Amount Paid</th>
+                                <th scope="col">Invoice ID</th>
+                                <th scope="col">Payment Method</th>
+                                <th scope="col">Payment Date (YYYY-MM-DD)</th>
+                                <th scope="col">Additional Notes</th>
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -230,7 +231,7 @@
                                         <%= r.paymentstatus %>
                                     </td>
                                     <td>
-                                        <%= r.paymentdate%>
+                                        <%= r.clientname%>
                                     </td>
                                     <td>
                                         <%= r.amount %>
@@ -242,16 +243,19 @@
                                         <%= r.method %>
                                     </td>
                                     <td>
+                                        <%= r.paymentdate%>
+                                    </td>
+                                    <td>
                                         <%= r.notes%>
                                     </td>
 
                                     <td>
-                                        <a href="/viewPayment/<%= r.clientid%>" class="btn btn-secondary">
+                                        <a href="/viewpayment/<%= r.clientid%>" class="btn btn-secondary">
                                             View Payments
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/editPayment/<%= r.clientid%>" class="btn btn-secondary">
+                                        <a href="/editpayment/<%= r.clientid%>" class="btn btn-secondary">
                                             Edit Payments
                                         </a>
                                     </td>

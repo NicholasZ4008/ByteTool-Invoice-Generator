@@ -456,10 +456,10 @@ express()
 
         if (resultCheck.rowCount == 0) {
 
-            var getUInputQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
+            var getQuery = `INSERT INTO clients VALUES ('${uCID}', '${uCName}', '${uConName}', '${uEmail}', '${uAreaCode}', '${uPhone}', '${uConMethod}', '${uAddr}')`;
 
             try {
-                const result = await pool.query(getUInputQuery);
+                const result = await pool.query(getQuery);
                 // window.alert('Successfully added Client.');
                 res.redirect(`/clients`);
             }
@@ -476,8 +476,8 @@ express()
     // Fixed by Nabila: Forgot quotes around ${clientID} in line 484
     .get('/viewclient/:clientid', (req, res) => {
         let clientID = req.params.clientid;
-        var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
-        pool.query(getIDQuery, (error, result) => {
+        var getQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
+        pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
             res.render('pages/viewClient', results);
@@ -487,9 +487,9 @@ express()
     //change the student info
     .get('/editClient/:clientid', (req, res) => {
         let clientID = req.params.clientid;
-        var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
+        var getQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
 
-        pool.query(getIDQuery, (error, result) => {
+        pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
 
             var results = { 'rows': result.rows };
@@ -519,10 +519,10 @@ express()
         const resultCheck = await pool.query(checkQuery);
 
         if (resultCheck.rowCount == 0) {
-            // var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
-            var getUInputQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
+            // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
+            var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
             try {
-                const result = await pool.query(getUInputQuery);
+                const result = await pool.query(getQuery);
                 // window.alert('Successfully updated Student.');
                 res.redirect(`/clients`); //redirect to all clients page
             }
@@ -539,8 +539,8 @@ express()
     /*buggy template code
     .get('/template/:clientid', (req,res) => {
         let clientID = req.body.clientid;
-        var getIDQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
-        pool.query(getIDQuery, (error, result) =>{
+        var getQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
+        pool.query(getQuery, (error, result) =>{
             if(error)
                 res.end(error);
             var results = {'rows':result.rows};
@@ -550,8 +550,8 @@ express()
     */
 
     .get('/invoicepage', (req, res) => {
-        var getInvoiceQuery = "SELECT * FROM invoices ORDER BY invoiceid";
-        pool.query(getInvoiceQuery, (error, result) => {
+        var getQuery = "SELECT * FROM invoices ORDER BY invoiceid";
+        pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
             res.render('pages/invoicepage', results);
@@ -583,9 +583,16 @@ express()
         })
     })
 
+    // Modified getQuery: Nabila (07/29/2022)
     .get('/paymentspage', (req, res) => {
-        var getInvoiceQuery = "SELECT * FROM  payments ORDER BY paymentid";
-        pool.query(getInvoiceQuery, (error, result) => {
+        // var getQuery = "SELECT * FROM  payments ORDER BY paymentid";
+        var getQuery = `
+        SELECT paymentid, paymentStatus, clients.clientname, amount, payments.invoiceid, method, payments.paymentDate, notes 
+        FROM Payments 
+        LEFT JOIN Invoices ON Payments.invoiceid = Invoices.invoiceid 
+        LEFT JOIN Clients ON Invoices.clientid = Clients.clientid;
+        `;
+        pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
             res.render('pages/paymentspage', results);
