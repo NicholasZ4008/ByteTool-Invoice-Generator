@@ -216,12 +216,12 @@ const { response } = require('express');
 //const { connect } = require('http2');
 const pool = new Pool({
 
-    connectionString: 'postgres://postgres:root77@localhost/my22'
+    /* connectionString: 'postgres://postgres:root77@localhost/my22' */
 
-    /* connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
-    } */
+    }
 });
 
 var username = "";
