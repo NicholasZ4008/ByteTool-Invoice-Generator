@@ -419,7 +419,7 @@ express()
         GROUP BY clientid) AS q
         ON Clients.clientid = q.clientid
         ORDER BY Clients.clientid;
-        `;
+        `; 
 
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
