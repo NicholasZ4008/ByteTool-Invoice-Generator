@@ -554,6 +554,10 @@ express()
         })
     })
 
+    .get("/addInvoice", (req,res) =>{
+        res.render("/pages/createinvoice")
+    })
+
     .post('/deleteclient/:clientid', (req, res) => {
         pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientid}'`);
         res.redirect('/clients');
