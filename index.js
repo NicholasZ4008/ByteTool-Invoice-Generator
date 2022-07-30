@@ -598,6 +598,16 @@ express()
         res.render('pages/newProduct')
     })
 
+    .get('/viewProductInfo/:productID', (req, res) => {
+        let pID = req.params.productID;
+        var getProductQuery = `SELECT * FROM clients WHERE clientid='${pID}'`;
+        pool.query(getProductQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/viewProductInfo', results);
+        })
+    })
+
     // Modified getQuery: Nabila (07/29/2022)
     .get('/paymentspage', (req, res) => {
         // var getQuery = "SELECT * FROM  payments ORDER BY paymentid";
