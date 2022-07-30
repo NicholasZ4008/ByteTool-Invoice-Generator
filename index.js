@@ -598,6 +598,7 @@ express()
         res.render('pages/newProduct')
     })
 
+    //edit this later with nabila query
     .get('/viewProductInfo/:productID', (req, res) => {
         let pID = req.params.productID;
         var getProductQuery = `SELECT * FROM clients WHERE clientid='${pID}'`;
