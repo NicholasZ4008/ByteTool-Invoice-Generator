@@ -594,6 +594,10 @@ express()
         })
     })
 
+    .get('/newProduct', (req,res)=>{
+        res.render('pages/newProduct')
+    })
+
     // Modified getQuery: Nabila (07/29/2022)
     .get('/paymentspage', (req, res) => {
         // var getQuery = "SELECT * FROM  payments ORDER BY paymentid";
