@@ -186,66 +186,62 @@
 
 
 
-            <!-- Main contecnt section, will be different for all the pages -->
+            <!-- Modfied by Nabila: renamed "Client" with "Product" -->
+            <!--                    renamed/reorganized all input fields and label names-->
+            <!--                    "billingAddress" and all duplicate "inputProductID" changed to appropriate labels -->
+            <!--                    added missing id names -->
+            <!--                    Change price to decimal type input -->
+            <!-- Main content section, will be different for all the pages -->
             <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
-                <h1 class="display-1">New Product</h1>
+                <h1 class="display-1">View Product</h1>
 
                 <% rows.forEach(function(r) { %>
-
                     <div class="formcontainer">
-                        <form action="/newClient/Added" method="post">
-                        <!-- <form action="/newClient/Added" target="_blank" method="post"> -->
+                        <form action="/newProduct/Added" method="post">
+                        <!-- <form action="/newProduct/Added" target="_blank" method="post"> -->
                             <div class="row g-3 gx-5">
                                 <div class="col-md-6">
-                                    <h2>Client Information</h2>
-                                    <label for="inputClientName" class="form-label">Product ID</label>
-                                    <input type="text" class="form-control" id="inputClientName" name="prdctID"
-                                    value="<%=r.productID">
+                                    <h2>Product Information</h2>
+                                    <label for="inputProductID" class="form-label">Product ID</label>
+                                    <input type="text" class="form-control" id="inputProductID" name="prdctID"
+                                    value="<%=r.productid">
                                     <br>
-
-                                    <label for="inputClientID" class="form-label">Model Series:</label>
-                                    <input type="text" class="form-control" id="inputClientID" name="prdctModel"
+                                    <label for="inputModelSeries" class="form-label">Model Series</label>
+                                    <input type="text" class="form-control" id="inputModelSeries" name="prdctModel"
                                     value="<%=r.modelSeries%>">
-
                                     <br>
-
-                                    <label class="form-label">Product Name:</label>
-                                    <input type="text" class="form-control" id="inputClientID" name="prdctName"
+                                    <label for="inputProductName" class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" id="inputProductName" name="prdctName"
                                     value="<%=r.productName%>">
-
                                     <br>
-
-                                    <label class="form-label">Price:</label>
-                                    <input type="text" class="form-control" id="inputClientID" name="prdctPrice"
-                                    value="<%=r.price%>">
-
+                                    <label for="inputPrice" class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
+                                    min=0 step=0.01 value=<%=r.price%>>
                                 </div>
+
                                 <div class="col-md-6">
-                                    <label class="form-label">Category:</label>
-                                    <input type="text" class="form-control" id="inputClientID" name="prdctCategory"
+                                    <label id= "inputCategory" class="form-label">Category</label>
+                                    <input type="text" class="form-control" id="inputCategory" name="prdctCategory"
                                     value="<%=r.category%>">
                                 </div>
 
                                 <div class="row g-3 gx-5">
                                     <div class="col-md-12">
-                                        <!-- <h2>Billing Address</h2> -->
-                                        <label for="billingAddress" class="form-label">Description:</label>
-                                        <input type="textarea" class="form-control" id="billingAddress" name="prdctDesc" classname="Text1" 
-                                        cols="40" rows="5">
-                                        <!-- </textarea> -->
+                                        <label for="inputDescription" class="form-label">Description</label>
+                                        <input type="textarea" class="form-control" id="inputDescription" name="prdctDesc" classname="Text1" 
+                                        cols="40" rows="5" value="<%= r.description%>">
                                         <br>
                                     </div>
                                 </div>
 
-                                <!-- <form method="POST" action="/newClient/Added"> -->
+                                <!-- <form method="POST" action="/newProduct/Added"> -->
                                 <div class="col-12" style="text-align: center;">
-                                    <!-- <form method="POST" action="/newClient/Added"> -->
-                                        <a class="btn btn-secondary" href="/editProductInfo/<%=r.productID%>">Edit Product</a>
+                                    <!-- <form method="POST" action="/newProduct/Added"> -->
+                                        <a class="btn btn-secondary" href="/editProductInfo/<%=r.productid%>">Edit Product</a>
                                         <a class="btn btn-secondary" href="/productspage">return to product page</a>
                                     <!-- </form> -->
                                 </div>
                                 <!-- </form> -->
-
                             </div>
                         </form>
                     </div>
@@ -254,5 +250,4 @@
             </div>
         </div>
     </div>
-
 </body>

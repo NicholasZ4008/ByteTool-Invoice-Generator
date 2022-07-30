@@ -531,7 +531,12 @@ express()
 
         if (resultCheck.rowCount == 0) {
             // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
-            var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' WHERE clientid='${uCID}'`;
+            var getQuery = `
+            UPDATE clients 
+            SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
+            cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' 
+            WHERE clientid='${uCID}';
+            `;
             try {
                 const result = await pool.query(getQuery);
                 // window.alert('Successfully updated Student.');
@@ -599,10 +604,11 @@ express()
     })
 
     //edit this later with nabila query
-    .get('/viewProductInfo/:productID', (req, res) => {
-        let pID = req.params.productID;
-        var getProductQuery = `SELECT * FROM clients WHERE clientid='${pID}'`;
-        pool.query(getProductQuery, (error, result) => {
+    // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
+    .get('/viewProductInfo/productid', (req, res) => {
+        let pID = req.params.productid;
+        var getQuery = `SELECT * FROM product WHERE productid='${pID}';`;
+        pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
             res.render('pages/viewProductInfo', results);

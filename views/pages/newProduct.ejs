@@ -186,64 +186,60 @@
 
 
 
-            <!-- Main contecnt section, will be different for all the pages -->
+            <!-- Modified by Nabila: Copy/Pasted and replaced all code below -->
+            <!-- Main content section, will be different for all the pages -->
             <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
                 <h1 class="display-1">New Product</h1>
 
-                <div class="formcontainer">
-                    <form action="/newClient/Added" method="post">
-                    <!-- <form action="/newClient/Added" target="_blank" method="post"> -->
-                        <div class="row g-3 gx-5">
-                            <div class="col-md-6">
-                                <h2>Client Information</h2>
-                                <label for="inputClientName" class="form-label">Product ID</label>
-                                <input type="text" class="form-control" id="inputClientName" name="prdctID">
-                                <br>
-
-                                <label for="inputClientID" class="form-label">Model Series:</label>
-                                <input type="text" class="form-control" id="inputClientID" name="prdctModel">
-
-                                <br>
-
-                                <label class="form-label">Product Name:</label>
-                                <input type="text" class="form-control" id="inputClientID" name="prdctName">
-
-                                <br>
-
-                                <label class="form-label">Price:</label>
-                                <input type="text" class="form-control" id="inputClientID" name="prdctPrice">
-
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Category:</label>
-                                <input type="text" class="form-control" id="inputClientID" name="prdctCategory">
-                            </div>
-
+                <% rows.forEach(function(r) { %>
+                    <div class="formcontainer">
+                        <form action="/newProduct/Added" method="post">
+                        <!-- <form action="/newProduct/Added" target="_blank" method="post"> -->
                             <div class="row g-3 gx-5">
-                                <div class="col-md-12">
-                                    <!-- <h2>Billing Address</h2> -->
-                                    <label for="billingAddress" class="form-label">Description:</label>
-                                    <input type="textarea" class="form-control" id="billingAddress" name="prdctDesc" classname="Text1" 
-                                    cols="40" rows="5">
-                                    <!-- </textarea> -->
+                                <div class="col-md-6">
+                                    <h2>Product Information</h2>
+                                    <label for="inputProductID" class="form-label">Product ID</label>
+                                    <input type="text" class="form-control" id="inputProductID" name="prdctID">
                                     <br>
+                                    <label for="inputModelSeries" class="form-label">Model Series</label>
+                                    <input type="text" class="form-control" id="inputModelSeries" name="prdctModel">
+                                    <br>
+                                    <label for="inputProductName" class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" id="inputProductName" name="prdctName">
+                                    <br>
+                                    <label for="inputPrice" class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
+                                    min=0 value=0 step=0.01 placeholder=0.00>
                                 </div>
-                            </div>
 
-                            <!-- <form method="POST" action="/newClient/Added"> -->
-                            <div class="col-12" style="text-align: center;">
-                                <!-- <form method="POST" action="/newClient/Added"> -->
-                                    <form method="POST" action="/newProduct/Added">
-                                        <input id="addClient" type="submit" class="btn btn-secondary" value="Add Product">
-                                    </form>
-                                    
+                                <div class="col-md-6">
+                                    <label id= "inputCategory" class="form-label">Category</label>
+                                    <input type="text" class="form-control" id="inputCategory" name="prdctCategory">
+                                </div>
+
+                                <div class="row g-3 gx-5">
+                                    <div class="col-md-12">
+                                        <label for="inputDescription" class="form-label">Description</label>
+                                        <input type="textarea" class="form-control" id="inputDescription" name="prdctDesc" classname="Text1" 
+                                        cols="40" rows="5">
+                                        <br>
+                                    </div>
+                                </div>
+
+                                <!-- <form method="POST" action="/newProduct/Added"> -->
+                                <div class="col-12" style="text-align: center;">
+                                    <!-- <form method="POST" action="/newProduct/Added"> -->
+                                        <!-- <a class="btn btn-secondary" href="/editProductInfo/<%=r.productid%>">Edit Product</a> -->
+                                        <button id="addProduct" type="submit" class="btn btn-secondary">Add Product</button>
+                                        <a class="btn btn-secondary" href="/productspage">return to product page</a>
+                                    <!-- </form> -->
+                                </div>
                                 <!-- </form> -->
                             </div>
-                            <!-- </form> -->
+                        </form>
+                    </div>
+                <% }); %>
 
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
