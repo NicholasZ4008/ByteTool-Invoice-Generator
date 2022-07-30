@@ -615,6 +615,17 @@ express()
         })
     })
 
+    .get('/editProductInfo/productid', (req, res) => {
+        let pID = req.params.productid;
+        var getQuery = `SELECT * FROM product WHERE productid='${pID}';`;
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/editProductInfo', results);
+        })
+    })
+
+
     // Modified getQuery: Nabila (07/29/2022)
     .get('/paymentspage', (req, res) => {
         // var getQuery = "SELECT * FROM  payments ORDER BY paymentid";
