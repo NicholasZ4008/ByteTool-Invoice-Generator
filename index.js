@@ -615,7 +615,7 @@ express()
         })
     })
 
-    .get('/editProductInfo/productid', (req, res) => {
+    .get('/editProductInfo/:productid', (req, res) => {
         let pID = req.params.productid;
         var getQuery = `SELECT * FROM product WHERE productid='${pID}';`;
         pool.query(getQuery, (error, result) => {
