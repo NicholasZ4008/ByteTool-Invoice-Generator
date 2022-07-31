@@ -607,7 +607,7 @@ express()
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
     .get('/viewProductInfo/:productid', (req, res) => {
         let pID = req.params.productid;
-        var getQuery = `SELECT * FROM product WHERE productid='${pID}';`;
+        var getQuery = `SELECT * FROM product WHERE productid='${pID}'`;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };

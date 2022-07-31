@@ -195,41 +195,47 @@
             <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
                 <h1 class="display-1">View Product</h1>
 
-                <% rows.forEach(function(r) { %>
-                    <div class="formcontainer">
-                        <form action="/newProduct/Added" method="post">
-                        <!-- <form action="/newProduct/Added" target="_blank" method="post"> -->
+                <!-- <% rows.forEach(function(r) { %> -->
+                <div class="formcontainer">
+                    <form action="/newProduct/Added" method="post">
+                    <!-- <form action="/newProduct/Added" target="_blank" method="post"> -->
+                        <% rows.forEach(function(r) { %>
                             <div class="row g-3 gx-5">
                                 <div class="col-md-6">
                                     <h2>Product Information</h2>
                                     <label for="inputProductID" class="form-label">Product ID</label>
                                     <input type="text" class="form-control" id="inputProductID" name="prdctID"
-                                    value="<%=r.productid">
-                                    <br>
+                                    value="<%=r.productid" readonly="readonly">
+                                    <!-- <br>
                                     <label for="inputModelSeries" class="form-label">Model Series</label>
                                     <input type="text" class="form-control" id="inputModelSeries" name="prdctModel"
-                                    value="<%=r.modelSeries%>">
+                                    value="<%=r.modelSeries%>" readonly="readonly"> -->
                                     <br>
                                     <label for="inputProductName" class="form-label">Product Name</label>
                                     <input type="text" class="form-control" id="inputProductName" name="prdctName"
-                                    value="<%=r.productName%>">
+                                    value="<%=r.productName%>" readonly="readonly">
                                     <br>
                                     <label for="inputPrice" class="form-label">Price</label>
                                     <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
-                                    min=0 step=0.01 value=<%=r.price%>>
+                                    min=0 step=0.01 value=<%=r.price%> readonly="readonly">
                                 </div>
 
                                 <div class="col-md-6">
+                                    <h2></h2>
+                                    <label for="inputModelSeries" class="form-label">Model Series</label>
+                                    <input type="text" class="form-control" id="inputModelSeries" name="prdctModel"
+                                    value="<%=r.modelSeries%>" readonly="readonly">
+                                    <br>
                                     <label id= "inputCategory" class="form-label">Category</label>
                                     <input type="text" class="form-control" id="inputCategory" name="prdctCategory"
-                                    value="<%=r.category%>">
+                                    value="<%=r.category%>" readonly="readonly">
                                 </div>
 
                                 <div class="row g-3 gx-5">
                                     <div class="col-md-12">
                                         <label for="inputDescription" class="form-label">Description</label>
                                         <input type="textarea" class="form-control" id="inputDescription" name="prdctDesc" classname="Text1" 
-                                        cols="40" rows="5" value="<%= r.description%>">
+                                        cols="40" rows="5" value="<%= r.description%>" readonly="readonly">
                                         <br>
                                     </div>
                                 </div>
@@ -243,9 +249,10 @@
                                 </div>
                                 <!-- </form> -->
                             </div>
-                        </form>
-                    </div>
-                <% }); %>
+                        <% }); %>
+                    </form>
+                </div>
+                <!-- <% }); %> -->
 
             </div>
         </div>
