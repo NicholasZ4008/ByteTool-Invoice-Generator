@@ -578,8 +578,10 @@ express()
         res.render("/pages/createinvoice")
     })
 
+    //changed req.body to req.params to debug (Nick)
     .post('/deleteclient/:clientid', (req, res) => {
-        pool.query(`DELETE FROM clients WHERE clientid='${req.body.clientid}'`);
+        var clID = req.params.clientid;
+        pool.query(`DELETE FROM clients WHERE clientid='${clID}'`);
         res.redirect('/clients');
     })
 
