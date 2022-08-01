@@ -578,10 +578,10 @@ express()
         res.render("/pages/createinvoice")
     })
 
-    //changed req.body to req.params to debug (Nick)
+    //changed req.body to req.params to debug (Nick) AUG-1 and added ;
     .post('/deleteclient/:clientid', (req, res) => {
-        var clID = req.params.clientid;
-        pool.query(`DELETE FROM clients WHERE clientid='${clID}'`);
+        let clID = req.params.clientid;
+        pool.query(`DELETE FROM clients WHERE clientid='${clID}';`);
         res.redirect('/clients');
     })
 
@@ -609,7 +609,7 @@ express()
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
     .get('/viewProductInfo/:productid', (req, res) => {
         let pID = req.params.productid;
-        var getQuery = `SELECT * FROM product WHERE productid='${pID}'`;
+        var getQuery = `SELECT * FROM product WHERE productid='${pID}';`;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
@@ -625,6 +625,13 @@ express()
             var results = { 'rows': result.rows };
             res.render('pages/editProductInfo', results);
         })
+    })
+
+    //added a deleteproduct (NICK) AUG-1
+    .post('/deleteProductInfo/:productid', (req, res) => {
+        let pID = req.params.productid;
+        pool.query(`DELETE FROM product WHERE productid='${pID}';`);
+        res.redirect('/clients');
     })
 
 
