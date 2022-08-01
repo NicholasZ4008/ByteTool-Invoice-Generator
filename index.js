@@ -631,7 +631,7 @@ express()
     .post('/deleteProductInfo/:productid', (req, res) => {
         let pID = req.params.productid;
         pool.query(`DELETE FROM product WHERE productid='${pID}';`);
-        res.redirect('/clients');
+        res.redirect('/productspage');
     })
 
 
