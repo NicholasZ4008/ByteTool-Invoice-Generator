@@ -552,10 +552,10 @@ express()
 
     })
 
-    /*buggy template code
+    //fixing up template (NICK) AUG-1
     .get('/template/:clientid', (req,res) => {
-        let clientID = req.body.clientid;
-        var getQuery = `SELECT * FROM clients WHERE clientid='${clientID}'`;
+        let clID = req.body.clientid;
+        var getQuery = `SELECT * FROM clients WHERE clientid='${clID}'`;
         pool.query(getQuery, (error, result) =>{
             if(error)
                 res.end(error);
@@ -563,7 +563,7 @@ express()
             res.render('pages/template', results);
         })
     })
-    */
+    
 
     .get('/invoicepage', (req, res) => {
         var getQuery = "SELECT * FROM invoices ORDER BY invoiceid";
