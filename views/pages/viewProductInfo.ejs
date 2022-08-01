@@ -244,7 +244,7 @@
                                         <a class="btn btn-secondary" href="/editProductInfo/<%= r.productid %>">Edit Product</a>
                                         <a class="btn btn-secondary" href="/productspage">return to product page</a>
 
-                                        <form action="/deleteProductInfo/:productid" method="POST">
+                                        <form action="/deleteProductInfo/<%=r.productid%>" method="POST">
                                             <input value="Delete Product" type="submit" class="btn btn-secondary">
                                         </form>
 
