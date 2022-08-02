@@ -216,12 +216,12 @@ const { response } = require('express');
 //const { connect } = require('http2');
 const pool = new Pool({
 
-    /* connectionString: 'postgres://postgres:root77@localhost/my22' */
+    connectionString: 'postgres://postgres:root77@localhost/my22'
 
-    connectionString: process.env.DATABASE_URL,
+    /* connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
-    }
+    } */
 });
 
 var username = "";
@@ -419,7 +419,7 @@ express()
         GROUP BY clientid) AS q
         ON Clients.clientid = q.clientid
         ORDER BY Clients.clientid;
-        `; 
+        `;
 
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
@@ -553,17 +553,17 @@ express()
     })
 
     //fixing up template (NICK) AUG-1
-    .get('/template/:clientid', (req,res) => {
+    .get('/template/:clientid', (req, res) => {
         let clID = req.body.clientid;
         var getQuery = `SELECT * FROM clients WHERE clientid='${clID}'`;
-        pool.query(getQuery, (error, result) =>{
-            if(error)
+        pool.query(getQuery, (error, result) => {
+            if (error)
                 res.end(error);
-            var results = {'rows':result.rows};
+            var results = { 'rows': result.rows };
             res.render('pages/template', results);
         })
     })
-    
+
 
     .get('/invoicepage', (req, res) => {
         var getQuery = "SELECT * FROM invoices ORDER BY invoiceid";
@@ -571,6 +571,26 @@ express()
             if (error) res.end(error);
             var results = { 'rows': result.rows };
             res.render('pages/invoicepage', results);
+        })
+    })
+
+    .get('/generateInvoice/:invoiceid', (req, res) => {
+        var getQuery = "SELECT i.status, i.invoiceid, i.invoicedate, i.paymentdeadline, i.clientname, i.clientid, c.contactname, c.email, c.cntrycode, c.phone, c.address, p.productid, p.productname, q.discount, q.price, q.quantity, q.price*q.quantity AS totalprice_row, r.totalcost AS subtotal, i.totalamount FROM Clients c INNER JOIN Invoices i ON c.clientid = i.clientid INNER JOIN Orders r ON i.ordernum = r.ordernum INNER JOIN Orderbyline q ON r.ordernum = q.ordernum INNER JOIN Product p ON q.productid = p.productid;"
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/generatedInvoice', results);
+        })
+    })
+
+
+
+    .get('/viewinvoice/:invoiceid', (req, res) => {
+        var getQuery = "SELECT * FROM invoices ORDER BY invoiceid";
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/viewinvoice', results);
         })
     })
 
@@ -601,7 +621,7 @@ express()
         })
     })
 
-    .get('/newProduct', (req,res)=>{
+    .get('/newProduct', (req, res) => {
         res.render('pages/newProduct')
     })
 
