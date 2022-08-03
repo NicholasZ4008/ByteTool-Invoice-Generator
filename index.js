@@ -667,10 +667,96 @@ express()
         })
     })
 
+    //prototyping newPayment (Nick Aug-1)
+    /*
+    .post('/newPayment',(req,res)=>{
+        var uPayID = req.body.paymentID
+        var uPaymentStatus = req.body.paymentStatus
+        var uPaymentDate = req.body.paymentDate
+        var uAmount = req.body.amnt
+        var uInvoiceID = req.body.invoiceID
+        var uMethod = req.body.paymentMethod
+        var uNotes = req.body.paymentNotes
+
+        var checkQuery = `SELECT * FROM Payments WHERE paymentID='${uPayID}'`;
+        const resultCheck = await pool.query(checkQuery);
+
+        if (resultCheck.rowCount == 0) {
+
+            var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`
+
+            try {
+                const result = await pool.query(getQuery);
+                // window.alert('Successfully added Client.');
+                res.redirect(`pages/paymentspage`);
+            }
+            catch (error) {
+                res.end(error);
+            }
+        }else {
+            // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
+            res.redirect(`pages/paymentspage`);
+        }
+    })
+    */
+
+    .get('/viewPayment/:paymentid',(req,res)=>{
+        let payID = req.params.paymentid;
+        var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/viewPayment', results);
+        })
+    })
+
+    .get('/editPayment/:paymentid',(req,res)=>{
+        let payID = req.params.paymentid;
+        var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/editPayment', results);
+        })
+    })
+
+    /*
+    .post('/updatePayment/:paymentid',(req,res)=>{
+        var uPayID = req.body.paymentID
+        var uPaymentStatus = req.body.paymentStatus
+        var uPaymentDate = req.body.paymentDate
+        var uAmount = req.body.amnt
+        var uInvoiceID = req.body.invoiceID
+        var uMethod = req.body.paymentMethod
+        var uNotes = req.body.paymentNotes
+
+        //var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
+
+       //var checkQuery = `SELECT * FROM payments WHERE paymentid='${uCID}' AND paymentid!='${inOldName}'`;
+        const resultCheck = await pool.query(checkQuery);
+
+        if (resultCheck.rowCount == 0) {
+            // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
+            var getQuery = `UPDATE Payments SET paymentid='${uPayID}', paymentstatus='${uPaymentStatus}', 
+            paymentdate='${uPaymentDate}', amount=${uAmount}, invoiceid='${uInvoiceID}', 
+            method='${uMethod}', notes='${uNotes}' WHERE paymentid='${uPayID}';`;
+            try {
+                const result = await pool.query(getQuery);
+                // window.alert('Successfully updated Student.');
+                res.redirect(`/paymentspage`); //redirect to all clients page
+            }
+            catch (error) {
+                res.end(error);
+            }
+        } else {
+            // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
+            res.redirect(`/paymentspage`);
+        }
+    })
+    */
+
     .get('/dashboard', (req, res) => {
         res.render('pages/loggedin')
     })
 
-
-
-    .listen(PORT, () => console.log(`Listening on ${PORT}`))
+.listen(PORT, () => console.log(`Listening on ${PORT}`))
