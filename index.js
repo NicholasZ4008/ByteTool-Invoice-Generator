@@ -695,10 +695,12 @@ express()
         var uMethod = req.body.paymentMethod;
         var uNotes = req.body.paymentNotes;
 
-        var checkQuery = `SELECT * FROM Payments WHERE paymentID='${uPayID}'`;
-        const resultCheck = await pool.query(checkQuery);
+        //var sameID = req.body.
 
-        if (resultCheck.rowCount == 0) {
+        //var checkQuery = `SELECT * FROM Payments WHERE paymentID='${uPayID}' `;
+        //const resultCheck = await pool.query(checkQuery);
+
+        //if (resultCheck.rowCount == 0) {
 
             var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`
             try {
@@ -709,10 +711,10 @@ express()
             catch (error) {
                 res.end(error);
             }
-        }else {
+        //}else {
             // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
-            res.redirect(`pages/paymentspage`);
-        }
+            //res.redirect(`pages/paymentspage`);
+        //}
     })
     
     
