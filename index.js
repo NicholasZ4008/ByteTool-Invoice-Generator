@@ -655,16 +655,17 @@ express()
     })
 
     .get('/newPayment', (req, res) => {
-        var getQuery = `
-        SELECT c.clientid, c.clientname, i.invoiceid, i.clientid AS clientid_invoices 
-        FROM Clients c, Invoices i;
-        `;
+        // var getQuery = `
+        // SELECT c.clientid, c.clientname, i.invoiceid, i.clientid AS clientid_invoices 
+        // FROM Clients c, Invoices i;
+        // `;
 
-        pool.query(getQuery, (error, result) => {
-            if (error) res.end(error);
-            var results = { 'rows': result.rows };
-            res.render('pages/newPayment', results);
-        })
+        // pool.query(getQuery, (error, result) => {
+        //     if (error) res.end(error);
+        //     var results = { 'rows': result.rows };
+        //     res.render('pages/newPayment', results);
+        // })
+        res.render('pages/newPayment', results);
     })
 
     //prototyping newPayment (Nick Aug-1)
