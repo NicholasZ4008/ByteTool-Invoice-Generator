@@ -615,7 +615,7 @@ express()
         var description = req.body.
     })
     */
-   
+
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
     .get('/viewProductInfo/:productid', (req, res) => {
@@ -687,13 +687,13 @@ express()
     //prototyping newPayment (Nick Aug-1)
     
     .post('/newPayment/Added',(req,res)=>{
-        var uPayID = req.body.paymentID
-        var uPaymentStatus = req.body.paymentStatus
-        var uPaymentDate = req.body.paymentDate
-        var uAmount = req.body.amnt
-        var uInvoiceID = req.body.invoiceID
-        var uMethod = req.body.paymentMethod
-        var uNotes = req.body.paymentNotes
+        var uPayID = req.body.paymentID;
+        var uPaymentStatus = req.body.paymentStatus;
+        var uPaymentDate = req.body.paymentDate;
+        var uAmount = req.body.amnt;
+        var uInvoiceID = req.body.invoiceID;
+        var uMethod = req.body.paymentMethod;
+        var uNotes = req.body.paymentNotes;
 
         var checkQuery = `SELECT * FROM Payments WHERE paymentID='${uPayID}'`;
         const resultCheck = await pool.query(checkQuery);
