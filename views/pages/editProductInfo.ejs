@@ -241,12 +241,16 @@
                                 <!-- <form method="POST" action="/newProduct/Added"> -->
                                 <div class="col-12" style="text-align: center;">
                                     <!-- <form method="POST" action="/newProduct/Added"> -->
-                                
+                                        
+                                        <form action="/updateProductInfo/<%=r.productid%>" method="POST">
+                                            <input value="Update" type="submit" class="btn btn-secondary">
+                                        </form>
+
                                         <form action="/deleteProductInfo/<%=r.productid%>" method="POST">
                                             <input value="Delete Product" type="submit" class="btn btn-secondary">
                                         </form>
 
-                                        <a class="btn btn-secondary" href="/productspage">return to product page</a>
+                                        <a class="btn btn-secondary" href="/productspage">Return</a>
                                     <!-- </form> -->
                                 </div>
                                 <!-- </form> -->

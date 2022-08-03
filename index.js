@@ -605,6 +605,11 @@ express()
         res.render('pages/newProduct')
     })
 
+    /*
+    .post('/newProductAdd', (req,res)=>{
+    })
+    */
+   
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
     .get('/viewProductInfo/:productid', (req, res) => {
@@ -627,6 +632,12 @@ express()
         })
     })
 
+    //NICK aug-2
+    .post('updateProductInfo/:productid',(req,res)=>{
+        var pID = req.params.productid;
+
+    })
+
     //added a deleteproduct (NICK) AUG-1
     .post('/deleteProductInfo/:productid', (req, res) => {
         let pID = req.params.productid;
@@ -634,8 +645,6 @@ express()
         res.redirect('/productspage');
     })
 
-
-    //this is a comment
 
     // Modified getQuery: Nabila (07/29/2022)
     .get('/paymentspage', (req, res) => {
@@ -654,6 +663,7 @@ express()
 
     })
 
+    //Nick
     .get('/newPayment', (req, res) => {
         var getQuery = `
         SELECT c.clientid, c.clientname, i.invoiceid, i.clientid AS clientid_invoices 
@@ -699,7 +709,8 @@ express()
         }
     })
     */
-
+    
+    //Nick Aug 2
     .get('/viewPayment/:paymentid',(req,res)=>{
         let payID = req.params.paymentid;
         var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
@@ -710,6 +721,7 @@ express()
         })
     })
 
+    //Nick Aug 2
     .get('/editPayment/:paymentid',(req,res)=>{
         let payID = req.params.paymentid;
         var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
@@ -720,7 +732,7 @@ express()
         })
     })
 
-    /*
+    /* buggy update payment code (NICK AUG 2nd)
     .post('/updatePayment/:paymentid',(req,res)=>{
         var uPayID = req.body.paymentID
         var uPaymentStatus = req.body.paymentStatus
