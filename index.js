@@ -714,7 +714,7 @@ express()
         var uPaymentStatus = req.body.paymentStatus;
         var uPaymentDate = req.body.paymentDate;
         var uAmount = req.body.amnt;
-        var uInvoiceID = req.body.invoiceID;
+        var uInvoiceID = req.body.invoiceID_ClientName; //change name
         var uMethod = req.body.paymentMethod;
         var uNotes = req.body.paymentNotes;
 
