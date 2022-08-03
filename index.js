@@ -514,7 +514,7 @@ express()
     })
 
 
-    .post('/updateclient/:clientid', async (req, res) => {
+    .post('/updateClient/:clientid', async (req, res) => {
 
         var uCID = req.body.inClID;
         var uCName = req.body.inClName;
