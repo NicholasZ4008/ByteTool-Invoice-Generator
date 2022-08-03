@@ -260,7 +260,11 @@
                             </div>
 
                             <div class="col-12" style="text-align: center;">
-                                <button id="addPayment" type="submit" class="btn btn-secondary">Add Payment</button>
+
+                                <form method ="POST" action="/newPayment/Added">
+                                    <input id="addPayment" type="submit" class="btn btn-secondary" value="Add Payment"></input>
+                                </form>
+                                
                                 <a class="btn btn-secondary" href="/paymentspage">return to payment page</a>
                             </div>
                         </div>

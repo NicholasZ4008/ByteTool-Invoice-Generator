@@ -605,13 +605,14 @@ express()
         res.render('pages/newProduct')
     })
 
-    /*
     .post('/newProduct/Added', (req,res)=>{
         var ID = req.body.prdctID
         var name = req.body.prdctName
         var price = req.body.prdctPrice
+        var model = req.body.prdctModel
+        var category = req.body.prdctCategory
+        var description = req.body.
     })
-    */
 
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
@@ -642,7 +643,7 @@ express()
 
     })
     */
-   
+
     //added a deleteproduct (NICK) AUG-1
     .post('/deleteProductInfo/:productid', (req, res) => {
         let pID = req.params.productid;
@@ -682,8 +683,8 @@ express()
     })
 
     //prototyping newPayment (Nick Aug-1)
-    /*
-    .post('/newPayment',(req,res)=>{
+    
+    .post('/newPayment/Added',(req,res)=>{
         var uPayID = req.body.paymentID
         var uPaymentStatus = req.body.paymentStatus
         var uPaymentDate = req.body.paymentDate
@@ -712,7 +713,7 @@ express()
             res.redirect(`pages/paymentspage`);
         }
     })
-    */
+    
     
     //Nick Aug 2
     .get('/viewPayment/:paymentid',(req,res)=>{
