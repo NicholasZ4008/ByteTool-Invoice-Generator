@@ -668,7 +668,6 @@ express()
             var results = { 'rows': result.rows };
             res.render('pages/paymentspage', results);
         })
-
     })
 
     //Nick
