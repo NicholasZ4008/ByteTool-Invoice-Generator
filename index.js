@@ -605,6 +605,7 @@ express()
         res.render('pages/newProduct')
     })
 
+    /*
     .post('/newProduct/Added', (req,res)=>{
         var ID = req.body.prdctID
         var name = req.body.prdctName
@@ -613,7 +614,8 @@ express()
         var category = req.body.prdctCategory
         var description = req.body.
     })
-
+    */
+   
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
     .get('/viewProductInfo/:productid', (req, res) => {
@@ -699,7 +701,6 @@ express()
         if (resultCheck.rowCount == 0) {
 
             var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`
-
             try {
                 const result = await pool.query(getQuery);
                 // window.alert('Successfully added Client.');
