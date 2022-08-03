@@ -513,7 +513,7 @@ express()
         res.redirect('pages/editClient')
     })
 
-
+    //not working
     .post('/updateClient/:clientid', async (req, res) => {
 
         var uCID = req.body.inClID;
@@ -553,6 +553,12 @@ express()
 
     })
 
+    //changed req.body to req.params to debug (Nick) AUG-1 and added ;
+    .post('/deleteClient/:clientID', (req, res) => {
+        pool.query(`DELETE FROM clients WHERE clientid='${clientID}';`);
+        res.redirect('/clients');
+    })
+
     //fixing up template (NICK) AUG-1
     .get('/template/:clientid', (req, res) => {
         let clID = req.body.clientid;
@@ -579,12 +585,7 @@ express()
         res.render("/pages/createinvoice")
     })
 
-    //changed req.body to req.params to debug (Nick) AUG-1 and added ;
-    .post('/deleteclient/:clientid', (req, res) => {
-        let clID = req.params.clientid;
-        pool.query(`DELETE FROM clients WHERE clientid='${clID}';`);
-        res.redirect('/clients');
-    })
+    
 
     .get('/productspage', (req, res) => {
         var getQuery = `
