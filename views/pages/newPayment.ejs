@@ -193,41 +193,48 @@
                 <div class="formcontainer">
                     <form action="/newPayment/Added" method="post">
                     <!-- <form action="/newPayment/Added" target="_blank" method="post"> -->
+                        <!-- <% rows.forEach(function(r) { %> -->
                         <div class="row g-3 gx-5">
                             <div class="row g-3 gx-5">
                                 <div class="col-md-12">
                                     <h2>Payment Information</h2>
-                                        <label class="form-label">Payment ID</label>
-                                        <input type="text" class="form-control" id="inputClientName" name="paymentID">
+                                        <label for="inputpaymentID" class="form-label">Payment ID</label>
+                                        <input type="text" class="form-control" id="inputpaymentID" name="paymentID">
                                         <br>
 
-                                        <label class="form-label">Payment Status</label>
-                                        <input type="text" class="form-control" id="inputClientName" name="paymentStatus">
+                                        <label for="inputpaymentStatus" class="form-label">Payment Status</label>
+                                        <input type="text" class="form-control" id="inputpaymentStatus" name="paymentStatus">
                                         <br>
 
-                                        <label class="form-label">Payment Date</label>
-                                        <input type="text" class="form-control" id="inputClientName" name="paymentDate">
+                                        <label for="inputPaymentDate" class="form-label">Payment Date</label>
+                                        <input type="text" class="form-control" id="inputPaymentDate" name="paymentDate">
                                         <br>
 
-                                        <label for="inputClientName" class="form-label">Client Name</label>
+                                        <!-- <label for="inputClientName" class="form-label">Client Name</label>
                                         <input type="text" class="form-control" id="inputClientName" name="clientName"> 
-                                        <br>
+                                        <br> -->
 
-                                        <!-- 
-                                        <select class="form-control" id="inputClientName" name="prdctID">
-                                            <option></option>
+                                        <label for="inputInvoiceID_ClientName" class="form-label">Invoice ID</label>
+                                        <select class="form-control" id="inputInvoiceID_ClientName" name="invoiceID_ClientName" value="">>
+                                            <!-- <% for(var i=0; i < r.length; i++) { %> -->
+                                            <% rows.forEach(function(r) { %>
+                                            <option>
+                                                <%= r.invoiceid %> , <%= r.clientname %>
+                                            </option>
+                                            <!-- <%}%> -->
+                                            <% }); %>
                                         </select>
-                                        -->
-
-                                        
-                                        <label for="inputInvoiceNumber" class="form-label">Invoice ID</label>
-                                        <input type="text" class="form-control" id="inputPaymentName" name="invoiceID">
                                         <br>
+                                       
+                                        
+                                        <!-- <label for="inputInvoiceID_ClientName" class="form-label">Invoice ID</label>
+                                        <input type="text" class="form-control" id="inputInvoiceID_ClientName" name="invoiceID_ClientName">
+                                        <br> -->
 
-                                        <label for="inputBalance" class="form-label">Balance Outstanding</label>
+                                        <!-- <label for="inputBalance" class="form-label">Balance Outstanding</label>
                                         <input type="number" class="form-control" id="inputBalance" name="paymentBalance" 
                                         min=0 value=0 step=0.01 placeholder=0.00>
-                                        <br>
+                                        <br> -->
 
                                         <label for="inputAmount" class="form-label">Amount</label>
                                         <input type="text" class="form-control" id="inputPaymentName" name="amnt">
@@ -268,6 +275,7 @@
                                 <a class="btn btn-secondary" href="/paymentspage">return to payment page</a>
                             </div>
                         </div>
+                        <!-- <% }); %> -->
                     </form>
                 </div>
             </div>
