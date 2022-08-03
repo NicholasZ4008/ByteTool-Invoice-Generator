@@ -194,34 +194,66 @@
                     <form action="/newPayment/Added" method="post">
                     <!-- <form action="/newPayment/Added" target="_blank" method="post"> -->
                         <div class="row g-3 gx-5">
-                            <div class="col-md-6">
-                                <h2>Payment Information</h2>
-                                    <label for="inputPaymentID" class="form-label">Payment ID</label>
-                                    <input type="text" class="form-control" id="inputPaymentID" name="prdctID">
-                                    <!-- <br>
-                                    <label for="inputModelSeries" class="form-label">Model Series</label>
-                                    <input type="text" class="form-control" id="inputModelSeries" name="prdctModel"> -->
-                                    <br>
-                                    <label for="inputPaymentName" class="form-label">Payment Name</label>
-                                    <input type="text" class="form-control" id="inputPaymentName" name="prdctName">
-                                    <br>
-                                    <label for="inputPrice" class="form-label">Price</label>
-                                    <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
-                                    min=0 value=0 step=0.01 placeholder=0.00>
-                            </div>
+                            <div class="row g-3 gx-5">
+                                <div class="col-md-12">
+                                    <h2>Payment Information</h2>
+                                        <label class="form-label">Payment ID</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="paymentID">
+                                        <br>
 
-                            <div class="col-md-6">
-                                <label for="inputModelSeries" class="form-label">Model Series</label>
-                                <input type="text" class="form-control" id="inputModelSeries" name="prdctModel">
-                                <br>
-                                <label id= "inputCategory" class="form-label">Category</label>
-                                <input type="text" class="form-control" id="inputCategory" name="prdctCategory">
+                                        <label class="form-label">Payment Status</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="paymentStatus">
+                                        <br>
+
+                                        <label class="form-label">Payment Date</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="paymentDate">
+                                        <br>
+
+                                        <label for="inputClientName" class="form-label">Client Name</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="clientName"> 
+                                        <br>
+
+                                        <!-- 
+                                        <select class="form-control" id="inputClientName" name="prdctID">
+                                            <option></option>
+                                        </select>
+                                        -->
+
+                                        
+                                        <label for="inputInvoiceNumber" class="form-label">Invoice ID</label>
+                                        <input type="text" class="form-control" id="inputPaymentName" name="invoiceID">
+                                        <br>
+
+                                        <label for="inputPrice" class="form-label">Price</label>
+                                        <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
+                                        min=0 value=0 step=0.01 placeholder=0.00>
+                                        <br>
+
+                                        <label for="inputInvoiceNumber" class="form-label">Amount</label>
+                                        <input type="text" class="form-control" id="inputPaymentName" name="amnt">
+                                        <br>
+
+                                        <label for="inputInvoiceNumber" class="form-label">Method</label>
+                                        <input type="text" class="form-control" id="inputPaymentName" name="paymentMethod">
+                                        <br>
+                                </div>
                             </div>
 
                             <div class="row g-3 gx-5">
                                 <div class="col-md-12">
-                                    <label for="inputDescription" class="form-label">Description</label>
-                                    <input type="textarea" class="form-control" id="inputDescription" name="prdctDesc" classname="Text1" 
+                                    <h2>Billing Information</h2>
+                                    <label for="inputModelSeries" class="form-label">Model Series</label>
+                                    <input type="text" class="form-control" id="inputModelSeries" name="prdctModel">
+                                    <br>
+                                    <label id= "inputCategory" class="form-label">Category</label>
+                                    <input type="text" class="form-control" id="inputCategory" name="prdctCategory">
+                                </div>
+                            </div>
+
+                            <div class="row g-3 gx-5">
+                                <div class="col-md-12">
+                                    <label for="inputNotes" class="form-label">Additional Notes</label>
+                                    <input type="textarea" class="form-control" id="inputNotes" name="paymentNotes" classname="Text1" 
                                     cols="40" rows="5">
                                     <br>
                                 </div>
@@ -237,4 +269,11 @@
             </div>
         </div>
     </div>
+
+    <!-- <script>
+        //set values in selection box
+        function addOption(parentID, optionValue) {
+            // add options
+        }
+    </script> -->
 </body>
