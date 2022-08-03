@@ -224,16 +224,16 @@
                                         <input type="text" class="form-control" id="inputPaymentName" name="invoiceID">
                                         <br>
 
-                                        <label for="inputPrice" class="form-label">Price</label>
-                                        <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
+                                        <label for="inputBalance" class="form-label">Balance Outstanding</label>
+                                        <input type="number" class="form-control" id="inputBalance" name="paymentBalance" 
                                         min=0 value=0 step=0.01 placeholder=0.00>
                                         <br>
 
-                                        <label for="inputInvoiceNumber" class="form-label">Amount</label>
+                                        <label for="inputAmount" class="form-label">Amount</label>
                                         <input type="text" class="form-control" id="inputPaymentName" name="amnt">
                                         <br>
 
-                                        <label for="inputInvoiceNumber" class="form-label">Method</label>
+                                        <label for="inputMethod" class="form-label">Method</label>
                                         <input type="text" class="form-control" id="inputPaymentName" name="paymentMethod">
                                         <br>
                                 </div>
@@ -274,10 +274,15 @@
         </div>
     </div>
 
-    <!-- <script>
+    <script>
         //set values in selection box
-        function addOption(parentID, optionValue) {
+        function addOption() {
             // add options
+            var options = document.getElementById('inputClientName').options;
+
+            for (let i = 0; i < options. length; i++) {
+                //log the value.
+                console.log(options[i]. value);} 
         }
-    </script> -->
+    </script>
 </body>
