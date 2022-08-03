@@ -606,10 +606,13 @@ express()
     })
 
     /*
-    .post('/newProductAdd', (req,res)=>{
+    .post('/newProduct/Added', (req,res)=>{
+        var ID = req.body.prdctID
+        var name = req.body.prdctName
+        var price = req.body.prdctPrice
     })
     */
-   
+
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
     .get('/viewProductInfo/:productid', (req, res) => {
@@ -633,11 +636,13 @@ express()
     })
 
     //NICK aug-2
+    /*
     .post('updateProductInfo/:productid',(req,res)=>{
         var pID = req.params.productid;
 
     })
-
+    */
+   
     //added a deleteproduct (NICK) AUG-1
     .post('/deleteProductInfo/:productid', (req, res) => {
         let pID = req.params.productid;
@@ -665,17 +670,15 @@ express()
 
     //Nick
     .get('/newPayment', (req, res) => {
-        // var getQuery = `
-        // SELECT c.clientid, c.clientname, i.invoiceid, i.clientid AS clientid_invoices 
-        // FROM Clients c, Invoices i;
-        // `;
-
-        // pool.query(getQuery, (error, result) => {
-        //     if (error) res.end(error);
-        //     var results = { 'rows': result.rows };
-        //     res.render('pages/newPayment', results);
-        // })
-        res.render('pages/newPayment', results);
+        var getQuery = `
+        SELECT c.clientid, c.clientname, i.invoiceid, i.clientid AS clientid_invoices 
+        FROM Clients c, Invoices i;
+        `;
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            var results = { 'rows': result.rows };
+            res.render('pages/newPayment', results);
+        })
     })
 
     //prototyping newPayment (Nick Aug-1)
