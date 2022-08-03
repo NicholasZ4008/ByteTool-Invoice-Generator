@@ -579,6 +579,7 @@ express()
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
+            console.log(results);
             res.render('pages/generatedInvoice', results);
         })
     })
