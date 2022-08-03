@@ -228,7 +228,11 @@
                             </div>
 
                             <div class="col-12" style="text-align: center;">
-                                <button id="addProduct" type="submit" class="btn btn-secondary">Add Product</button>
+
+                                <form method="POST" action="/newProduct/Added">
+                                    <input id="addProduct" type="submit" class="btn btn-secondary" value="Add Product Info">
+                                </form>
+
                                 <a class="btn btn-secondary" href="/productspage">return to product page</a>
                             </div>
                         </div>

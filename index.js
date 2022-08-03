@@ -216,7 +216,8 @@ const { response } = require('express');
 //const { connect } = require('http2');
 const pool = new Pool({
 
-    /* connectionString: 'postgres://postgres:root77@localhost/my22' */
+    // Used by Gurnoor for local Testing. Do not delete
+    //connectionString: 'postgres://postgres:root77@localhost/my22'
 
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -419,7 +420,7 @@ express()
         GROUP BY clientid) AS q
         ON Clients.clientid = q.clientid
         ORDER BY Clients.clientid;
-        `; 
+        `;
 
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
@@ -553,17 +554,17 @@ express()
     })
 
     //fixing up template (NICK) AUG-1
-    .get('/template/:clientid', (req,res) => {
+    .get('/template/:clientid', (req, res) => {
         let clID = req.body.clientid;
         var getQuery = `SELECT * FROM clients WHERE clientid='${clID}'`;
-        pool.query(getQuery, (error, result) =>{
-            if(error)
+        pool.query(getQuery, (error, result) => {
+            if (error)
                 res.end(error);
-            var results = {'rows':result.rows};
+            var results = { 'rows': result.rows };
             res.render('pages/template', results);
         })
     })
-    
+
 
     .get('/invoicepage', (req, res) => {
         var getQuery = "SELECT * FROM invoices ORDER BY invoiceid";
@@ -601,20 +602,27 @@ express()
         })
     })
 
-    .get('/newProduct', (req,res)=>{
+    .get('/newProduct', (req, res) => {
         res.render('pages/newProduct')
     })
 
-    /*
+    
     .post('/newProduct/Added', (req,res)=>{
-        var ID = req.body.prdctID
-        var name = req.body.prdctName
-        var price = req.body.prdctPrice
-        var model = req.body.prdctModel
-        var category = req.body.prdctCategory
-        var description = req.body.
+        var uPrdctID = req.body.prdctID
+        var uPrdctName = req.body.prdctName
+        var uPrice = req.body.prdctPrice
+        var uMdlSeries = req.body.prdctModel
+        var uCategory = req.body.prdctCategory
+        var uDescription = req.body.prdctDesc 
+
+        var getQuery = `INSERT INTO product VALUES ('${uPrdctID}', '${uPrdctName}', '${uCategory}', '${uMdlSeries}', ${uPrice}, '${uDescription}');`;
+        pool.query(getQuery, (error, result) => {
+            if (error)
+                res.end(error);
+            res.redirect('/pages/productspage');
+        })
     })
-    */
+    
 
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
@@ -639,12 +647,25 @@ express()
     })
 
     //NICK aug-2
-    /*
     .post('updateProductInfo/:productid',(req,res)=>{
-        var pID = req.params.productid;
+        var uPrdctID = req.body.prdctID;
+        var uPrdctName = req.body.prdctName;
+        var uPrice = req.body.prdctPrice;
+        var uMdlSeries = req.body.prdctModel;
+        var uCategory = req.body.prdctCategory;
+        var uDescription = req.body.prdctDesc;
 
+        var getQuery =`UPDATE product SET productid='${uPrdctID}', productname='${uPrdctName}', 
+        category='${uCategory}', modelseries='${uMdlSeries}', price=${uPrice}, 
+        description='${uDescription}' WHERE productid='${uPrdctID}';`;
+
+        pool.query(getQuery, (error, result) => {
+            if (error)
+                res.end(error);
+            res.redirect('/pages/productspage');
+        })
     })
-    */
+    
 
     //added a deleteproduct (NICK) AUG-1
     .post('/deleteProductInfo/:productid', (req, res) => {
@@ -668,6 +689,7 @@ express()
             var results = { 'rows': result.rows };
             res.render('pages/paymentspage', results);
         })
+
     })
 
     //Nick
@@ -684,8 +706,8 @@ express()
     })
 
     //prototyping newPayment (Nick Aug-1)
-    
-    .post('/newPayment/Added',(req,res)=>{
+
+    .post('/newPayment/Added', (req, res) => {
         var uPayID = req.body.paymentID;
         var uPaymentStatus = req.body.paymentStatus;
         var uPaymentDate = req.body.paymentDate;
@@ -701,32 +723,32 @@ express()
 
         //if (resultCheck.rowCount == 0) {
 
-            var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
-            pool.query(getQuery, (error,result) =>{
-                if(error)
-                  res.end(error);
-                res.redirect('/pages/paymentspage');
-            })
-
-            /*
-            try {
-                const result = await pool.query(getQuery);
-                // window.alert('Successfully added Client.');
-                res.redirect(`pages/paymentspage`);
-            }
-            catch (error) {
+        var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
+        pool.query(getQuery, (error, result) => {
+            if (error)
                 res.end(error);
-            }
-            */
+            res.redirect('/pages/paymentspage');
+        })
+
+        /*
+        try {
+            const result = await pool.query(getQuery);
+            // window.alert('Successfully added Client.');
+            res.redirect(`pages/paymentspage`);
+        }
+        catch (error) {
+            res.end(error);
+        }
+        */
         //}else {
-            // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
-            //res.redirect(`pages/paymentspage`);
+        // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
+        //res.redirect(`pages/paymentspage`);
         //}
     })
-    
-    
+
+
     //Nick Aug 2
-    .get('/viewPayment/:paymentid',(req,res)=>{
+    .get('/viewPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
         var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
         pool.query(getQuery, (error, result) => {
@@ -737,7 +759,7 @@ express()
     })
 
     //Nick Aug 2
-    .get('/editPayment/:paymentid',(req,res)=>{
+    .get('/editPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
         var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
         pool.query(getQuery, (error, result) => {
@@ -786,4 +808,4 @@ express()
         res.render('pages/loggedin')
     })
 
-.listen(PORT, () => console.log(`Listening on ${PORT}`))
+    .listen(PORT, () => console.log(`Listening on ${PORT}`))
