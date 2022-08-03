@@ -14,12 +14,14 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/form.css">
 
-
+    <script src="js/main.js"></script>
 
 </head>
 
 <body>
+
     <!-- For the icons used in the files -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -101,7 +103,7 @@
     </svg>
 
     <!-- Main container for dividing everything up into two columns -->
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="row">
 
             <!-- Left sidebar menu, will be same of rall the pages -->
@@ -116,7 +118,6 @@
 
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-
                             <li>
                                 <form method="GET">
                                     <a href="/dashboard" class="nav-link text-white">
@@ -171,7 +172,6 @@
                                     </a>
                                 </form>
                             </li>
-
                         </ul>
                         <hr>
                         <form action="/logout" method="post">
@@ -183,88 +183,101 @@
                 </div>
             </div>
 
+
+
+
             <!-- Main content section, will be different for all the pages -->
             <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
-                <h1 class="display-1">Payments</h1>
-                <br>
-                <br>
-                <div class="input-group">
-                    <!-- Button for new Clients -->
-                    <!-- <form action="/newClient.html"> -->
-                    <form method="GET" action="/newPayment">
-                        <input id="new-button" class="btn btn-secondary" type="submit" value="New" />
+                <h1 class="display-1">New Payment</h1>
+
+                <div class="formcontainer">
+                    <form action="/newPayment/Added" method="post">
+                    <!-- <form action="/newPayment/Added" target="_blank" method="post"> -->
+                        <div class="row g-3 gx-5">
+                            <div class="row g-3 gx-5">
+                                <div class="col-md-12">
+                                    <h2>Payment Information</h2>
+                                        <label class="form-label">Payment ID</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="paymentID">
+                                        <br>
+
+                                        <label class="form-label">Payment Status</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="paymentStatus">
+                                        <br>
+
+                                        <label class="form-label">Payment Date</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="paymentDate">
+                                        <br>
+
+                                        <label for="inputClientName" class="form-label">Client Name</label>
+                                        <input type="text" class="form-control" id="inputClientName" name="clientName"> 
+                                        <br>
+
+                                        <!-- 
+                                        <select class="form-control" id="inputClientName" name="prdctID">
+                                            <option></option>
+                                        </select>
+                                        -->
+
+                                        
+                                        <label for="inputInvoiceNumber" class="form-label">Invoice ID</label>
+                                        <input type="text" class="form-control" id="inputPaymentName" name="invoiceID">
+                                        <br>
+
+                                        <label for="inputPrice" class="form-label">Price</label>
+                                        <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
+                                        min=0 value=0 step=0.01 placeholder=0.00>
+                                        <br>
+
+                                        <label for="inputInvoiceNumber" class="form-label">Amount</label>
+                                        <input type="text" class="form-control" id="inputPaymentName" name="amnt">
+                                        <br>
+
+                                        <label for="inputInvoiceNumber" class="form-label">Method</label>
+                                        <input type="text" class="form-control" id="inputPaymentName" name="paymentMethod">
+                                        <br>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 gx-5">
+                                <div class="col-md-12">
+                                    <h2>Billing Information</h2>
+                                    <label for="inputModelSeries" class="form-label">Model Series</label>
+                                    <input type="text" class="form-control" id="inputModelSeries" name="prdctModel">
+                                    <br>
+                                    <label id= "inputCategory" class="form-label">Category</label>
+                                    <input type="text" class="form-control" id="inputCategory" name="prdctCategory">
+                                </div>
+                            </div>
+
+                            <div class="row g-3 gx-5">
+                                <div class="col-md-12">
+                                    <label for="inputNotes" class="form-label">Additional Notes</label>
+                                    <input type="textarea" class="form-control" id="inputNotes" name="paymentNotes" classname="Text1" 
+                                    cols="40" rows="5">
+                                    <br>
+                                </div>
+                            </div>
+
+                            <div class="col-12" style="text-align: center;">
+
+                                <form method ="POST" action="/newPayment/Added">
+                                    <input id="addPayment" type="submit" class="btn btn-secondary" value="Add Payment"></input>
+                                </form>
+                                
+                                <a class="btn btn-secondary" href="/paymentspage">return to payment page</a>
+                            </div>
+                        </div>
                     </form>
-
-
-                    <!-- Search Button -->
-                    <div class="form-outline">
-                        <input id="search-input" type="search" placeholder="Search" id="form1" class="form-control" />
-
-                    </div>
-                    <button id="search-button" type="button" class="btn btn-secondary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-
-                <div class="tablecontainer">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Payment ID</th>
-                                <th scope="col">Transaction Status</th>
-                                <th scope="col">Client Name</th>
-                                <th scope="col">Amount Paid</th>
-                                <th scope="col">Invoice ID</th>
-                                <th scope="col">Payment Method</th>
-                                <th scope="col">Payment Date (YYYY-MM-DD)</th>
-                                <th scope="col">Additional Notes</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% rows.forEach(function(r) { %>
-                                <tr>
-                                    <td>
-                                        <%= r.paymentid %>
-                                    </td>
-                                    <td>
-                                        <%= r.paymentstatus %>
-                                    </td>
-                                    <td>
-                                        <%= r.clientname%>
-                                    </td>
-                                    <td>
-                                        <%= r.amount %>
-                                    </td>
-                                    <td>
-                                        <%= r.invoiceid %>
-                                    </td>
-                                    <td>
-                                        <%= r.method %>
-                                    </td>
-                                    <td>
-                                        <%= r.paymentdate%>
-                                    </td>
-                                    <td>
-                                        <%= r.notes%>
-                                    </td>
-
-                                    <td>
-                                        <a href="/viewPayment/<%= r.paymentid%>" class="btn btn-secondary">
-                                            View Payments
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="/editPayment/<%= r.paymentid%>" class="btn btn-secondary">
-                                            Edit Payments
-                                        </a>
-                                    </td>
-                                </tr>
-                                <% }); %>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- <script>
+        //set values in selection box
+        function addOption(parentID, optionValue) {
+            // add options
+        }
+    </script> -->
 </body>
