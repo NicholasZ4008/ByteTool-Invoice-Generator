@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://guarded-springs-56328.herokuapp.com/css/home.css">
     <link rel="stylesheet" href="https://guarded-springs-56328.herokuapp.com/css/form.css">
 
-    <script src="js/main.js"></script>
 
 </head>
 
@@ -198,58 +197,65 @@
                                         </option>
                                         <% }) %>
                                     </select> -->
-                                    
+
                                     <br>
                                     <label for="inputpaymentID" class="form-label">Payment ID</label>
-                                    <input type="text" class="form-control" id="inputpaymentID" name="inPID" 
-                                    value="<%= r.paymentid %>" readonly="readonly">
-                                    
+                                    <input type="text" class="form-control" id="inputpaymentID" name="inPID"
+                                        value="<%= r.paymentid %>" readonly="readonly">
+
                                     <br>
                                     <label for="inputpaymentStatus" class="form-label">Payment Status</label>
-                                    <% if (r.paymentstatus=='COMPLETED') { %>
+                                    <% if (r.paymentstatus=='COMPLETED' ) { %>
                                         <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
                                             <option hidden disabled selected value> Choose status of payment </option>
                                             <option value="COMPLETED" selected="selected"> Completed </option>
                                             <option value="REFUNDED"> Refunded </option>
                                             <option value="DRAFT"> Draft </option>
                                         </select>
-                                    <% } else if (r.paymentstatus=='REFUNDED') { %>
-                                        <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
-                                            <option hidden disabled selected value> Choose status of payment </option>
-                                            <option value="COMPLETED"> Completed </option>
-                                            <option value="REFUNDED" selected="selected"> Refunded </option>
-                                            <option value="DRAFT"> Draft </option>
-                                        </select>
-                                    <% } else if (r.paymentstatus=='DRAFT') { %>
-                                        <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
-                                            <option hidden disabled selected value> Choose status of payment </option>
-                                            <option value="COMPLETED"> Completed </option>
-                                            <option value="REFUNDED"> Refunded </option>
-                                            <option value="DRAFT" selected="selected"> Draft </option>
-                                        </select>
-                                    <% } else {%>
-                                        <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
-                                            <option hidden disabled selected value> Choose status of payment </option>
-                                            <option value="COMPLETED"> Completed </option>
-                                            <option value="REFUNDED"> Refunded </option>
-                                            <option value="DRAFT"> Draft </option>
-                                        </select>
-                                    <% } %>
+                                        <% } else if (r.paymentstatus=='REFUNDED' ) { %>
+                                            <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
+                                                <option hidden disabled selected value> Choose status of payment
+                                                </option>
+                                                <option value="COMPLETED"> Completed </option>
+                                                <option value="REFUNDED" selected="selected"> Refunded </option>
+                                                <option value="DRAFT"> Draft </option>
+                                            </select>
+                                            <% } else if (r.paymentstatus=='DRAFT' ) { %>
+                                                <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
+                                                    <option hidden disabled selected value> Choose status of payment
+                                                    </option>
+                                                    <option value="COMPLETED"> Completed </option>
+                                                    <option value="REFUNDED"> Refunded </option>
+                                                    <option value="DRAFT" selected="selected"> Draft </option>
+                                                </select>
+                                                <% } else {%>
+                                                    <select class="form-control" id="inputpaymentStatus"
+                                                        name="inPayStatus">
+                                                        <option hidden disabled selected value> Choose status of payment
+                                                        </option>
+                                                        <option value="COMPLETED"> Completed </option>
+                                                        <option value="REFUNDED"> Refunded </option>
+                                                        <option value="DRAFT"> Draft </option>
+                                                    </select>
+                                                    <% } %>
 
-                                    <br>
-                                    <label for="inputPaymentDate" class="form-label">Payment Date</label>
-                                    <input type="text" class="form-control" id="inputPaymentDate" name="inPayDate" value="<%= r.paymentdate %>" >
+                                                        <br>
+                                                        <label for="inputPaymentDate" class="form-label">Payment
+                                                            Date</label>
+                                                        <input type="text" class="form-control" id="inputPaymentDate"
+                                                            name="inPayDate" value="<%= r.paymentdate %>">
                                 </div>
 
                                 <div class="col-md-6">
                                     <h2>Billing Information</h2>
                                     <label for="inputAmount" class="form-label">Amount</label>
                                     <input type="number" class="form-control" id="inputAmount" name="inAmnt" min=0
-                                    step=0.01 placeholder=0.00 value=<%= r.amount %>>
-                                    
+                                        step=0.01 placeholder=0.00 value=<%=r.amount %>>
+
                                     <br>
                                     <label for="inputMethod" class="form-label">Method</label>
-                                    <input type="text" class="form-control" id="inputMethod" name="inMethod" placeholder="VISA" value="<%= r.method %>">
+                                    <input type="text" class="form-control" id="inputMethod" name="inMethod"
+                                        placeholder="VISA" value="<%= r.method %>">
                                     <!-- <br> -->
                                     <!-- <label for="inputModelSeries" class="form-label">Model Series</label>
                                     <input type="text" class="form-control" id="inputModelSeries" name="inModelSeries">
@@ -261,28 +267,41 @@
                                 <div class="row g-3 gx-5">
                                     <div class="col-md-12">
                                         <label for="inputNotes" class="form-label">Additional Notes</label>
-                                        <input type="textarea" class="form-control" id="inputNotes" name="inNotes" classname="Text1" 
-                                        cols="40" rows="5" value="<%= r.notes %>">
+                                        <input type="textarea" class="form-control" id="inputNotes" name="inNotes"
+                                            classname="Text1" cols="40" rows="5" value="<%= r.notes %>">
                                         <!-- <br> -->
                                     </div>
                                 </div>
 
                                 <div class="col-12" style="text-align: center;">
                                     <a href="/paymentspage" class="btn btn-secondary">Return</a>
+<<<<<<< HEAD
+
+                                    <form method="POST" action="/updatePayment/<%=r.paymentid%>">
+                                        <input type="submit" value="Update Info" class="btn btn-secondary"></input>
+                                    </form>
+
+=======
                                             
                                     <!-- <form method="POST" action="/updatePayment/<%=r.paymentid%>"> -->
                                         <input type="submit" value="Update Info" class="btn btn-secondary"></input>
                                     <!-- </form> -->
                                     
+>>>>>>> a7ab111dec5de561219501c52bb1cc536e9f7974
                                     <form method="POST" action='/deletepayment/<%=r.paymentid%>'>
                                         <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
                                     </form>
                                 </div>
 
                             </div>
+<<<<<<< HEAD
+                            <% }); %>
+                    </form>
+=======
                         <!-- <% }); %> -->
                         </form>
                     <% }); %>
+>>>>>>> a7ab111dec5de561219501c52bb1cc536e9f7974
                 </div>
             </div>
         </div>

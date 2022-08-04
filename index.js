@@ -616,17 +616,7 @@ express()
         res.redirect('/clients');
     })
 
-    //fixing up template (NICK) AUG-1
-    .get('/template/:clientid', (req, res) => {
-        let clID = req.body.clientid;
-        var getQuery = `SELECT * FROM clients WHERE clientid='${clID}'`;
-        pool.query(getQuery, (error, result) => {
-            if (error)
-                res.end(error);
-            var results = { 'rows': result.rows };
-            res.render('pages/template', results);
-        })
-    })
+
 
 
     .get('/invoicepage', (req, res) => {
@@ -664,6 +654,7 @@ express()
             res.render('pages/viewinvoice', results);
         })
     })
+
 
     .get("/addInvoice", (req, res) => {
         res.render("/pages/createinvoice")
@@ -853,7 +844,7 @@ express()
     .get('/editPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
         // var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
-        
+
         var getQuery = `
         SELECT p.paymentid, p.paymentstatus, p.paymentdate, p.amount, p.invoiceid, p.method, p.notes, i.clientname 
         FROM Payments p 
