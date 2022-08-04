@@ -695,7 +695,7 @@ express()
         pool.query(getQuery, (error, result) => {
             if (error)
                 res.end(error);
-            res.redirect('/pages/productspage');
+            res.redirect('/productspage');
         })
     })
 
