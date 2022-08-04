@@ -726,7 +726,7 @@ express()
     // Last updated by Nabila: Modified the query
     .get('/newPayment', (req, res) => {
         var getQuery = `
-        SELECT c.clientid, c.clientname, i.invoiceid, i.balance AS clientid_invoices 
+        SELECT c.clientid, c.clientname, i.invoiceid, i.balance 
         FROM Invoices i LEFT JOIN Clients c ON i.clientid = c.clientid;
         `;
         pool.query(getQuery, (error, result) => {
