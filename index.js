@@ -219,12 +219,12 @@ const checkDbReturn = require('./functions/checkDbReturn');
 const pool = new Pool({
 
     // Used by Gurnoor for local Testing. Do not delete
-    //connectionString: 'postgres://postgres:root77@localhost/my22'
+    connectionString: 'postgres://postgres:root77@localhost/my22'
 
-    connectionString: process.env.DATABASE_URL,
+    /* connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
-    }
+    } */
 });
 
 var username = "";

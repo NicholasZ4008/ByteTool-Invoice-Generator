@@ -118,16 +118,7 @@
 
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-                            <li>
-                                <form method="GET">
-                                    <a href="/dashboard" class="nav-link text-white">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#speedometer2" />
-                                        </svg>
-                                        Dashboard
-                                    </a>
-                                </form>
-                            </li>
+
 
                             <li class="nav-item">
                                 <form method="GET">
@@ -192,7 +183,7 @@
 
                 <div class="formcontainer">
                     <form action="/newClient/Added" method="post">
-                    <!-- <form action="/newClient/Added" target="_blank" method="post"> -->
+                        <!-- <form action="/newClient/Added" target="_blank" method="post"> -->
                         <div class="row g-3 gx-5">
                             <div class="col-md-6">
                                 <h2>Client Information</h2>
@@ -210,7 +201,8 @@
                                 <input type="text" class="form-control" id="inputContactName" name="inConName">
                                 <br>
                                 <label for="inputEmail" class="form-label">Email-Address</label>
-                                <input type="email" class="form-control" id="inputEmail" name="inEmail" placeholder="xyz@gmail.com">
+                                <input type="email" class="form-control" id="inputEmail" name="inEmail"
+                                    placeholder="xyz@gmail.com">
                                 <br>
                                 <div class="row g-3 gx-5">
                                     <div class="col-4">
@@ -242,8 +234,8 @@
                                 <div class="col-md-12">
                                     <!-- <h2>Billing Address</h2> -->
                                     <label for="billingAddress" class="form-label">Billing Address</label>
-                                    <input type="textarea" class="form-control" id="billingAddress" name="inAddr" classname="Text1" 
-                                    cols="40" rows="5">
+                                    <input type="textarea" class="form-control" id="billingAddress" name="inAddr"
+                                        classname="Text1" cols="40" rows="5">
                                     <!-- </textarea> -->
                                     <br>
                                 </div>
@@ -252,7 +244,7 @@
                             <!-- <form method="POST" action="/newClient/Added"> -->
                             <div class="col-12" style="text-align: center;">
                                 <!-- <form method="POST" action="/newClient/Added"> -->
-                                    <button id="addClient" type="submit" class="btn btn-secondary">Add Client</button>
+                                <button id="addClient" type="submit" class="btn btn-secondary">Add Client</button>
                                 <!-- </form> -->
                             </div>
                             <!-- </form> -->

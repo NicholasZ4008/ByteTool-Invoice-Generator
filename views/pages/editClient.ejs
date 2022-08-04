@@ -118,16 +118,7 @@
 
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-                            <li>
-                                <form method="GET">
-                                    <a href="/dashboard" class="nav-link text-white">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#speedometer2" />
-                                        </svg>
-                                        Dashboard
-                                    </a>
-                                </form>
-                            </li>
+
 
                             <li class="nav-item">
                                 <form method="GET">
@@ -285,11 +276,11 @@
                                     <!-- <a href="/editClient/<%= r.clientid%>" class="btn btn-secondary">Edit Client</a> -->
                                     <!-- <form method="POST" action ='/updateclient/<%= r.clientid%>'> -->
                                     <a href="/clients" class="btn btn-secondary">Return</a>
-                                    
+
                                     <form method="POST" action="/updateClient/<%=r.clientid%>">
                                         <input type="submit" value="Update Info" class="btn btn-secondary"></input>
                                     </form>
-                                    
+
                                     <!-- </form> -->
 
                                     <form method="POST" action='/deleteClient/<%=r.clientid%>'>
