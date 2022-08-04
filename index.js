@@ -557,7 +557,7 @@ express()
         var uPhone = req.body.inPhnNum;
         var uConMethod = req.body.inlineRadioOptions;
         var uAddr = req.body.inAddr;
-
+        console.log('first query');
         var getQuery = `
         UPDATE clients 
         SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
@@ -569,7 +569,7 @@ express()
             if (error) res.end(error);
             res.redirect('/clients');
         })
-
+        console.log(' done first query');
         // var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
         // console.log("first query");
         // var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
