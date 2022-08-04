@@ -230,15 +230,21 @@
                                         <%= r.ordernum%>
                                     </td>
                                     <td>
-                                        <a href="/viewinvoice/<%= r.clientid%>" class="btn btn-secondary">
+                                        <a href="/viewinvoice/<%= r.invoiceid%>" class="btn btn-secondary">
                                             View Invoice
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/editinvoice/<%= r.clientid%>" class="btn btn-secondary">
+                                        <a href="/editinvoice/<%= r.invoiceid%>" class="btn btn-secondary">
                                             Edit Invoice
                                         </a>
                                     </td>
+                                    <td>
+                                        <a href="/generateInvoice/<%= r.invoiceid%>" class="btn btn-secondary">
+                                            Generate
+                                        </a>
+                                    </td>
+
                                 </tr>
                                 <% }); %>
                         </tbody>
