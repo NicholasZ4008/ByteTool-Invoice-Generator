@@ -189,12 +189,12 @@
                                     <label for="inputClientName" class="form-label">Client Name (i.e. Company)</label>
                                     <input type="text" class="form-control" id="inputClientName" name="inClName"
                                         value="<%= r.clientname %>">
-                                    <!-- Add hidden name in case of name change and for checking if the clientid matches old name; ensures unique clientid -->
+                                    <!-- Add hidden name in case of name change and for checking if the clientid matches old name; ensures unique clientid
                                     <input type="hidden" name="oldName" value="<%= r.clientname %>">
-                                    <br>
+                                    <br> -->
                                     <label for="inputClientID" class="form-label">Client ID</label>
                                     <input type="text" class="form-control" id="inputClientID" name="inClID"
-                                        value="<%= r.clientid %>">
+                                        value="<%= r.clientid %>" readonly="readonly">
                                 </div>
 
                                 <div class="col-md-6">
