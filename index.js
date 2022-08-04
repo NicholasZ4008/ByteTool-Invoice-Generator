@@ -558,41 +558,54 @@ express()
         var uConMethod = req.body.inlineRadioOptions;
         var uAddr = req.body.inAddr;
 
-        var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
-        console.log("first query");
-        var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
-        const resultCheck = await pool.query(checkQuery);
-        console.log("done first query");
-        if (resultCheck.rowCount == 0) {
-            console.log("enter if");
-            //if (checkUpdateClient({ "results": [null] })) {
-            //    console.log("updated client");
-            //}
-            // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
-            var getQuery = `
-            UPDATE clients 
-            SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
-            cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' 
-            WHERE clientid='${uCID}';
-            `;
-            try {
-                console.log("second query");
-                const result = await pool.query(getQuery);
-                // window.alert('Successfully updated Student.');
-                res.redirect(`/clients`); //redirect to all clients page
-            }
-            catch (error) {
-                console.log("caught err");
-                res.end(error);
-            }
-        } else {
-            console.log("enter else");
-            // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
-            res.redirect(`/clients`);
-        }
-        console.log("done query");
-        //resultCheck.release();
-        //result.release();
+        var getQuery = `
+        UPDATE clients 
+        SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
+        cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' 
+        WHERE clientid='${uCID}';
+        `;
+
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            res.redirect('/clients');
+        })
+
+        // var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
+        // console.log("first query");
+        // var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
+        // const resultCheck = await pool.query(checkQuery);
+        // console.log("done first query");
+
+        // if (resultCheck.rowCount == 0) {
+        //     console.log("enter if");
+        //     //if (checkUpdateClient({ "results": [null] })) {
+        //     //    console.log("updated client");
+        //     //}
+        //     // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
+        //     var getQuery = `
+        //     UPDATE clients 
+        //     SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
+        //     cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' 
+        //     WHERE clientid='${uCID}';
+        //     `;
+        //     try {
+        //         console.log("second query");
+        //         const result = await pool.query(getQuery);
+        //         // window.alert('Successfully updated Student.');
+        //         res.redirect(`/clients`); //redirect to all clients page
+        //     }
+        //     catch (error) {
+        //         console.log("caught err");
+        //         res.end(error);
+        //     }
+        // } else {
+        //     console.log("enter else");
+        //     // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
+        //     res.redirect(`/clients`);
+        // }
+        // console.log("done query");
+        // //resultCheck.release();
+        // //result.release();
     })
 
     //changed req.body to req.params to debug (Nick) AUG-1 and added ;
