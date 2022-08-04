@@ -657,7 +657,7 @@ express()
 
 
     .get("/addInvoice", (req, res) => {
-        res.render("/pages/createinvoice")
+        res.render("/pages/createinvoice");
     })
 
 
