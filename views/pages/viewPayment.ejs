@@ -13077,15 +13077,20 @@
                                         
                                         <a href="/editPayment/<%=r.paymentid%>" class="btn btn-secondary">Edit Payment</a>
                                         
-                                        <form method="POST" action='/deletepayment/<%=r.paymentid%>'>
-                                            <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
-                                        </form>
+                                        
                                     </div>
                                     <!-- </form> -->
         
                                 </div>
                             <% }); %>
                         </form>
+
+                        <div class="col-12" style="text-align: center;">
+                            <form method="POST" action='/deletepayment/<%=r.paymentid%>'>
+                                <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
         </div>

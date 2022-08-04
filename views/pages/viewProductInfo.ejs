@@ -13072,9 +13072,7 @@
                                         Product</a>
                                     <a class="btn btn-secondary" href="/productspage">Return</a>
 
-                                    <form action="/deleteProductInfo/<%=r.productid%>" method="POST">
-                                        <input value="Delete Product" type="submit" class="btn btn-secondary">
-                                    </form>
+                                    
 
                                     <!-- </form> -->
                                 </div>
@@ -13082,6 +13080,14 @@
                             </div>
                             <% }); %>
                     </form>
+
+                    <div class="col-12" style="text-align: center;">
+                        <form action="/deleteProductInfo/<%=r.productid%>" method="POST">
+                            <input value="Delete Product" type="submit" class="btn btn-secondary">
+                        </form>
+                    </div>
+                    
+
                 </div>
                 <!-- <% }); %> -->
 

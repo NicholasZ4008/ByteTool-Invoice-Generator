@@ -181,7 +181,7 @@
                 <h1 class="display-1">Edit Payment</h1>
 
                 <div class="formcontainer">
-                    <form action="/updatePayment/:paymentid" method="post">
+                    <form>
                         <% rows.forEach(function(r) { %>
                             <div class="row g-3 gx-5">
                                 <div class="col-md-6">
@@ -266,21 +266,22 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12" style="text-align: center;">
-                                    <a href="/paymentspage" class="btn btn-secondary">Return</a>
-                                            
-                                    <form method="POST" action="/updatePayment/<%=r.paymentid%>">
-                                        <input type="submit" value="Update Info" class="btn btn-secondary"></input>
-                                    </form>
-                                    
-                                    <form method="POST" action='/deletepayment/<%=r.paymentid%>'>
-                                        <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
-                                    </form>
-                                </div>
-
                             </div>
                         <% }); %>
                     </form>
+
+                    <div class="col-12" style="text-align: center;">
+                        <a href="/paymentspage" class="btn btn-secondary">Return</a>
+                                
+                        <form method="POST" action="/updatePayment/<%=r.paymentid%>">
+                            <input type="submit" value="Update Info" class="btn btn-secondary"></input>
+                        </form>
+                        
+                        <form method="POST" action='/deletepayment/<%=r.paymentid%>'>
+                            <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

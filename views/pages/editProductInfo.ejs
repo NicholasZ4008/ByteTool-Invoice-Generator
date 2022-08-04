@@ -13070,15 +13070,7 @@
                                     <!-- <form method="POST" action="/newProduct/Added"> -->
 
                                     <!-- Sus EJS code changed it back to my logic (Nick)-->
-                                    <form class="form-inline" action="/updateProductInfo/<%=r.productid%>"
-                                        method="POST">
-                                        <input class="btn btn-secondary" type="submit" value="Update">
-                                    </form>
-
-                                    <form class="form-inline" action="/deleteProductInfo/<%=r.productid%>"
-                                        method="POST">
-                                        <input class="btn btn-secondary" type="submit" value="Delete">
-                                    </form>
+                                    
 
                                     <a class="btn btn-secondary" href="/productspage">Return</a>
 
@@ -13088,6 +13080,23 @@
                             </div>
                             <% }); %>
                     </form>
+
+                    <div class = "col-12" style="text-align: center;">
+
+                        <form class="form-inline" action="/updateProductInfo/<%=r.productid%>"
+                            method="POST">
+                            <input class="btn btn-secondary" type="submit" value="Update">
+                        </form>
+    
+                        <form class="form-inline" action="/deleteProductInfo/<%=r.productid%>"
+                            method="POST">
+                            <input class="btn btn-secondary" type="submit" value="Delete">
+                        </form>
+                        
+                    </div>
+
+                    
+
                 </div>
                 <!-- <% }); %> -->
 
