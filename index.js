@@ -778,11 +778,11 @@ express()
 
         //if (resultCheck.rowCount == 0) {
 
-        var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
-        pool.query(getQuery, (error, result) => {
-            if (error) res.end(error);
-            res.redirect('/pages/paymentspage');
-        })
+        // var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
+        // pool.query(getQuery, (error, result) => {
+        //     if (error) res.end(error);
+        //     res.redirect('/pages/paymentspage');
+        // })
 
         /*
         try {
@@ -798,6 +798,26 @@ express()
         // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
         //res.redirect(`pages/paymentspage`);
         //}
+
+        var checkQuery = `SELECT * FROM Payments WHERE paymentid='${uPayID}'`;
+        const resultCheck = await pool.query(checkQuery);
+
+        if (resultCheck.rowCount == 0) {
+
+            var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
+
+            try {
+                const result = await pool.query(getQuery);
+                // window.alert('Successfully added Client.');
+                res.redirect(`/paymentspage`);
+            }
+            catch (error) {
+                res.end(error);
+            }
+        } else {
+            // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
+            res.redirect(`/paymentspage`);
+        }
     })
 
 
