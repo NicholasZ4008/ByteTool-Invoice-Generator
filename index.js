@@ -586,7 +586,7 @@ express()
             // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
             res.redirect(`/clients`);
         }
-
+        result.release();
     })
 
     //changed req.body to req.params to debug (Nick) AUG-1 and added ;
