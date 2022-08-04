@@ -889,7 +889,7 @@ express()
     })
 
     .get('/dashboard', (req, res) => {
-        res.render('pages/loggedin')
+        res.render('pages/invoicepage')
     })
 
     .listen(PORT, () => console.log(`Listening on ${PORT}`))
