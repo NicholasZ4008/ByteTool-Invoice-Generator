@@ -16,13 +16,10 @@
     <link rel="stylesheet" href="https://guarded-springs-56328.herokuapp.com/css/home.css">
     <link rel="stylesheet" href="https://guarded-springs-56328.herokuapp.com/css/form.css">
 
-<<<<<<< HEAD
     <script src="js/main.js"></script>
 
     <!-- Do not Delete. Used by Gurnoor for local testing -->
 
-=======
->>>>>>> 1fd4c412d576fa2df47b7f4d54b93757baa6204b
 
 </head>
 
@@ -184,12 +181,12 @@
 
             <!-- Main content section, will be different for all the pages -->
             <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
-                <h1 class="display-1">Edit Payment</h1>
+                <h1 class="display-1">View Product</h1>
 
                 <div class="formcontainer">
                     <% rows.forEach(function(r) { %>
                         <form action="/updatePayment/<%=r.paymentid%>" method="post">
-                        <!-- <% rows.forEach(function(r) { %> -->
+                            <!-- <% rows.forEach(function(r) { %> -->
                             <div class="row g-3 gx-5">
                                 <div class="col-md-6">
                                     <h2>Payment Information</h2>
@@ -282,20 +279,16 @@
 
                                 <div class="col-12" style="text-align: center;">
                                     <a href="/paymentspage" class="btn btn-secondary">Return</a>
-                                            
-                                    <!-- <form method="POST" action="/updatePayment/<%=r.paymentid%>"> -->
-                                        <input type="submit" value="Update Info" class="btn btn-secondary"></input>
-                                    <!-- </form> -->
-                                    
-                                    <form method="POST" action='/deletepayment/<%= r.paymentid %>'>
-                                        <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
-                                    </form>
+
+
+
+
                                 </div>
 
                             </div>
-                        <!-- <% }); %> -->
+                            <!-- <% }); %> -->
                         </form>
-                    <% }); %>
+                        <% }); %>
                 </div>
             </div>
         </div>
