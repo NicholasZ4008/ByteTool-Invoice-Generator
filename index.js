@@ -408,6 +408,7 @@ express()
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0 && false) {
+                    console.log("checkLog");
                     if (checkLoginCred(username, password)) {
                         console.log("logging out");
                     }
