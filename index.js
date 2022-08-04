@@ -560,7 +560,7 @@ express()
 
         var getQuery = `
         UPDATE clients 
-        SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
+        SET clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
         cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' 
         WHERE clientid='${uCID}';
         `;
