@@ -824,7 +824,15 @@ express()
     //Nick Aug 2
     .get('/editPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
-        var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        // var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        
+        var getQuery = `
+        SELECT p.paymentid, p.paymentstatus, p.paymentdate, p.amount, p.invoiceid, p.method, p.notes, i.clientname 
+        FROM Payments p 
+        LEFT JOIN Invoices i ON p.invoiceid = i.invoiceid
+        WHERE paymentid='${payID}';
+        `
+
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
