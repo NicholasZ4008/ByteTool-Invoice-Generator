@@ -694,10 +694,11 @@ express()
     })
 
     //Nick
+    // Last updated by Nabila: Modified the query
     .get('/newPayment', (req, res) => {
         var getQuery = `
-        SELECT c.clientid, c.clientname, i.invoiceid, i.clientid AS clientid_invoices 
-        FROM Clients c, Invoices i;
+        SELECT c.clientid, c.clientname, i.invoiceid, i.clientid, i.balance AS clientid_invoices 
+        FROM Invoices i LEFT JOIN Clients c ON i.clientid = c.clientid;
         `;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
@@ -713,7 +714,7 @@ express()
         var uPaymentStatus = req.body.paymentStatus;
         var uPaymentDate = req.body.paymentDate;
         var uAmount = req.body.amnt;
-        var uInvoiceID = req.body.invoiceID;
+        var uInvoiceID = req.body.invoiceID_ClientName; //change name
         var uMethod = req.body.paymentMethod;
         var uNotes = req.body.paymentNotes;
 
