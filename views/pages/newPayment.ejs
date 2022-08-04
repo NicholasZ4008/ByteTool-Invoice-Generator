@@ -200,7 +200,14 @@
                                 <input type="text" class="form-control" id="inputpaymentID" name="inPID">
                                 <br>
                                 <label for="inputpaymentStatus" class="form-label">Payment Status</label>
-                                <input type="text" class="form-control" id="inputpaymentStatus" name="inPayStatus">
+                                <!-- <input type="text" class="form-control" id="inputpaymentStatus" name="inPayStatus"> -->
+                                <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
+                                    <option hidden disabled selected value> Choose status of payment </option>
+                                    <option value="COMPLETED"> Completed </option>
+                                    <option value="REFUNDED"> Refunded </option>
+                                    <option value="DRAFT"> Draft </option>
+                                </select>
+
                                 <br>
                                 <label for="inputPaymentDate" class="form-label">Payment Date</label>
                                 <input type="text" class="form-control" id="inputPaymentDate" name="inPayDate">
@@ -243,7 +250,7 @@
                             <!-- <form method="POST" action="/newClient/Added"> -->
                             <div class="col-12" style="text-align: center;">
                                 <!-- <form method="POST" action="/newClient/Added"> -->
-                                    <button id="addClient" type="submit" class="btn btn-secondary">Add Client</button>
+                                    <button id="addPayment" type="submit" class="btn btn-secondary">Add Payment</button>
                                 <!-- </form> -->
                             </div>
                             <!-- </form> -->

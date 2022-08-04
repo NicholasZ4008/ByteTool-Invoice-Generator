@@ -780,8 +780,7 @@ express()
 
         var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
         pool.query(getQuery, (error, result) => {
-            if (error)
-                res.end(error);
+            if (error) res.end(error);
             res.redirect('/pages/paymentspage');
         })
 
