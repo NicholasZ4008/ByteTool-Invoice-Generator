@@ -219,12 +219,12 @@ const checkDbReturn = require('./functions/checkDbReturn');
 const pool = new Pool({
 
     // Used by Gurnoor for local Testing. Do not delete
-    connectionString: 'postgres://postgres:root77@localhost/my22'
+    //connectionString: 'postgres://postgres:root77@localhost/my22'
 
-    /* connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
-    } */
+    }
 });
 
 var username = "";
@@ -262,7 +262,7 @@ express()
         const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
         if (username && password) {
-            if (checkLoginCred(username, password)){
+            if (checkLoginCred(username, password)) {
                 console.log("signed in");
             }
             // Execute SQL query that'll select the account from the database based on the specified username and password
