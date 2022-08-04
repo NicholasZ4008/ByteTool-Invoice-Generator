@@ -739,7 +739,8 @@ express()
         SELECT paymentid, paymentStatus, clients.clientname, amount, payments.invoiceid, method, payments.paymentDate, notes 
         FROM Payments 
         LEFT JOIN Invoices ON Payments.invoiceid = Invoices.invoiceid 
-        LEFT JOIN Clients ON Invoices.clientid = Clients.clientid;
+        LEFT JOIN Clients ON Invoices.clientid = Clients.clientid
+        ORDER BY paymentid;
         `;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
