@@ -100,7 +100,7 @@ var sendUsername = "";
 //}
 
 //"use strict";
-//const nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 
 ///*POST /token HTTP/1.1
 //Host: oauth2.googleapis.com
@@ -132,41 +132,41 @@ var sendUsername = "";
 //}*/
 
 
-//// async..await is not allowed in global scope, must use a wrapper
-//async function main() {
-//    // Generate test SMTP service account from ethereal.email
-//    // Only needed if you don't have a real mail account for testing
-//    let testAccount = await nodemailer.createTestAccount();
+// async..await is not allowed in global scope, must use a wrapper
+async function main() {
+    // Generate test SMTP service account from ethereal.email
+    // Only needed if you don't have a real mail account for testing
+    let testAccount = await nodemailer.createTestAccount();
 
-//    // create reusable transporter object using the default SMTP transport
-//    let transporter = nodemailer.createTransport({
-//        host: "smtp.gmail.com",
-//        port: 587,
-//        secure: false, // true for 465, false for other ports
-//        auth: {
-//            user: 'bytetoolsinvoicing@gmail.com', // generated ethereal user
-//            pass: 'Waheguru1', // generated ethereal password
-//        },
-//    });
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: 'bytetoolsinvoicing@gmail.com', // generated ethereal user
+            pass: 'Waheguru1', // generated ethereal password
+        },
+    });
 
-//    // send mail with defined transport object
-//    let info = await transporter.sendMail({
-//        from: '"ByteTools Invoicing 👻" <bytetoolsinvoicing@gmail.com>', // sender address
-//        to: "SPW9, spw9@sfu.ca", // list of receivers
-//        subject: "Hello ✔", // Subject line
-//        text: "Hello world?", // plain text body
-//        html: "<b>Hello world?</b>", // html body
-//    });
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+        from: '"ByteTools Invoicing 👻" <bytetoolsinvoicing@gmail.com>', // sender address
+        to: "SPW9, spw9@sfu.ca", // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>", // html body
+    });
 
-//    console.log("Message sent: %s", info.messageId);
-//    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+    console.log("Message sent: %s", info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-//    // Preview only available when sending through an Ethereal account
-//    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-//    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-//}
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+}
 
-//main().catch(console.error);
+main().catch(console.error);
 
 
 
@@ -445,6 +445,7 @@ express()
     // Update by Nabila (2022/28/07): modified getQuery to provide number of pending invoices and remaining balance
     .get('/clients', (req, res) => {
         // var getQuery = "SELECT * FROM clients ORDER BY clientid";
+        console.log("testing redirect");
         var getQuery = `
         SELECT Clients.clientid, Clients.clientname, contactname, email, cntrycode, phone, pendingInvoices, remBalance
         FROM Clients
@@ -461,6 +462,7 @@ express()
             res.render('pages/client', results);
             res.end();
         })
+        console.log("testing redirect finish");
     })
 
     // Do we still need this?? (***)
@@ -557,7 +559,7 @@ express()
         var uPhone = req.body.inPhnNum;
         var uConMethod = req.body.inlineRadioOptions;
         var uAddr = req.body.inAddr;
-
+        console.log('first query');
         var getQuery = `
         UPDATE clients 
         SET clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
@@ -569,7 +571,7 @@ express()
             if (error) res.end(error);
             res.redirect('/clients');
         })
-
+        console.log(' done first query');
         // var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
         // console.log("first query");
         // var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
@@ -880,7 +882,7 @@ express()
     })
 
     .get('/dashboard', (req, res) => {
-        res.render('pages/loggedin')
+        res.render('pages/invoicepage')
     })
 
     .listen(PORT, () => console.log(`Listening on ${PORT}`))
