@@ -182,7 +182,7 @@
                 <div class="formcontainer">
                     <% rows.forEach(function(r) { %>
                         <form action="/updatePayment/<%=r.paymentid%>" method="post">
-                        <!-- <% rows.forEach(function(r) { %> -->
+                            <!-- <% rows.forEach(function(r) { %> -->
                             <div class="row g-3 gx-5">
                                 <div class="col-md-6">
                                     <h2>Payment Information</h2>
@@ -275,33 +275,19 @@
 
                                 <div class="col-12" style="text-align: center;">
                                     <a href="/paymentspage" class="btn btn-secondary">Return</a>
-<<<<<<< HEAD
 
                                     <form method="POST" action="/updatePayment/<%=r.paymentid%>">
                                         <input type="submit" value="Update Info" class="btn btn-secondary"></input>
                                     </form>
 
-=======
-                                            
-                                    <!-- <form method="POST" action="/updatePayment/<%=r.paymentid%>"> -->
-                                        <input type="submit" value="Update Info" class="btn btn-secondary"></input>
-                                    <!-- </form> -->
-                                    
->>>>>>> a7ab111dec5de561219501c52bb1cc536e9f7974
                                     <form method="POST" action='/deletepayment/<%=r.paymentid%>'>
                                         <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
                                     </form>
                                 </div>
 
                             </div>
-<<<<<<< HEAD
+                            <!-- <% }); %> -->
                             <% }); %>
-                    </form>
-=======
-                        <!-- <% }); %> -->
-                        </form>
-                    <% }); %>
->>>>>>> a7ab111dec5de561219501c52bb1cc536e9f7974
                 </div>
             </div>
         </div>
