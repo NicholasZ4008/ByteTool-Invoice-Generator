@@ -142,16 +142,7 @@
                                 </a>
                             </li> -->
 
-                            <li>
-                                <form method="GET">
-                                    <a href="/dashboard" class="nav-link text-white">
-                                        <svg class="bi me-2" width="16" height="16">
-                                            <use xlink:href="#speedometer2" />
-                                        </svg>
-                                        Dashboard
-                                    </a>
-                                </form>
-                            </li>
+
 
                             <li class="nav-item">
                                 <form method="GET">
@@ -244,13 +235,13 @@
 
 
                     <!-- Search Button -->
-                    <div class="form-outline">
+                    <!-- <div class="form-outline">
                         <input id="search-input" type="search" placeholder="Search" id="form1" class="form-control" />
                     </div>
 
                     <button id="search-button" type="button" class="btn btn-secondary">
                         <i class="fas fa-search"></i>
-                    </button>
+                    </button>  -->
 
                 </div>
 
@@ -265,7 +256,7 @@
                                 <th scope="col">Contact Name</th>
                                 <th scope="col">Contact Email</th>
                                 <th scope="col">Contact Phone</th>
-                                <th scope="col">Statements</th>
+
                                 <th scope="col">Email Invoice</th>
                                 <th scope="col">Actions</th>
                                 <th scope="col"></th>
@@ -301,14 +292,13 @@
                                     </td>
                                     <td>
                                         <% if (r.phone) { %>
-                                            + <%= r.cntrycode %> <%= r.phone %>
-                                        <% } else { %>
-                                            <%= r.phone %>
-                                        <% } %>
+                                            + <%= r.cntrycode %>
+                                                <%= r.phone %>
+                                                    <% } else { %>
+                                                        <%= r.phone %>
+                                                            <% } %>
                                     </td>
-                                    <td>
-                                        <a href="/template/<%= r.clientid%>">View End Statements</a>
-                                    </td>
+
                                     <td>
                                         <input class="btn btn-secondary" type="submit" value="Send Email">
                                     </td>

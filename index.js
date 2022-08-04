@@ -219,12 +219,12 @@ const checkDbReturn = require('./functions/checkDbReturn');
 const pool = new Pool({
 
     // Used by Gurnoor for local Testing. Do not delete
-    //connectionString: 'postgres://postgres:root77@localhost/my22'
+    connectionString: 'postgres://postgres:root77@localhost/my22'
 
-    connectionString: process.env.DATABASE_URL,
+    /* connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
-    }
+    } */
 });
 
 var username = "";
@@ -274,7 +274,7 @@ express()
                 // If the account exists
                 if (results.rows.length > 0) {
                     if (checkDbReturn({ "results": [1] })) {
-                        console.log('db result returned');
+                        console.log('log on db result returned');
                     }
                     // Authenticate the user
                     connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
@@ -304,6 +304,9 @@ express()
             const results = { 'results': (dbQuery) ? dbQuery.rows : null };
             console.log(results.loggedin);
             if (results.length > 0) {
+                if (checkDbReturn({ "results": [1] })) {
+                    console.log('log on db result returned');
+                }
                 // Output username
                 response.redirect('pages/loggedin');
                 const dbQuery1 = await connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}' AND loggedin = 'false';`);
@@ -322,6 +325,9 @@ express()
     })
 
     .get('/login', async (req, res) => {
+        if (checkDbReturn({ "results": [1] })) {
+            console.log('log on db result returned');
+        }
         res.render('pages/login');
         res.end();
     })
@@ -330,6 +336,9 @@ express()
         loggedin = false;
         const connection = await pool.connect();
         if (username && password) {
+            if (checkLoginCred(username, password)) {
+                console.log("logging out");
+            }
             connection.query(`UPDATE accounts SET loggedin = 'false' WHERE username = '${username}' AND password = '${password}';`)
         }
         connection.release();
@@ -385,6 +394,12 @@ express()
         console.log(existEmail['results']);
         // Ensure the input fields exists and are not empty
         if (existUsername['results'].length == 0 && existEmail['results'].length == 0) {
+            if (checkUserExist({ "results": [username] })) {
+                console.log("detected valid username");
+            }
+            if (checkEmailExist({ "results": [email] })) {
+                console.log("detected valid email");
+            }
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`INSERT INTO accounts (username,password,email,created_on) VALUES ('${username}', '${password}','${email}', CURRENT_TIMESTAMP);`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
@@ -393,6 +408,9 @@ express()
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0 && false) {
+                    if (checkLoginCred(username, password)) {
+                        console.log("logging out");
+                    }
                     // Authenticate the user
                     connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
                     loggedin = true;
