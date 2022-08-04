@@ -5,7 +5,7 @@ test("returns true for a db result provided", () => {
     expect(result).toBe(true)
 })
 
-test("returns false for no password provided", () => {
+test("returns false for no db result provided", () => {
     var result = checkDbReturn(null);
     expect(result).toBe(false)
 })
