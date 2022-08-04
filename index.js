@@ -445,6 +445,7 @@ express()
     // Update by Nabila (2022/28/07): modified getQuery to provide number of pending invoices and remaining balance
     .get('/clients', (req, res) => {
         // var getQuery = "SELECT * FROM clients ORDER BY clientid";
+        console.log("testing redirect");
         var getQuery = `
         SELECT Clients.clientid, Clients.clientname, contactname, email, cntrycode, phone, pendingInvoices, remBalance
         FROM Clients
@@ -461,6 +462,7 @@ express()
             res.render('pages/client', results);
             res.end();
         })
+        console.log("testing redirect finish");
     })
 
     // Do we still need this?? (***)
