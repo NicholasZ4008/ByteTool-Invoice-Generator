@@ -273,7 +273,7 @@ express()
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
-                    if (checkDbReturn(results)) {
+                    if (checkDbReturn({ "results": [1] })) {
                         console.log('db result returned');
                     }
                     // Authenticate the user
