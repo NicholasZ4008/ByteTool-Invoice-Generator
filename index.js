@@ -858,7 +858,7 @@ express()
         var uNotes = req.body.inNotes;
 
         var getQuery = `
-        UPDATE payments SET paymentid='${uPayID}', paymentstatus='${uPaymentStatus}', paymentdate='${uPaymentDate}', 
+        UPDATE payments SET paymentstatus='${uPaymentStatus}', paymentdate='${uPaymentDate}', 
         amount=${uAmount}, method='${uMethod}', notes='${uNotes}' 
         WHERE paymentid='${uPayID}';
         `;
