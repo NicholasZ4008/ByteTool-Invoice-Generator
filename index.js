@@ -262,7 +262,7 @@ express()
         const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
         if (username && password) {
-            if (checkLoginCred(username, password)){
+            if (checkLoginCred(username, password)) {
                 console.log("signed in");
             }
             // Execute SQL query that'll select the account from the database based on the specified username and password
@@ -611,7 +611,7 @@ express()
         res.render("/pages/createinvoice")
     })
 
-    
+
 
     .get('/productspage', (req, res) => {
         var getQuery = `
@@ -633,14 +633,14 @@ express()
         res.render('pages/newProduct')
     })
 
-    
-    .post('/newProduct/Added', (req,res)=>{
+
+    .post('/newProduct/Added', (req, res) => {
         var uPrdctID = req.body.prdctID
         var uPrdctName = req.body.prdctName
         var uPrice = req.body.prdctPrice
         var uMdlSeries = req.body.prdctModel
         var uCategory = req.body.prdctCategory
-        var uDescription = req.body.prdctDesc 
+        var uDescription = req.body.prdctDesc
 
         var getQuery = `INSERT INTO product VALUES ('${uPrdctID}', '${uPrdctName}', '${uCategory}', '${uMdlSeries}', ${uPrice}, '${uDescription}');`;
         pool.query(getQuery, (error, result) => {
@@ -649,7 +649,7 @@ express()
             res.redirect('/pages/productspage');
         })
     })
-    
+
 
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
@@ -674,7 +674,7 @@ express()
     })
 
     //NICK aug-2
-    .post('updateProductInfo/:productid',(req,res)=>{
+    .post('updateProductInfo/:productid', (req, res) => {
         var uPrdctID = req.body.prdctID;
         var uPrdctName = req.body.prdctName;
         var uPrice = req.body.prdctPrice;
@@ -682,7 +682,7 @@ express()
         var uCategory = req.body.prdctCategory;
         var uDescription = req.body.prdctDesc;
 
-        var getQuery =`UPDATE product SET productid='${uPrdctID}', productname='${uPrdctName}', 
+        var getQuery = `UPDATE product SET productid='${uPrdctID}', productname='${uPrdctName}', 
         category='${uCategory}', modelseries='${uMdlSeries}', price=${uPrice}, 
         description='${uDescription}' WHERE productid='${uPrdctID}';`;
 
@@ -692,7 +692,7 @@ express()
             res.redirect('/pages/productspage');
         })
     })
-    
+
 
     //added a deleteproduct (NICK) AUG-1
     .post('/deleteProductInfo/:productid', (req, res) => {
