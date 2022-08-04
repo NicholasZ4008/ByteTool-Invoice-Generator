@@ -560,7 +560,7 @@ express()
         console.log('first query');
         var getQuery = `
         UPDATE clients 
-        SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
+        SET clientname='${uCName}', contactname='${uConName}', email='${uEmail}', 
         cntrycode='${uAreaCode}', phone='${uPhone}', contactmethod='${uConMethod}', address='${uAddr}' 
         WHERE clientid='${uCID}';
         `;
@@ -889,7 +889,7 @@ express()
     })
 
     .get('/dashboard', (req, res) => {
-        res.render('pages/loggedin')
+        res.render('pages/invoicepage')
     })
 
     .listen(PORT, () => console.log(`Listening on ${PORT}`))

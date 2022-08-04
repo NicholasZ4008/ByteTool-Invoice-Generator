@@ -118,7 +118,16 @@
 
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
-
+                            <li>
+                                <form method="GET">
+                                    <a href="/dashboard" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#speedometer2" />
+                                        </svg>
+                                        Dashboard
+                                    </a>
+                                </form>
+                            </li>
 
                             <li class="nav-item">
                                 <form method="GET">
@@ -183,18 +192,16 @@
 
                 <div class="formcontainer">
                     <form action="/newProduct/Added" method="post">
-                        <!-- <form action="/newProduct/Added" target="_blank" method="post"> -->
                         <div class="row g-3 gx-5">
                             <div class="col-md-6">
                                 <h2>Product Information</h2>
                                 <label for="inputProductID" class="form-label">Product ID</label>
                                 <input type="text" class="form-control" id="inputProductID" name="prdctID">
-                                <!-- <br>
-                                    <label for="inputModelSeries" class="form-label">Model Series</label>
-                                    <input type="text" class="form-control" id="inputModelSeries" name="prdctModel"> -->
+                                
                                 <br>
                                 <label for="inputProductName" class="form-label">Product Name</label>
                                 <input type="text" class="form-control" id="inputProductName" name="prdctName">
+                                
                                 <br>
                                 <label for="inputPrice" class="form-label">Price</label>
                                 <input type="number" class="form-control" id="inputPrice" name="prdctPrice" min=0
@@ -204,6 +211,7 @@
                             <div class="col-md-6">
                                 <label for="inputModelSeries" class="form-label">Model Series</label>
                                 <input type="text" class="form-control" id="inputModelSeries" name="prdctModel">
+                                
                                 <br>
                                 <label id="inputCategory" class="form-label">Category</label>
                                 <input type="text" class="form-control" id="inputCategory" name="prdctCategory">
