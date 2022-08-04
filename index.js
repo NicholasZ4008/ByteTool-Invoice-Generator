@@ -849,7 +849,7 @@ express()
 
     // Added by Nabila
     .post('/updatePayment/:paymentid', (req, res) => {
-        // var uPayID = req.body.inPID;
+        var uPayID = req.body.inPID;
         var uPaymentStatus = req.body.inPayStatus;
         var uPaymentDate = req.body.inPayDate;
         var uAmount = req.body.inAmnt;
