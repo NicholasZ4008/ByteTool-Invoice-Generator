@@ -218,7 +218,7 @@
                                     <option hidden disabled selected value> Choose an Invoice </option>
                                     <% rows.forEach(function(r) { %>
                                     <option value="<%= r.invoiceid %>">
-                                        <%= r.invoiceid %> , <%= r.clientname %> , <%= r.balance %>
+                                        Invoice <%= r.invoiceid %> , Client: <%= r.clientname %> , Remaining: <%= r.balance %>
                                     </option>
                                     <% }) %>
                                 </select>
