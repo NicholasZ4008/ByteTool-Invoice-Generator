@@ -215,6 +215,8 @@ const { Pool } = require('pg');
 const { response } = require('express');
 const checkLoginCred = require('./functions/checkLoginCred');
 const checkDbReturn = require('./functions/checkDbReturn');
+const checkUserExist = require('./functions/checkUserExist');
+const checkEmailExist = require('./functions/checkEmailExist');
 //const { connect } = require('http2');
 const pool = new Pool({
 
