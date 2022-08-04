@@ -213,13 +213,12 @@
 
                             </div>
                             <div class="col-md-6">
-                                <!-- <h2>Contact Information</h2> -->
                                 <label for="inputInvoiceID" class="form-label">Invoice ID</label>
                                 <select class="form-control" id="inputInvoiceID" name="invoiceid">
                                     <option hidden disabled selected value> Choose an Invoice </option>
                                     <% rows.forEach(function(r) { %>
                                     <option value="<%= r.invoiceid %>">
-                                        <%= r.invoiceid %> , <%= r.clientname %>
+                                        <%= r.invoiceid %> , <%= r.clientname %> , <%= r.balance %>
                                     </option>
                                     <% }) %>
                                 </select>
