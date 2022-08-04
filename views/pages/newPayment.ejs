@@ -214,15 +214,13 @@
                             </div>
                             <div class="col-md-6">
                                 <!-- <h2>Contact Information</h2> -->
-                                <label for="inputInvoiceID_ClientName" class="form-label">Invoice ID</label>
-                                <select class="form-control" id="inputInvoiceID_ClientName" name="invoiceID_ClientName" value="">
-                                    <% for(var i=0; i<rows.length; i++) {%>
-                                    <!-- <% rows.forEach(function(r) { %> -->
-                                    <option value="<%= rows[i].invoiceid %>">
-                                        <%= rows[i].rows.invoiceid %>
+                                <label for="inputInvoiceID" class="form-label">Invoice ID</label>
+                                <select class="form-control" id="inputInvoiceID" name="invoiceid">
+                                    <% rows.forEach(function(r) { %>
+                                    <option value="<%= r.invoiceid %>">
+                                        <%= r.invoiceid %>
                                     </option>
-                                    <% } %>
-                                    <!-- <% }); %> -->
+                                    <% }) %>
                                 </select>
                                 <br>
                                 <label for="inputModelSeries" class="form-label">Model Series</label>
