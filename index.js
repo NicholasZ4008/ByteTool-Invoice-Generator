@@ -217,6 +217,7 @@ const checkLoginCred = require('./functions/checkLoginCred');
 const checkDbReturn = require('./functions/checkDbReturn');
 const checkUserExist = require('./functions/checkUserExist');
 const checkEmailExist = require('./functions/checkEmailExist');
+const checkUpdateClient = require('./functions/checkUpdateClient');
 //const { connect } = require('http2');
 const pool = new Pool({
 
@@ -428,6 +429,9 @@ express()
             });
         } else {
             if (existUsername['results'].length == 0) {
+                if (checkUserExist({ "results": [username] })) {
+                    console.log("detected valid username");
+                }
                 res.send('Email is taken. Please press back and enter a different email.');
             } else {
                 res.send('Username is taken. Please press back and enter a different username.');
@@ -560,6 +564,9 @@ express()
         const resultCheck = await pool.query(checkQuery);
 
         if (resultCheck.rowCount == 0) {
+            if (checkUpdateClient({ "results": [null] })) {
+                console.log("updated client");
+            }
             // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
             var getQuery = `
             UPDATE clients 
