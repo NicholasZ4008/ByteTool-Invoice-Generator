@@ -562,8 +562,9 @@ express()
         console.log("first query");
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
         const resultCheck = await pool.query(checkQuery);
-
+        console.log("done first query");
         if (resultCheck.rowCount == 0) {
+            console.log("enter if");
             //if (checkUpdateClient({ "results": [null] })) {
             //    console.log("updated client");
             //}
@@ -581,9 +582,11 @@ express()
                 res.redirect(`/clients`); //redirect to all clients page
             }
             catch (error) {
+                console.log("caught err");
                 res.end(error);
             }
         } else {
+            console.log("enter else");
             // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
             res.redirect(`/clients`);
         }
