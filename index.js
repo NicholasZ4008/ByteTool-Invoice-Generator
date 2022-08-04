@@ -611,12 +611,13 @@ express()
     })
 
     .get('/generateInvoice/:invoiceid', (req, res) => {
+        let uID = req.params.invoiceid;
         var getQuery = `SELECT i.status, i.invoiceid, i.invoicedate, i.paymentdeadline, i.clientname, i.clientid, c.contactname, c.email, c.cntrycode, c.phone, c.address, p.productid, p.productname, q.ordernum, q.productid, q.discount, q.price, q.quantity, q.price*q.quantity AS totalprice_row, r.totalcost,  r.totalcost-(r.totalcost*q.discount) AS subtotal, i.totalamount 
         FROM Clients c 
         INNER JOIN Invoices i ON c.clientid = i.clientid 
         INNER JOIN Orders r ON i.ordernum = r.ordernum 
         LEFT JOIN Orderbyline q ON r.ordernum = q.ordernum 
-        INNER JOIN Product p ON q.productid = p.productid;`;
+        INNER JOIN Product p ON q.productid = p.productid WHERE i.invoiceid = '${uID}' ;`;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
