@@ -661,7 +661,7 @@ express()
     })
 
     .get("/addInvoice", (req, res) => {
-        res.render("/pages/createinvoice")
+        res.render("/pages/createinvoice");
     })
 
 
@@ -699,7 +699,7 @@ express()
         pool.query(getQuery, (error, result) => {
             if (error)
                 res.end(error);
-            res.redirect('/pages/productspage');
+            res.redirect('/productspage');
         })
     })
 
@@ -742,7 +742,7 @@ express()
         pool.query(getQuery, (error, result) => {
             if (error)
                 res.end(error);
-            res.redirect('/pages/productspage');
+            res.redirect('/productspage');
         })
     })
 
@@ -798,31 +798,11 @@ express()
         var uMethod = req.body.inMethod;
         var uNotes = req.body.inNotes;
 
-        //var checkQuery = `SELECT * FROM Payments WHERE paymentID='${uPayID}' `;
-        //const resultCheck = await pool.query(checkQuery);
-
-        //if (resultCheck.rowCount == 0) {
-
         var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             res.redirect('/paymentspage');
         })
-
-        /*
-        try {
-            const result = await pool.query(getQuery);
-            // window.alert('Successfully added Client.');
-            res.redirect(`pages/paymentspage`);
-        }
-        catch (error) {
-            res.end(error);
-        }
-        */
-        //}else {
-        // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
-        //res.redirect(`pages/paymentspage`);
-        //}
     })
 
 
