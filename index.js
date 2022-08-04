@@ -564,9 +564,9 @@ express()
         const resultCheck = await pool.query(checkQuery);
 
         if (resultCheck.rowCount == 0) {
-            if (checkUpdateClient({ "results": [null] })) {
-                console.log("updated client");
-            }
+            //if (checkUpdateClient({ "results": [null] })) {
+            //    console.log("updated client");
+            //}
             // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
             var getQuery = `
             UPDATE clients 
