@@ -140,12 +140,12 @@ async function main() {
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
+        host: "smtp.ethereal.email",
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'bytetoolsinvoicing@gmail.com', // generated ethereal user
-            pass: 'Waheguru1', // generated ethereal password
+            user: testAccount.user, // generated ethereal user
+            pass: testAccount.pass, // generated ethereal password
         },
     });
 
