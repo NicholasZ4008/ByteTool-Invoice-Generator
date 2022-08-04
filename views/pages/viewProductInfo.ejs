@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="https://guarded-springs-56328.herokuapp.com/css/home.css">
     <link rel="stylesheet" href="https://guarded-springs-56328.herokuapp.com/css/form.css">
 
+<<<<<<< HEAD
     <script src="js/main.js"></script>
 
     <!-- Do not Delete. Used by Gurnoor for local testing -->
 
+=======
+>>>>>>> 1fd4c412d576fa2df47b7f4d54b93757baa6204b
 
 </head>
 
@@ -178,83 +181,124 @@
 
 
 
-            <!-- Modfied by Nabila: renamed "Client" with "Product" -->
-            <!--                    renamed/reorganized all input fields and label names-->
-            <!--                    "billingAddress" and all duplicate "inputProductID" changed to appropriate labels -->
-            <!--                    added missing id names -->
-            <!--                    Change price to decimal type input -->
+
             <!-- Main content section, will be different for all the pages -->
             <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
-                <h1 class="display-1">View Product</h1>
+                <h1 class="display-1">Edit Payment</h1>
 
-                <!-- <% rows.forEach(function(r) { %> -->
                 <div class="formcontainer">
-                    <form action="/newProduct/Added" method="post">
-                        <!-- <form action="/newProduct/Added" target="_blank" method="post"> -->
-                        <% rows.forEach(function(r) { %>
+                    <% rows.forEach(function(r) { %>
+                        <form action="/updatePayment/<%=r.paymentid%>" method="post">
+                        <!-- <% rows.forEach(function(r) { %> -->
                             <div class="row g-3 gx-5">
                                 <div class="col-md-6">
-                                    <h2>Product Information</h2>
-                                    <label for="inputProductID" class="form-label">Product ID</label>
-                                    <input type="text" class="form-control" id="inputProductID" name="prdctID"
-                                        value="<%= r.productid %>" readonly="readonly">
-                                    <!-- <br>
-                                    <label for="inputmodelseries" class="form-label">Model Series</label>
-                                    <input type="text" class="form-control" id="inputmodelseries" name="prdctModel"
-                                    value="<%=r.modelseries%>" readonly="readonly"> -->
+                                    <h2>Payment Information</h2>
+                                    <label for="inputInvoiceID" class="form-label">Invoice ID</label>
+                                    <input type="text" class="form-control" id="inputInvoiceID" name="invoiceid"
+                                        value="<%= r.invoiceid %> , <%= r.clientname %>" readonly="readonly">
+                                    <!-- <select class="form-control" id="inputInvoiceID" name="invoiceid">
+                                        <option hidden disabled selected value> Choose an Invoice </option>
+                                        <% rows.forEach(function(r) { %>
+                                        <option value="<%= r.invoiceid %>">
+                                            Invoice <%= r.invoiceid %> , <%= r.clientname %>
+                                        </option>
+                                        <% }) %>
+                                    </select> -->
+
                                     <br>
-                                    <label for="inputProductName" class="form-label">Product Name</label>
-                                    <input type="text" class="form-control" id="inputProductName" name="prdctName"
-                                        value="<%= r.productname %>" readonly="readonly">
+                                    <label for="inputpaymentID" class="form-label">Payment ID</label>
+                                    <input type="text" class="form-control" id="inputpaymentID" name="inPID"
+                                        value="<%= r.paymentid %>" readonly="readonly">
+
                                     <br>
-                                    <label for="inputPrice" class="form-label">Price</label>
-                                    <input type="number" class="form-control" id="inputPrice" name="prdctPrice" min=0
-                                        step=0.01 readonly="readonly" value=<%=r.price %>>
+                                    <label for="inputpaymentStatus" class="form-label">Payment Status</label>
+                                    <% if (r.paymentstatus=='COMPLETED' ) { %>
+                                        <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
+                                            <option hidden disabled selected value> Choose status of payment </option>
+                                            <option value="COMPLETED" selected="selected"> Completed </option>
+                                            <option value="REFUNDED"> Refunded </option>
+                                            <option value="DRAFT"> Draft </option>
+                                        </select>
+                                        <% } else if (r.paymentstatus=='REFUNDED' ) { %>
+                                            <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
+                                                <option hidden disabled selected value> Choose status of payment
+                                                </option>
+                                                <option value="COMPLETED"> Completed </option>
+                                                <option value="REFUNDED" selected="selected"> Refunded </option>
+                                                <option value="DRAFT"> Draft </option>
+                                            </select>
+                                            <% } else if (r.paymentstatus=='DRAFT' ) { %>
+                                                <select class="form-control" id="inputpaymentStatus" name="inPayStatus">
+                                                    <option hidden disabled selected value> Choose status of payment
+                                                    </option>
+                                                    <option value="COMPLETED"> Completed </option>
+                                                    <option value="REFUNDED"> Refunded </option>
+                                                    <option value="DRAFT" selected="selected"> Draft </option>
+                                                </select>
+                                                <% } else {%>
+                                                    <select class="form-control" id="inputpaymentStatus"
+                                                        name="inPayStatus">
+                                                        <option hidden disabled selected value> Choose status of payment
+                                                        </option>
+                                                        <option value="COMPLETED"> Completed </option>
+                                                        <option value="REFUNDED"> Refunded </option>
+                                                        <option value="DRAFT"> Draft </option>
+                                                    </select>
+                                                    <% } %>
+
+                                                        <br>
+                                                        <label for="inputPaymentDate" class="form-label">Payment
+                                                            Date</label>
+                                                        <input type="text" class="form-control" id="inputPaymentDate"
+                                                            name="inPayDate" value="<%= r.paymentdate %>">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <!-- <h2 hidden="hidden">Product Information cont...</h2> -->
-                                    <h2 style="color: #fff;">.</h2>
-                                    <label for="inputmodelseries" class="form-label">Model Series</label>
-                                    <input type="text" class="form-control" id="inputmodelseries" name="prdctModel"
-                                        value="<%= r.modelseries %>" readonly="readonly">
+                                    <h2>Billing Information</h2>
+                                    <label for="inputAmount" class="form-label">Amount</label>
+                                    <input type="number" class="form-control" id="inputAmount" name="inAmnt" min=0
+                                        step=0.01 placeholder=0.00 value=<%=r.amount %>>
+
                                     <br>
-                                    <label id="inputCategory" class="form-label">Category</label>
-                                    <input type="text" class="form-control" id="inputCategory" name="prdctCategory"
-                                        value="<%= r.category %>" readonly="readonly">
+                                    <label for="inputMethod" class="form-label">Method</label>
+                                    <input type="text" class="form-control" id="inputMethod" name="inMethod"
+                                        placeholder="VISA" value="<%= r.method %>">
+                                    <!-- <br> -->
+                                    <!-- <label for="inputModelSeries" class="form-label">Model Series</label>
+                                    <input type="text" class="form-control" id="inputModelSeries" name="inModelSeries">
+                                    <br>
+                                    <label id= "inputCategory" class="form-label">Category</label>
+                                    <input type="text" class="form-control" id="inputModelSeries" name="inModelSeries" placeholder="Office Supplies"> -->
                                 </div>
 
                                 <div class="row g-3 gx-5">
                                     <div class="col-md-12">
-                                        <label for="inputDescription" class="form-label">Description</label>
-                                        <input type="textarea" class="form-control" id="inputDescription"
-                                            name="prdctDesc" classname="Text1" cols="40" rows="5"
-                                            value="<%= r.description %>" readonly="readonly">
-                                        <br>
+                                        <label for="inputNotes" class="form-label">Additional Notes</label>
+                                        <input type="textarea" class="form-control" id="inputNotes" name="inNotes"
+                                            classname="Text1" cols="40" rows="5" value="<%= r.notes %>">
+                                        <!-- <br> -->
                                     </div>
                                 </div>
 
-                                <!-- <form method="POST" action="/newProduct/Added"> -->
                                 <div class="col-12" style="text-align: center;">
-                                    <!-- <form method="POST" action="/newProduct/Added"> -->
-                                    <a class="btn btn-secondary" href="/editProductInfo/<%= r.productid %>">Edit
-                                        Product</a>
-                                    <a class="btn btn-secondary" href="/productspage">Return</a>
-
-                                    <form action="/deleteProductInfo/<%=r.productid%>" method="POST">
-                                        <input value="Delete Product" type="submit" class="btn btn-secondary">
-                                    </form>
-
+                                    <a href="/paymentspage" class="btn btn-secondary">Return</a>
+                                            
+                                    <!-- <form method="POST" action="/updatePayment/<%=r.paymentid%>"> -->
+                                        <input type="submit" value="Update Info" class="btn btn-secondary"></input>
                                     <!-- </form> -->
+                                    
+                                    <form method="POST" action='/deletepayment/<%= r.paymentid %>'>
+                                        <input type="submit" value="Delete Payment" class="btn btn-secondary"></input>
+                                    </form>
                                 </div>
-                                <!-- </form> -->
-                            </div>
-                            <% }); %>
-                    </form>
-                </div>
-                <!-- <% }); %> -->
 
+                            </div>
+                        <!-- <% }); %> -->
+                        </form>
+                    <% }); %>
+                </div>
             </div>
         </div>
     </div>
+
 </body>

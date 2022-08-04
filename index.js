@@ -284,7 +284,7 @@ express()
                     loggedin = true;
                     sendUsername = username;
                     // Redirect to home page
-                    res.render('pages/loggedin', results);
+                    res.render('pages/invoicepage', results);
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
@@ -644,20 +644,24 @@ express()
         })
     })
 
-
-
     .get('/viewinvoice/:invoiceid', (req, res) => {
-        var getQuery = "SELECT * FROM invoices ORDER BY invoiceid";
+        var getQuery = `SELECT i.invoiceid, i.invoicedate, i.paymentdeadline, i.clientname, i.clientid, c.contactname, c.email, c.cntrycode, c.phone, c.address, p.productid, p.productname, q.ordernum, q.productid, q.discount, q.price, q.quantity, q.price*q.quantity AS totalprice_row, r.totalcost,  r.totalcost-(r.totalcost*q.discount) AS subtotal, i.totalamount 
+        FROM Clients c 
+        INNER JOIN Invoices i ON c.clientid = i.clientid 
+        INNER JOIN Orders r ON i.ordernum = r.ordernum 
+        LEFT JOIN Orderbyline q ON r.ordernum = q.ordernum 
+        INNER JOIN Product p ON q.productid = p.productid
+        WHERE i.invoiceid = '${uInvoiceID}';`;
+
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
-            res.render('pages/viewinvoice', results);
+            res.render('pages/generatedInvoice', results);
         })
     })
 
-
     .get("/addInvoice", (req, res) => {
-        res.render("/pages/createinvoice")
+        res.render("/pages/createinvoice");
     })
 
 
@@ -695,7 +699,7 @@ express()
         pool.query(getQuery, (error, result) => {
             if (error)
                 res.end(error);
-            res.redirect('/pages/productspage');
+            res.redirect('/productspage');
         })
     })
 
@@ -738,7 +742,7 @@ express()
         pool.query(getQuery, (error, result) => {
             if (error)
                 res.end(error);
-            res.redirect('/pages/productspage');
+            res.redirect('/productspage');
         })
     })
 
@@ -794,31 +798,11 @@ express()
         var uMethod = req.body.inMethod;
         var uNotes = req.body.inNotes;
 
-        //var checkQuery = `SELECT * FROM Payments WHERE paymentID='${uPayID}' `;
-        //const resultCheck = await pool.query(checkQuery);
-
-        //if (resultCheck.rowCount == 0) {
-
         var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             res.redirect('/paymentspage');
         })
-
-        /*
-        try {
-            const result = await pool.query(getQuery);
-            // window.alert('Successfully added Client.');
-            res.redirect(`pages/paymentspage`);
-        }
-        catch (error) {
-            res.end(error);
-        }
-        */
-        //}else {
-        // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
-        //res.redirect(`pages/paymentspage`);
-        //}
     })
 
 
@@ -882,7 +866,7 @@ express()
     })
 
     .get('/dashboard', (req, res) => {
-        res.render('pages/invoicepage')
+        res.redirect('pages/invoicepage')
     })
 
     .listen(PORT, () => console.log(`Listening on ${PORT}`))

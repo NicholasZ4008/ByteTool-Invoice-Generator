@@ -197,11 +197,7 @@
                                     <h2>Product Information</h2>
                                     <label for="inputProductID" class="form-label">Product ID</label>
                                     <input type="text" class="form-control" id="inputProductID" name="prdctID"
-                                        value="<%= r.productid %>">
-                                    <!-- <br>
-                                    <label for="inputmodelseries" class="form-label">Model Series</label>
-                                    <input type="text" class="form-control" id="inputmodelseries" name="prdctModel"
-                                    value="<%=r.modelseries%>"> -->
+                                        value="<%= r.productid %>" readonly="readonly">
                                     <br>
                                     <label for="inputProductName" class="form-label">Product Name</label>
                                     <input type="text" class="form-control" id="inputProductName" name="prdctName"
@@ -239,18 +235,16 @@
                                     <!-- <form method="POST" action="/newProduct/Added"> -->
 
                                     <!-- Sus EJS code changed it back to my logic (Nick)-->
-                                    <form class="form-inline" action="/updateProductInfo/<%=r.productid%>"
-                                        method="POST">
+                                    <!-- <form class="form-inline" action="/updateProductInfo/<%=r.productid%>" method="POST"> -->
                                         <input class="btn btn-secondary" type="submit" value="Update">
-                                    </form>
+                                    <!-- </form> -->
 
-                                    <form class="form-inline" action="/deleteProductInfo/<%=r.productid%>"
+                                    <form class="form-inline" action="/deleteProductInfo/<%= r.productid %>"
                                         method="POST">
                                         <input class="btn btn-secondary" type="submit" value="Delete">
                                     </form>
 
                                     <a class="btn btn-secondary" href="/productspage">Return</a>
-
                                     <!-- </form> -->
                                 </div>
                                 <!-- </form> -->
@@ -259,7 +253,6 @@
                     </form>
                 </div>
                 <!-- <% }); %> -->
-
             </div>
         </div>
     </div>
