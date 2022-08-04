@@ -559,7 +559,7 @@ express()
         var uAddr = req.body.inAddr;
 
         var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
-
+        console.log("first query");
         var checkQuery = `SELECT * FROM clients WHERE clientid='${uCID}' AND clientname!='${inOldName}'`;
         const resultCheck = await pool.query(checkQuery);
 
@@ -575,6 +575,7 @@ express()
             WHERE clientid='${uCID}';
             `;
             try {
+                console.log("second query");
                 const result = await pool.query(getQuery);
                 // window.alert('Successfully updated Student.');
                 res.redirect(`/clients`); //redirect to all clients page
@@ -586,6 +587,7 @@ express()
             // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
             res.redirect(`/clients`);
         }
+        console.log("done query");
         //resultCheck.release();
         //result.release();
     })
