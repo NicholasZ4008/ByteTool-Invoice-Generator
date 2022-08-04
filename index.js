@@ -213,6 +213,8 @@ async function sendMail(req, res) {
 //app start
 const { Pool } = require('pg');
 const { response } = require('express');
+const checkLoginCred = require('./functions/checkLoginCred');
+const checkDbReturn = require('./functions/checkDbReturn');
 //const { connect } = require('http2');
 const pool = new Pool({
 
@@ -260,6 +262,9 @@ express()
         const connection = await pool.connect();
         // Ensure the input fields exists and are not empty
         if (username && password) {
+            if (checkLoginCred(username, password)){
+                console.log("signed in");
+            }
             // Execute SQL query that'll select the account from the database based on the specified username and password
             connection.query(`SELECT * FROM accounts WHERE username = '${username}' AND password = '${password}';`, function (error, results, fields) {
                 // If there is an issue with the query, output the error
@@ -268,6 +273,9 @@ express()
                 if (error) throw error;
                 // If the account exists
                 if (results.rows.length > 0) {
+                    if (checkDbReturn({ "results": [1] })) {
+                        console.log('db result returned');
+                    }
                     // Authenticate the user
                     connection.query(`UPDATE accounts SET loggedin = 'true' WHERE username = '${username}' AND password = '${password}';`)
                     loggedin = true;
@@ -696,10 +704,8 @@ express()
     //Nick
     // Last updated by Nabila: Modified the query
     .get('/newPayment', (req, res) => {
-        var getQuery = `
-        SELECT c.clientid, c.clientname, i.invoiceid, i.clientid, i.balance AS clientid_invoices 
-        FROM Invoices i LEFT JOIN Clients c ON i.clientid = c.clientid;
-        `;
+        var getQuery = `SELECT c.clientid, c.clientname, i.invoiceid, i.clientid, i.balance AS clientid_invoices 
+        FROM Invoices i LEFT JOIN Clients c ON i.clientid = c.clientid;`;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
