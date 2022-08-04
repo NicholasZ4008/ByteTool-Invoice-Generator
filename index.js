@@ -811,9 +811,16 @@ express()
 
 
     //Nick Aug 2
+    //Updated by Nabila: changed query
     .get('/viewPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
-        var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        // var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        var getQuery = `
+        SELECT p.paymentid, p.paymentstatus, p.paymentdate, p.amount, p.invoiceid, p.method, p.notes, i.clientname 
+        FROM Payments p 
+        LEFT JOIN Invoices i ON p.invoiceid = i.invoiceid
+        WHERE paymentid='${payID}';
+        `
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
@@ -824,7 +831,15 @@ express()
     //Nick Aug 2
     .get('/editPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
-        var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        // var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
+        
+        var getQuery = `
+        SELECT p.paymentid, p.paymentstatus, p.paymentdate, p.amount, p.invoiceid, p.method, p.notes, i.clientname 
+        FROM Payments p 
+        LEFT JOIN Invoices i ON p.invoiceid = i.invoiceid
+        WHERE paymentid='${payID}';
+        `
+
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
@@ -832,40 +847,27 @@ express()
         })
     })
 
-    /* buggy update payment code (NICK AUG 2nd)
-    .post('/updatePayment/:paymentid',(req,res)=>{
-        var uPayID = req.body.paymentID
-        var uPaymentStatus = req.body.paymentStatus
-        var uPaymentDate = req.body.paymentDate
-        var uAmount = req.body.amnt
-        var uInvoiceID = req.body.invoiceID
-        var uMethod = req.body.paymentMethod
-        var uNotes = req.body.paymentNotes
+    // Added by Nabila
+    .post('/updatePayment/:paymentid', (req, res) => {
+        var uPayID = req.body.inPID;
+        var uPaymentStatus = req.body.inPayStatus;
+        var uPaymentDate = req.body.inPayDate;
+        var uAmount = req.body.inAmnt;
+        // var uInvoiceID = req.body.invoiceid;
+        var uMethod = req.body.inMethod;
+        var uNotes = req.body.inNotes;
 
-        //var inOldName = req.body.oldName; // get oldname; this will help make sure clientid is unique
+        var getQuery = `
+        UPDATE payments SET paymentid='${uPayID}', paymentstatus='${uPaymentStatus}', paymentdate='${uPaymentDate}', 
+        amount=${uAmount}, method='${uMethod}', notes='${uNotes}' 
+        WHERE paymentid='${uPayID}';
+        `;
 
-       //var checkQuery = `SELECT * FROM payments WHERE paymentid='${uCID}' AND paymentid!='${inOldName}'`;
-        const resultCheck = await pool.query(checkQuery);
-
-        if (resultCheck.rowCount == 0) {
-            // var getQuery = `UPDATE clients SET clientid='${uCID}', clientname='${uCName}', contactname='${uConName}', email='${uEmail}', cntrycode='${uAreaCode}', phone='${uPhone}', address='${uAddr}' WHERE clientid='${uCID}'`;      
-            var getQuery = `UPDATE Payments SET paymentid='${uPayID}', paymentstatus='${uPaymentStatus}', 
-            paymentdate='${uPaymentDate}', amount=${uAmount}, invoiceid='${uInvoiceID}', 
-            method='${uMethod}', notes='${uNotes}' WHERE paymentid='${uPayID}';`;
-            try {
-                const result = await pool.query(getQuery);
-                // window.alert('Successfully updated Student.');
-                res.redirect(`/paymentspage`); //redirect to all clients page
-            }
-            catch (error) {
-                res.end(error);
-            }
-        } else {
-            // window.alert('Failed to Updated.\n Check your input and make sure student id is unique.');
-            res.redirect(`/paymentspage`);
-        }
+        pool.query(getQuery, (error, result) => {
+            if (error) res.end(error);
+            res.redirect('/paymentspage');
+        })
     })
-    */
 
     .get('/dashboard', (req, res) => {
         res.render('pages/loggedin')

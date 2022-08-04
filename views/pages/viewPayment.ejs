@@ -13011,7 +13011,7 @@
 
                 <!-- Main content section, will be different for all the pages -->
                 <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
-                    <h1 class="display-1">New Payment</h1>
+                    <h1 class="display-1">View Payment</h1>
 
                     <div class="formcontainer">
                         <form action="/newPayment/Added" method="post">
@@ -13055,7 +13055,7 @@
                                         <h2>Billing Information</h2>
                                         <label for="inputAmount" class="form-label">Amount</label>
                                         <input type="number" class="form-control" id="inputAmount" name="inAmnt"
-                                        value="<%= r.amount %>" readonly="readonly">
+                                        readonly="readonly" value=<%= r.amount %> >
                                         <br>
                                         <label for="inputMethod" class="form-label">Method</label>
                                         <input type="text" class="form-control" id="inputMethod" name="inMethod"
