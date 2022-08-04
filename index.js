@@ -575,7 +575,12 @@ express()
     })
 
     .get('/generateInvoice/:invoiceid', (req, res) => {
-        var getQuery = "SELECT i.status, i.invoiceid, i.invoicedate, i.paymentdeadline, i.clientname, i.clientid, c.contactname, c.email, c.cntrycode, c.phone, c.address, p.productid, p.productname, q.discount, q.price, q.quantity, q.price*q.quantity AS totalprice_row, r.totalcost AS subtotal, i.totalamount FROM Clients c INNER JOIN Invoices i ON c.clientid = i.clientid INNER JOIN Orders r ON i.ordernum = r.ordernum INNER JOIN Orderbyline q ON r.ordernum = q.ordernum INNER JOIN Product p ON q.productid = p.productid;"
+        var getQuery = `SELECT i.status, i.invoiceid, i.invoicedate, i.paymentdeadline, i.clientname, i.clientid, c.contactname, c.email, c.cntrycode, c.phone, c.address, p.productid, p.productname, q.ordernum, q.productid, q.discount, q.price, q.quantity, q.price*q.quantity AS totalprice_row, r.totalcost,  r.totalcost-(r.totalcost*q.discount) AS subtotal, i.totalamount 
+        FROM Clients c 
+        INNER JOIN Invoices i ON c.clientid = i.clientid 
+        INNER JOIN Orders r ON i.ordernum = r.ordernum 
+        LEFT JOIN Orderbyline q ON r.ordernum = q.ordernum 
+        INNER JOIN Product p ON q.productid = p.productid;`;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
@@ -706,8 +711,8 @@ express()
     })
 
     //prototyping newPayment (Nick Aug-1)
-    
-    .post('/newPayment/Added',(req,res)=>{
+
+    .post('/newPayment/Added', (req, res) => {
         var uPayID = req.body.paymentID;
         var uPaymentStatus = req.body.paymentStatus;
         var uPaymentDate = req.body.paymentDate;
@@ -723,32 +728,32 @@ express()
 
         //if (resultCheck.rowCount == 0) {
 
-            var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
-            pool.query(getQuery, (error,result) =>{
-                if(error)
-                  res.end(error);
-                res.redirect('/pages/paymentspage');
-            })
-
-            /*
-            try {
-                const result = await pool.query(getQuery);
-                // window.alert('Successfully added Client.');
-                res.redirect(`pages/paymentspage`);
-            }
-            catch (error) {
+        var getQuery = `INSERT INTO Payments VALUES ('${uPayID}', '${uPaymentStatus}', '${uPaymentDate}', ${uAmount}, '${uInvoiceID}', '${uMethod}', '${uNotes}');`;
+        pool.query(getQuery, (error, result) => {
+            if (error)
                 res.end(error);
-            }
-            */
+            res.redirect('/pages/paymentspage');
+        })
+
+        /*
+        try {
+            const result = await pool.query(getQuery);
+            // window.alert('Successfully added Client.');
+            res.redirect(`pages/paymentspage`);
+        }
+        catch (error) {
+            res.end(error);
+        }
+        */
         //}else {
-            // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
-            //res.redirect(`pages/paymentspage`);
+        // window.alert('Failed to Add Client.\n Check your input and make sure client id is unique.');
+        //res.redirect(`pages/paymentspage`);
         //}
     })
-    
-    
+
+
     //Nick Aug 2
-    .get('/viewPayment/:paymentid',(req,res)=>{
+    .get('/viewPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
         var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
         pool.query(getQuery, (error, result) => {
@@ -759,7 +764,7 @@ express()
     })
 
     //Nick Aug 2
-    .get('/editPayment/:paymentid',(req,res)=>{
+    .get('/editPayment/:paymentid', (req, res) => {
         let payID = req.params.paymentid;
         var getQuery = `SELECT * FROM Payments WHERE paymentid='${payID}';`;
         pool.query(getQuery, (error, result) => {
@@ -808,4 +813,4 @@ express()
         res.render('pages/loggedin')
     })
 
-.listen(PORT, () => console.log(`Listening on ${PORT}`))
+    .listen(PORT, () => console.log(`Listening on ${PORT}`))
