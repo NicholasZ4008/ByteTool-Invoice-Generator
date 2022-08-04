@@ -192,50 +192,58 @@
 
                 <div class="formcontainer">
                     <form action="/newPayment/Added" method="post">
-                    <!-- <form action="/newPayment/Added" target="_blank" method="post"> -->
+                        <!-- <form action="/newPayment/Added" target="_blank" method="post"> -->
+                        <!-- <% rows.forEach(function(r) { %> -->
                         <div class="row g-3 gx-5">
                             <div class="row g-3 gx-5">
                                 <div class="col-md-12">
                                     <h2>Payment Information</h2>
-                                        <label class="form-label">Payment ID</label>
-                                        <input type="text" class="form-control" id="inputClientName" name="paymentID">
-                                        <br>
+                                    <label for="inputpaymentID" class="form-label">Payment ID</label>
+                                    <input type="text" class="form-control" id="inputpaymentID" name="paymentID">
+                                    <br>
 
-                                        <label class="form-label">Payment Status</label>
-                                        <input type="text" class="form-control" id="inputClientName" name="paymentStatus">
-                                        <br>
+                                    <label for="inputpaymentStatus" class="form-label">Payment Status</label>
+                                    <input type="text" class="form-control" id="inputpaymentStatus"
+                                        name="paymentStatus">
+                                    <br>
 
-                                        <label class="form-label">Payment Date</label>
-                                        <input type="text" class="form-control" id="inputClientName" name="paymentDate">
-                                        <br>
+                                    <label for="inputPaymentDate" class="form-label">Payment Date</label>
+                                    <input type="text" class="form-control" id="inputPaymentDate" name="paymentDate">
+                                    <br>
 
-                                        <label for="inputClientName" class="form-label">Client Name</label>
+                                    <!-- <label for="inputClientName" class="form-label">Client Name</label>
                                         <input type="text" class="form-control" id="inputClientName" name="clientName"> 
-                                        <br>
+                                        <br> -->
 
-                                        <!-- 
-                                        <select class="form-control" id="inputClientName" name="prdctID">
-                                            <option></option>
+                                    <!-- <label for="inputInvoiceID_ClientName" class="form-label">Invoice ID</label>
+                                        <select class="form-control" id="inputInvoiceID_ClientName" name="invoiceID_ClientName" value="">
+                                            <% for(var i=0; i < r.length; i++) { %>
+                                            <% rows.forEach(function(r) { %>
+                                            <option>
+                                                <%= r.invoiceid %> , <%= r.clientname %>
+                                            </option>
+                                            <%}%>
+                                            <% }); %>
                                         </select>
-                                        -->
+                                        <br> -->
 
-                                        
-                                        <label for="inputInvoiceNumber" class="form-label">Invoice ID</label>
-                                        <input type="text" class="form-control" id="inputPaymentName" name="invoiceID">
-                                        <br>
 
-                                        <label for="inputPrice" class="form-label">Price</label>
-                                        <input type="number" class="form-control" id="inputPrice" name="prdctPrice" 
+                                    <!-- <label for="inputInvoiceID_ClientName" class="form-label">Invoice ID</label>
+                                        <input type="text" class="form-control" id="inputInvoiceID_ClientName" name="invoiceID_ClientName">
+                                        <br> -->
+
+                                    <!-- <label for="inputBalance" class="form-label">Balance Outstanding</label>
+                                        <input type="number" class="form-control" id="inputBalance" name="paymentBalance" 
                                         min=0 value=0 step=0.01 placeholder=0.00>
-                                        <br>
+                                        <br> -->
 
-                                        <label for="inputInvoiceNumber" class="form-label">Amount</label>
-                                        <input type="text" class="form-control" id="inputPaymentName" name="amnt">
-                                        <br>
+                                    <label for="inputAmount" class="form-label">Amount</label>
+                                    <input type="text" class="form-control" id="inputPaymentName" name="amnt">
+                                    <br>
 
-                                        <label for="inputInvoiceNumber" class="form-label">Method</label>
-                                        <input type="text" class="form-control" id="inputPaymentName" name="paymentMethod">
-                                        <br>
+                                    <label for="inputMethod" class="form-label">Method</label>
+                                    <input type="text" class="form-control" id="inputPaymentName" name="paymentMethod">
+                                    <br>
                                 </div>
                             </div>
 
@@ -245,7 +253,7 @@
                                     <label for="inputModelSeries" class="form-label">Model Series</label>
                                     <input type="text" class="form-control" id="inputModelSeries" name="prdctModel">
                                     <br>
-                                    <label id= "inputCategory" class="form-label">Category</label>
+                                    <label id="inputCategory" class="form-label">Category</label>
                                     <input type="text" class="form-control" id="inputCategory" name="prdctCategory">
                                 </div>
                             </div>
@@ -253,31 +261,27 @@
                             <div class="row g-3 gx-5">
                                 <div class="col-md-12">
                                     <label for="inputNotes" class="form-label">Additional Notes</label>
-                                    <input type="textarea" class="form-control" id="inputNotes" name="paymentNotes" classname="Text1" 
-                                    cols="40" rows="5">
+                                    <input type="textarea" class="form-control" id="inputNotes" name="paymentNotes"
+                                        classname="Text1" cols="40" rows="5">
                                     <br>
                                 </div>
                             </div>
 
                             <div class="col-12" style="text-align: center;">
 
-                                <form method ="POST" action="/newPayment/Added">
-                                    <input id="addPayment" type="submit" class="btn btn-secondary" value="Add Payment"></input>
+                                <form method="POST" action="/newPayment/Added">
+                                    <input id="addPayment" type="submit" class="btn btn-secondary" value="Add Payment">
                                 </form>
-                                
+
                                 <a class="btn btn-secondary" href="/paymentspage">return to payment page</a>
                             </div>
                         </div>
+                        <!-- <% }); %> -->
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- <script>
-        //set values in selection box
-        function addOption(parentID, optionValue) {
-            // add options
-        }
-    </script> -->
 </body>
+
+</html>

@@ -512,8 +512,8 @@ express()
         res.redirect('pages/editClient')
     })
 
-
-    .post('/updateclient/:clientid', async (req, res) => {
+    //not working
+    .post('/updateClient/:clientid', async (req, res) => {
 
         var uCID = req.body.inClID;
         var uCName = req.body.inClName;
@@ -550,6 +550,12 @@ express()
             res.redirect(`/clients`);
         }
 
+    })
+
+    //changed req.body to req.params to debug (Nick) AUG-1 and added ;
+    .post('/deleteClient/:clientID', (req, res) => {
+        pool.query(`DELETE FROM clients WHERE clientid='${clientID}';`);
+        res.redirect('/clients');
     })
 
     //fixing up template (NICK) AUG-1
@@ -604,12 +610,7 @@ express()
         res.render("/pages/createinvoice")
     })
 
-    //changed req.body to req.params to debug (Nick) AUG-1 and added ;
-    .post('/deleteclient/:clientid', (req, res) => {
-        let clID = req.params.clientid;
-        pool.query(`DELETE FROM clients WHERE clientid='${clID}';`);
-        res.redirect('/clients');
-    })
+
 
     .get('/productspage', (req, res) => {
         var getQuery = `
@@ -631,16 +632,23 @@ express()
         res.render('pages/newProduct')
     })
 
-    /*
-    .post('/newProduct/Added', (req,res)=>{
-        var ID = req.body.prdctID
-        var name = req.body.prdctName
-        var price = req.body.prdctPrice
-        var model = req.body.prdctModel
-        var category = req.body.prdctCategory
-        var description = req.body.
+
+    .post('/newProduct/Added', (req, res) => {
+        var uPrdctID = req.body.prdctID
+        var uPrdctName = req.body.prdctName
+        var uPrice = req.body.prdctPrice
+        var uMdlSeries = req.body.prdctModel
+        var uCategory = req.body.prdctCategory
+        var uDescription = req.body.prdctDesc
+
+        var getQuery = `INSERT INTO product VALUES ('${uPrdctID}', '${uPrdctName}', '${uCategory}', '${uMdlSeries}', ${uPrice}, '${uDescription}');`;
+        pool.query(getQuery, (error, result) => {
+            if (error)
+                res.end(error);
+            res.redirect('/pages/productspage');
+        })
     })
-    */
+
 
     //edit this later with nabila query
     // Modified by Nabila (2022/07/30): Rename 'client' to 'product'
@@ -665,12 +673,25 @@ express()
     })
 
     //NICK aug-2
-    /*
-    .post('updateProductInfo/:productid',(req,res)=>{
-        var pID = req.params.productid;
+    .post('updateProductInfo/:productid', (req, res) => {
+        var uPrdctID = req.body.prdctID;
+        var uPrdctName = req.body.prdctName;
+        var uPrice = req.body.prdctPrice;
+        var uMdlSeries = req.body.prdctModel;
+        var uCategory = req.body.prdctCategory;
+        var uDescription = req.body.prdctDesc;
 
+        var getQuery = `UPDATE product SET productid='${uPrdctID}', productname='${uPrdctName}', 
+        category='${uCategory}', modelseries='${uMdlSeries}', price=${uPrice}, 
+        description='${uDescription}' WHERE productid='${uPrdctID}';`;
+
+        pool.query(getQuery, (error, result) => {
+            if (error)
+                res.end(error);
+            res.redirect('/pages/productspage');
+        })
     })
-    */
+
 
     //added a deleteproduct (NICK) AUG-1
     .post('/deleteProductInfo/:productid', (req, res) => {
@@ -698,10 +719,11 @@ express()
     })
 
     //Nick
+    // Last updated by Nabila: Modified the query
     .get('/newPayment', (req, res) => {
         var getQuery = `
-        SELECT c.clientid, c.clientname, i.invoiceid, i.clientid AS clientid_invoices 
-        FROM Clients c, Invoices i;
+        SELECT c.clientid, c.clientname, i.invoiceid, i.clientid, i.balance AS clientid_invoices 
+        FROM Invoices i LEFT JOIN Clients c ON i.clientid = c.clientid;
         `;
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
@@ -717,7 +739,7 @@ express()
         var uPaymentStatus = req.body.paymentStatus;
         var uPaymentDate = req.body.paymentDate;
         var uAmount = req.body.amnt;
-        var uInvoiceID = req.body.invoiceID;
+        var uInvoiceID = req.body.invoiceID_ClientName; //change name
         var uMethod = req.body.paymentMethod;
         var uNotes = req.body.paymentNotes;
 
