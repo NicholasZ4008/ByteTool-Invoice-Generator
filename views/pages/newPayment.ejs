@@ -205,14 +205,6 @@
                                 <label for="inputPaymentDate" class="form-label">Payment Date</label>
                                 <input type="text" class="form-control" id="inputPaymentDate" name="inPayDate">
                                 <br>
-                                <label for="inputAmount" class="form-label">Amount</label>
-                                <input type="number" class="form-control" id="inputAmount" name="inAmnt">
-                                <br>
-                                <label for="inputMethod" class="form-label">Method</label>
-                                <input type="text" class="form-control" id="inputMethod" name="inMethod" placeholder="VISA">
-
-                            </div>
-                            <div class="col-md-6">
                                 <label for="inputInvoiceID" class="form-label">Invoice ID</label>
                                 <select class="form-control" id="inputInvoiceID" name="invoiceid">
                                     <option hidden disabled selected value> Choose an Invoice </option>
@@ -222,21 +214,28 @@
                                     </option>
                                     <% }) %>
                                 </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h2>Billing Information</h2>
+                                <label for="inputAmount" class="form-label">Amount</label>
+                                <input type="number" class="form-control" id="inputAmount" name="inAmnt">
                                 <br>
-                                <label for="inputModelSeries" class="form-label">Model Series</label>
+                                <label for="inputMethod" class="form-label">Method</label>
+                                <input type="text" class="form-control" id="inputMethod" name="inMethod" placeholder="VISA">
+                                <br>
+                                <!-- <label for="inputModelSeries" class="form-label">Model Series</label>
                                 <input type="text" class="form-control" id="inputModelSeries" name="inModelSeries">
                                 <br>
                                 <label id= "inputCategory" class="form-label">Category</label>
-                                <input type="text" class="form-control" id="inputModelSeries" name="inModelSeries" placeholder="Office Supplies">
+                                <input type="text" class="form-control" id="inputModelSeries" name="inModelSeries" placeholder="Office Supplies"> -->
                             </div>
 
                             <div class="row g-3 gx-5">
                                 <div class="col-md-12">
-                                    <!-- <h2>Billing Address</h2> -->
                                     <label for="inputNotes" class="form-label">Additional Notes</label>
                                     <input type="textarea" class="form-control" id="inputNotes" name="inNotes" classname="Text1" 
                                     cols="40" rows="5">
-                                    <!-- </textarea> -->
                                     <br>
                                 </div>
                             </div>

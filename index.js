@@ -739,15 +739,13 @@ express()
     //prototyping newPayment (Nick Aug-1)
 
     .post('/newPayment/Added', (req, res) => {
-        var uPayID = req.body.paymentID;
-        var uPaymentStatus = req.body.paymentStatus;
-        var uPaymentDate = req.body.paymentDate;
-        var uAmount = req.body.amnt;
-        var uInvoiceID = req.body.invoiceID_ClientName; //change name
-        var uMethod = req.body.paymentMethod;
-        var uNotes = req.body.paymentNotes;
-
-        //var sameID = req.body.
+        var uPayID = req.body.inPID;
+        var uPaymentStatus = req.body.inPayStatus;
+        var uPaymentDate = req.body.inPayDate;
+        var uAmount = req.body.inAmnt;
+        var uInvoiceID = req.body.invoiceid; //change name
+        var uMethod = req.body.inMethod;
+        var uNotes = req.body.inNotes;
 
         //var checkQuery = `SELECT * FROM Payments WHERE paymentID='${uPayID}' `;
         //const resultCheck = await pool.query(checkQuery);
