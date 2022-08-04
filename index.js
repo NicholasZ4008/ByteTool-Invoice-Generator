@@ -284,7 +284,7 @@ express()
                     loggedin = true;
                     sendUsername = username;
                     // Redirect to home page
-                    res.render('pages/loggedin', results);
+                    res.render('pages/invoicepage', results);
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
@@ -652,7 +652,7 @@ express()
         LEFT JOIN Orderbyline q ON r.ordernum = q.ordernum 
         INNER JOIN Product p ON q.productid = p.productid
         WHERE i.invoiceid = '${uInvoiceID}';`;
-        
+
         pool.query(getQuery, (error, result) => {
             if (error) res.end(error);
             var results = { 'rows': result.rows };
@@ -866,7 +866,7 @@ express()
     })
 
     .get('/dashboard', (req, res) => {
-        res.render('pages/invoicepage')
+        res.redirect('pages/invoicepage')
     })
 
     .listen(PORT, () => console.log(`Listening on ${PORT}`))
