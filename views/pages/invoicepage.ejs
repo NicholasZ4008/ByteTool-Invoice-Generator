@@ -170,17 +170,7 @@
             <!-- Main content section, will be different for all the pages -->
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="min-width: 1000px;">
                 <h1 class="display-1">Invoices</h1>
-
-                <div class="input-group">
-                    <!-- Button for new Clients -->
-                    <!-- <form action="/newClient.html"> -->
-                    <form method="GET" action="/addInvoice">
-                        <input id="new-button" class="btn btn-secondary" type="submit" value="New" />
-                    </form>
-
-
-
-                </div>
+                
 
                 <div class="tablecontainer">
                     <table class="table">
@@ -228,16 +218,6 @@
                                     </td>
                                     <td>
                                         <%= r.ordernum%>
-                                    </td>
-                                    <td>
-                                        <a href="/viewinvoice/<%= r.invoiceid%>" class="btn btn-secondary">
-                                            View Invoice
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="/editinvoice/<%= r.invoiceid%>" class="btn btn-secondary">
-                                            Edit Invoice
-                                        </a>
                                     </td>
                                     <td>
                                         <a href="/generateInvoice/<%= r.invoiceid%>" class="btn btn-secondary">
